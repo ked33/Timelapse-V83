@@ -1,0 +1,62 @@
+name: Build Timelapse v83
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-x86:
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      # The trainer targets the 32-bit v83 client and uses x86 inline assembly.
+      - name: Build Debug x86
+        shell: pwsh
+        run: |
+          $artifactDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts'
+          $intermediateDir = Join-Path $env:GITHUB_WORKSPACE 'obj'
+          New-Item -ItemType Directory -Path $artifactDir -Force | Out-Null
+          New-Item -ItemType Directory -Path $intermediateDir -Force | Out-Null
+
+          $msbuildArgs = @(
+            (Join-Path $env:GITHUB_WORKSPACE 'Timelapse.sln'),
+            '/t:Build',
+            '/m',
+            '/verbosity:minimal',
+            '/p:Configuration=Debug',
+            '/p:Platform=x86',
+            ('/p:OutDir=' + $artifactDir + '\'),
+            ('/p:IntDir=' + $intermediateDir + '\')
+          )
+          & msbuild @msbuildArgs
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+      - name: Verify build output
+        shell: pwsh
+        run: |
+          $files = @(Get-ChildItem -LiteralPath (Join-Path $env:GITHUB_WORKSPACE 'artifacts') -File -Recurse)
+          $dlls = @($files | Where-Object Extension -eq '.dll')
+          if ($dlls.Count -eq 0) {
+            throw 'The x86 build completed without producing a DLL.'
+          }
+          $dlls | Select-Object FullName, Length | Format-Table -AutoSize
+
+      - name: Upload x86 artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Timelapse-v83-Debug-x86
+          path: artifacts
+          if-no-files-found: error
