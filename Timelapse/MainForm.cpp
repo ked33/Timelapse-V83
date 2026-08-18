@@ -84,16 +84,20 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
 		switch (ul_reason_for_call)
 		{
 		case DLL_PROCESS_ATTACH:
-
+		{
 			allocateConsole();
 			GlobalVars::hDLL = hModule;
-			CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)&Main, nullptr, 0, nullptr);
+			HANDLE mainThread = CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)&Main, nullptr, 0, nullptr);
+			if (mainThread == nullptr)
+				return FALSE;
+
+			CloseHandle(mainThread);
 			break;
+		}
 
 			// ... other cases
-
-			return TRUE;
 		}
+		return TRUE;
 	}
 	catch (...) {
 		return FALSE;
