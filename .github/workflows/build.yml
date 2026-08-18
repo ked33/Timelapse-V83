@@ -24,9 +24,9 @@ jobs:
       - name: Build Debug x86
         shell: pwsh
         run: |
-          $artifactDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts'
+          $buildDir = Join-Path $env:GITHUB_WORKSPACE 'build-output'
           $intermediateDir = Join-Path $env:GITHUB_WORKSPACE 'obj'
-          New-Item -ItemType Directory -Path $artifactDir -Force | Out-Null
+          New-Item -ItemType Directory -Path $buildDir -Force | Out-Null
           New-Item -ItemType Directory -Path $intermediateDir -Force | Out-Null
 
           $msbuildArgs = @(
@@ -36,7 +36,7 @@ jobs:
             '/verbosity:minimal',
             '/p:Configuration=Debug',
             '/p:Platform=x86',
-            ('/p:OutDir=' + $artifactDir + '\'),
+            ('/p:OutDir=' + $buildDir + '\'),
             ('/p:IntDir=' + $intermediateDir + '\')
           )
           & msbuild @msbuildArgs
@@ -44,19 +44,29 @@ jobs:
             exit $LASTEXITCODE
           }
 
-      - name: Verify build output
+      - name: Stage DLL only
         shell: pwsh
         run: |
-          $files = @(Get-ChildItem -LiteralPath (Join-Path $env:GITHUB_WORKSPACE 'artifacts') -File -Recurse)
-          $dlls = @($files | Where-Object Extension -eq '.dll')
-          if ($dlls.Count -eq 0) {
-            throw 'The x86 build completed without producing a DLL.'
+          $buildDll = Join-Path $env:GITHUB_WORKSPACE 'build-output\Timelapse-v83.dll'
+          $artifactDir = Join-Path $env:GITHUB_WORKSPACE 'artifacts'
+          if (-not (Test-Path -LiteralPath $buildDll)) {
+            throw "The x86 build did not produce $buildDll"
           }
-          $dlls | Select-Object FullName, Length | Format-Table -AutoSize
+          if (Test-Path -LiteralPath $artifactDir) {
+            Remove-Item -LiteralPath $artifactDir -Recurse -Force
+          }
+          New-Item -ItemType Directory -Path $artifactDir -Force | Out-Null
+          Copy-Item -LiteralPath $buildDll -Destination (Join-Path $artifactDir 'Timelapse-v83.dll')
+
+          $files = @(Get-ChildItem -LiteralPath $artifactDir -File)
+          if ($files.Count -ne 1 -or $files[0].Name -ne 'Timelapse-v83.dll') {
+            throw "Unexpected artifact contents: $($files.Name -join ', ')"
+          }
+          $files | Select-Object Name, Length | Format-Table -AutoSize
 
       - name: Upload x86 artifacts
         uses: actions/upload-artifact@v4
         with:
           name: Timelapse-v83-Debug-x86
-          path: artifacts
+          path: artifacts/Timelapse-v83.dll
           if-no-files-found: error

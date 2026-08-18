@@ -990,7 +990,7 @@ namespace Timelapse {
 			   });
 			   this->fileToolStripMenuItem->Name = L"fileToolStripMenuItem";
 			   this->fileToolStripMenuItem->Size = System::Drawing::Size(62, 28);
-			   this->fileToolStripMenuItem->Text = L"ÎÄ¼ş";
+			   this->fileToolStripMenuItem->Text = L"æ–‡ä»¶";
 			   // 
 			   // openSettingsToolStripMenuItem
 			   // 
@@ -999,7 +999,7 @@ namespace Timelapse {
 			   this->openSettingsToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			   this->openSettingsToolStripMenuItem->Name = L"openSettingsToolStripMenuItem";
 			   this->openSettingsToolStripMenuItem->Size = System::Drawing::Size(200, 34);
-			   this->openSettingsToolStripMenuItem->Text = L"´ò¿ªÉè¶¨µµ";
+			   this->openSettingsToolStripMenuItem->Text = L"æ‰“å¼€è®¾å®šæ¡£";
 			   this->openSettingsToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::loadSettingsToolStripMenuItem_Click);
 			   // 
 			   // saveSettingsToolStripMenuItem
@@ -1009,7 +1009,7 @@ namespace Timelapse {
 			   this->saveSettingsToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			   this->saveSettingsToolStripMenuItem->Name = L"saveSettingsToolStripMenuItem";
 			   this->saveSettingsToolStripMenuItem->Size = System::Drawing::Size(200, 34);
-			   this->saveSettingsToolStripMenuItem->Text = L"±£´æÉè¶¨µµ";
+			   this->saveSettingsToolStripMenuItem->Text = L"ä¿å­˜è®¾å®šæ¡£";
 			   this->saveSettingsToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::saveSettingsToolStripMenuItem_Click);
 			   // 
 			   // closeMapleStoryToolStripMenuItem
@@ -1019,7 +1019,7 @@ namespace Timelapse {
 			   this->closeMapleStoryToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			   this->closeMapleStoryToolStripMenuItem->Name = L"closeMapleStoryToolStripMenuItem";
 			   this->closeMapleStoryToolStripMenuItem->Size = System::Drawing::Size(200, 34);
-			   this->closeMapleStoryToolStripMenuItem->Text = L"&¹Ø±ÕÃ°ÏÕµº";
+			   this->closeMapleStoryToolStripMenuItem->Text = L"&å…³é—­å†’é™©å²›";
 			   this->closeMapleStoryToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::closeMapleStoryToolStripMenuItem_Click);
 			   // 
 			   // mapleStoryToolStripMenuItem
@@ -1032,7 +1032,7 @@ namespace Timelapse {
 			   });
 			   this->mapleStoryToolStripMenuItem->Name = L"mapleStoryToolStripMenuItem";
 			   this->mapleStoryToolStripMenuItem->Size = System::Drawing::Size(80, 28);
-			   this->mapleStoryToolStripMenuItem->Text = L"Ã°ÏÕµº";
+			   this->mapleStoryToolStripMenuItem->Text = L"å†’é™©å²›";
 			   // 
 			   // embedMSWindowToolStripMenuItem
 			   // 
@@ -1041,7 +1041,7 @@ namespace Timelapse {
 			   this->embedMSWindowToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			   this->embedMSWindowToolStripMenuItem->Name = L"embedMSWindowToolStripMenuItem";
 			   this->embedMSWindowToolStripMenuItem->Size = System::Drawing::Size(236, 34);
-			   this->embedMSWindowToolStripMenuItem->Text = L"ÏÔÊ¾Ã°ÏÕµº´°¿Ú";
+			   this->embedMSWindowToolStripMenuItem->Text = L"æ˜¾ç¤ºå†’é™©å²›çª—å£";
 			   this->embedMSWindowToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::embedMSWindowToolStripMenuItem_Click);
 			   // 
 			   // hideMSWindowToolStripMenuItem
@@ -1051,7 +1051,7 @@ namespace Timelapse {
 			   this->hideMSWindowToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			   this->hideMSWindowToolStripMenuItem->Name = L"hideMSWindowToolStripMenuItem";
 			   this->hideMSWindowToolStripMenuItem->Size = System::Drawing::Size(236, 34);
-			   this->hideMSWindowToolStripMenuItem->Text = L"Òş²ØÃ°ÏÕµº´°¿Ú";
+			   this->hideMSWindowToolStripMenuItem->Text = L"éšè—å†’é™©å²›çª—å£";
 			   this->hideMSWindowToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::hideMSWindowToolStripMenuItem_Click);
 			   // 
 			   // pauseMSToolStripMenuItem
@@ -1061,7 +1061,7 @@ namespace Timelapse {
 			   this->pauseMSToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			   this->pauseMSToolStripMenuItem->Name = L"pauseMSToolStripMenuItem";
 			   this->pauseMSToolStripMenuItem->Size = System::Drawing::Size(236, 34);
-			   this->pauseMSToolStripMenuItem->Text = L"ÔİÍ£Ã°ÏÕµº";
+			   this->pauseMSToolStripMenuItem->Text = L"æš‚åœå†’é™©å²›";
 			   this->pauseMSToolStripMenuItem->Click += gcnew System::EventHandler(this, &MainForm::pauseMSToolStripMenuItem_Click);
 			   // 
 			   // injectDllToolStripMenuItem
@@ -1071,14 +1071,14 @@ namespace Timelapse {
 			   this->injectDllToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			   this->injectDllToolStripMenuItem->Name = L"injectDllToolStripMenuItem";
 			   this->injectDllToolStripMenuItem->Size = System::Drawing::Size(236, 34);
-			   this->injectDllToolStripMenuItem->Text = L"×¢ÈëDll";
+			   this->injectDllToolStripMenuItem->Text = L"æ³¨å…¥ DLL";
 			   // 
 			   // helpToolStripMenuItem
 			   // 
 			   this->helpToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->aboutToolStripMenuItem });
 			   this->helpToolStripMenuItem->Name = L"helpToolStripMenuItem";
 			   this->helpToolStripMenuItem->Size = System::Drawing::Size(62, 28);
-			   this->helpToolStripMenuItem->Text = L"°ïÖú";
+			   this->helpToolStripMenuItem->Text = L"å¸®åŠ©";
 			   // 
 			   // aboutToolStripMenuItem
 			   // 
@@ -1087,7 +1087,7 @@ namespace Timelapse {
 			   this->aboutToolStripMenuItem->ForeColor = System::Drawing::Color::White;
 			   this->aboutToolStripMenuItem->Name = L"aboutToolStripMenuItem";
 			   this->aboutToolStripMenuItem->Size = System::Drawing::Size(146, 34);
-			   this->aboutToolStripMenuItem->Text = L"&¹ØÓÚ";
+			   this->aboutToolStripMenuItem->Text = L"&å…³äº";
 			   // 
 			   // label1
 			   // 
@@ -1101,7 +1101,7 @@ namespace Timelapse {
 			   this->label1->Name = L"label1";
 			   this->label1->Size = System::Drawing::Size(103, 34);
 			   this->label1->TabIndex = 3;
-			   this->label1->Text = L"Ã°ÏÕµº°æ±¾: 83\r\nË½ÈË·şÎñÆ÷";
+			   this->label1->Text = L"å†’é™©å²›ç‰ˆæœ¬: 83\r\nç§äººæœåŠ¡å™¨";
 			   this->label1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label1->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1118,7 +1118,7 @@ namespace Timelapse {
 			   this->lbTitle->Name = L"lbTitle";
 			   this->lbTitle->Size = System::Drawing::Size(272, 24);
 			   this->lbTitle->TabIndex = 12;
-			   this->lbTitle->Text = L"Timelapse Trainer   ºº»¯°æ";
+			   this->lbTitle->Text = L"Timelapse Trainer   æ±‰åŒ–ç‰ˆ";
 			   this->lbTitle->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->lbTitle->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->lbTitle->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1172,7 +1172,7 @@ namespace Timelapse {
 			   this->lbMapName->Name = L"lbMapName";
 			   this->lbMapName->Size = System::Drawing::Size(59, 21);
 			   this->lbMapName->TabIndex = 42;
-			   this->lbMapName->Text = L"µÈ´ı...";
+			   this->lbMapName->Text = L"ç­‰å¾…...";
 			   this->lbMapName->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->lbMapName->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->lbMapName->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1189,7 +1189,7 @@ namespace Timelapse {
 			   this->label21->Name = L"label21";
 			   this->label21->Size = System::Drawing::Size(84, 21);
 			   this->label21->TabIndex = 22;
-			   this->label21->Text = L"µØÍ¼Ãû³Æ:";
+			   this->label21->Text = L"åœ°å›¾åç§°:";
 			   this->label21->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label21->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label21->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1305,7 +1305,7 @@ namespace Timelapse {
 			   this->label96->Name = L"label96";
 			   this->label96->Size = System::Drawing::Size(101, 21);
 			   this->label96->TabIndex = 58;
-			   this->label96->Text = L"½ÇÉ«Õ¾Á¢µã:";
+			   this->label96->Text = L"è§’è‰²ç«™ç«‹ç‚¹:";
 			   // 
 			   // lbCharAnimation
 			   // 
@@ -1328,7 +1328,7 @@ namespace Timelapse {
 			   this->label94->Name = L"label94";
 			   this->label94->Size = System::Drawing::Size(84, 21);
 			   this->label94->TabIndex = 56;
-			   this->label94->Text = L"½ÇÉ«¶¯»­:";
+			   this->label94->Text = L"è§’è‰²åŠ¨ç”»:";
 			   // 
 			   // lbWalls
 			   // 
@@ -1351,7 +1351,7 @@ namespace Timelapse {
 			   this->label92->Name = L"label92";
 			   this->label92->Size = System::Drawing::Size(50, 21);
 			   this->label92->TabIndex = 54;
-			   this->label92->Text = L"Ç½Ìå:";
+			   this->label92->Text = L"å¢™ä½“:";
 			   // 
 			   // bTestButton
 			   // 
@@ -1362,7 +1362,7 @@ namespace Timelapse {
 			   this->bTestButton->Name = L"bTestButton";
 			   this->bTestButton->Size = System::Drawing::Size(84, 33);
 			   this->bTestButton->TabIndex = 51;
-			   this->bTestButton->Text = L"Test";
+			   this->bTestButton->Text = L"æµ‹è¯•";
 			   this->bTestButton->UseVisualStyleBackColor = true;
 			   this->bTestButton->Visible = false;
 			   this->bTestButton->Click += gcnew System::EventHandler(this, &MainForm::bTestButton_Click);
@@ -1378,7 +1378,7 @@ namespace Timelapse {
 			   this->lbInactive->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			   this->lbInactive->Size = System::Drawing::Size(61, 21);
 			   this->lbInactive->TabIndex = 50;
-			   this->lbInactive->Text = L"Î´¼¤»î";
+			   this->lbInactive->Text = L"æœªæ¿€æ´»";
 			   this->lbInactive->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			   this->lbInactive->Visible = false;
 			   this->lbInactive->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
@@ -1396,7 +1396,7 @@ namespace Timelapse {
 			   this->lbActive->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			   this->lbActive->Size = System::Drawing::Size(44, 21);
 			   this->lbActive->TabIndex = 49;
-			   this->lbActive->Text = L"¼¤»î";
+			   this->lbActive->Text = L"æ¿€æ´»";
 			   this->lbActive->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
 			   this->lbActive->Visible = false;
 			   this->lbActive->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
@@ -1608,7 +1608,7 @@ namespace Timelapse {
 			   this->lbWorld->Name = L"lbWorld";
 			   this->lbWorld->Size = System::Drawing::Size(38, 21);
 			   this->lbWorld->TabIndex = 34;
-			   this->lbWorld->Text = L"Null";
+			   this->lbWorld->Text = L"æ— ";
 			   this->lbWorld->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->lbWorld->MouseHover += gcnew System::EventHandler(this, &MainForm::lbWorld_MouseHover);
 			   this->lbWorld->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
@@ -1687,7 +1687,7 @@ namespace Timelapse {
 			   this->lbJob->Name = L"lbJob";
 			   this->lbJob->Size = System::Drawing::Size(38, 21);
 			   this->lbJob->TabIndex = 29;
-			   this->lbJob->Text = L"Null";
+			   this->lbJob->Text = L"æ— ";
 			   this->lbJob->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->lbJob->MouseHover += gcnew System::EventHandler(this, &MainForm::lbJob_MouseHover);
 			   this->lbJob->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
@@ -1718,7 +1718,7 @@ namespace Timelapse {
 			   this->lbCharName->Name = L"lbCharName";
 			   this->lbCharName->Size = System::Drawing::Size(87, 21);
 			   this->lbCharName->TabIndex = 27;
-			   this->lbCharName->Text = L"CharName";
+			   this->lbCharName->Text = L"è§’è‰²å";
 			   this->lbCharName->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->lbCharName->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->lbCharName->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1732,7 +1732,7 @@ namespace Timelapse {
 			   this->label25->Name = L"label25";
 			   this->label25->Size = System::Drawing::Size(79, 21);
 			   this->label25->TabIndex = 26;
-			   this->label25->Text = L"BuffÊıÁ¿:";
+			   this->label25->Text = L"Buff æ•°é‡:";
 			   this->label25->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label25->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label25->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1746,7 +1746,7 @@ namespace Timelapse {
 			   this->label24->Name = L"label24";
 			   this->label24->Size = System::Drawing::Size(74, 21);
 			   this->label24->TabIndex = 25;
-			   this->label24->Text = L"NPCÊıÁ¿";
+			   this->label24->Text = L"NPC æ•°é‡:";
 			   this->label24->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label24->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label24->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1760,7 +1760,7 @@ namespace Timelapse {
 			   this->label23->Name = L"label23";
 			   this->label23->Size = System::Drawing::Size(84, 21);
 			   this->label23->TabIndex = 24;
-			   this->label23->Text = L"Êó±ê×ø±ê:";
+			   this->label23->Text = L"é¼ æ ‡åæ ‡:";
 			   this->label23->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label23->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label23->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1774,7 +1774,7 @@ namespace Timelapse {
 			   this->label22->Name = L"label22";
 			   this->label22->Size = System::Drawing::Size(96, 21);
 			   this->label22->TabIndex = 23;
-			   this->label22->Text = L"Thread ID: ";
+			   this->label22->Text = L"çº¿ç¨‹ ID: ";
 			   this->label22->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label22->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label22->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1788,7 +1788,7 @@ namespace Timelapse {
 			   this->label20->Name = L"label20";
 			   this->label20->Size = System::Drawing::Size(113, 21);
 			   this->label20->TabIndex = 21;
-			   this->label20->Text = L"Breath Count:";
+			   this->label20->Text = L"å‘¼å¸è®¡æ•°:";
 			   this->label20->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label20->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label20->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1802,7 +1802,7 @@ namespace Timelapse {
 			   this->label19->Name = L"label19";
 			   this->label19->Size = System::Drawing::Size(50, 21);
 			   this->label19->TabIndex = 20;
-			   this->label19->Text = L"½ğ±Ò:";
+			   this->label19->Text = L"é‡‘å¸:";
 			   this->label19->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label19->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label19->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1816,7 +1816,7 @@ namespace Timelapse {
 			   this->label18->Name = L"label18";
 			   this->label18->Size = System::Drawing::Size(50, 21);
 			   this->label18->TabIndex = 19;
-			   this->label18->Text = L"Ö°Òµ:";
+			   this->label18->Text = L"èŒä¸š:";
 			   this->label18->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label18->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label18->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1830,7 +1830,7 @@ namespace Timelapse {
 			   this->label17->Name = L"label17";
 			   this->label17->Size = System::Drawing::Size(95, 21);
 			   this->label17->TabIndex = 18;
-			   this->label17->Text = L"´«ËÍÃÅÊıÁ¿";
+			   this->label17->Text = L"ä¼ é€é—¨æ•°é‡";
 			   this->label17->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label17->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label17->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1844,7 +1844,7 @@ namespace Timelapse {
 			   this->label16->Name = L"label16";
 			   this->label16->Size = System::Drawing::Size(84, 21);
 			   this->label16->TabIndex = 17;
-			   this->label16->Text = L"ÎïÆ·ÊıÁ¿:";
+			   this->label16->Text = L"ç‰©å“æ•°é‡:";
 			   this->label16->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label16->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label16->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1858,7 +1858,7 @@ namespace Timelapse {
 			   this->label15->Name = L"label15";
 			   this->label15->Size = System::Drawing::Size(89, 21);
 			   this->label15->TabIndex = 16;
-			   this->label15->Text = L"¹ÖÎïÊıÁ¿: ";
+			   this->label15->Text = L"æ€ªç‰©æ•°é‡: ";
 			   this->label15->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label15->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label15->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1872,7 +1872,7 @@ namespace Timelapse {
 			   this->label14->Name = L"label14";
 			   this->label14->Size = System::Drawing::Size(84, 21);
 			   this->label14->TabIndex = 15;
-			   this->label14->Text = L"ÈËÎïÊıÁ¿:";
+			   this->label14->Text = L"äººç‰©æ•°é‡:";
 			   this->label14->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label14->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label14->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1886,7 +1886,7 @@ namespace Timelapse {
 			   this->label13->Name = L"label13";
 			   this->label13->Size = System::Drawing::Size(84, 21);
 			   this->label13->TabIndex = 14;
-			   this->label13->Text = L"¹¥»÷´ÎÊı:";
+			   this->label13->Text = L"æ”»å‡»æ¬¡æ•°:";
 			   this->label13->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label13->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label13->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1900,7 +1900,7 @@ namespace Timelapse {
 			   this->label12->Name = L"label12";
 			   this->label12->Size = System::Drawing::Size(84, 21);
 			   this->label12->TabIndex = 13;
-			   this->label12->Text = L"½ÇÉ«×ø±ê:";
+			   this->label12->Text = L"è§’è‰²åæ ‡:";
 			   this->label12->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label12->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label12->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1914,7 +1914,7 @@ namespace Timelapse {
 			   this->label11->Name = L"label11";
 			   this->label11->Size = System::Drawing::Size(73, 21);
 			   this->label11->TabIndex = 12;
-			   this->label11->Text = L"µØÍ¼ID: ";
+			   this->label11->Text = L"åœ°å›¾ID: ";
 			   this->label11->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label11->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label11->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1928,7 +1928,7 @@ namespace Timelapse {
 			   this->label10->Name = L"label10";
 			   this->label10->Size = System::Drawing::Size(50, 21);
 			   this->label10->TabIndex = 11;
-			   this->label10->Text = L"ÆµµÀ:";
+			   this->label10->Text = L"é¢‘é“:";
 			   this->label10->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label10->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label10->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1942,7 +1942,7 @@ namespace Timelapse {
 			   this->label9->Name = L"label9";
 			   this->label9->Size = System::Drawing::Size(50, 21);
 			   this->label9->TabIndex = 10;
-			   this->label9->Text = L"ÊÀ½ç:";
+			   this->label9->Text = L"ä¸–ç•Œ:";
 			   this->label9->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label9->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label9->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -1998,7 +1998,7 @@ namespace Timelapse {
 			   this->label5->Name = L"label5";
 			   this->label5->Size = System::Drawing::Size(55, 21);
 			   this->label5->TabIndex = 6;
-			   this->label5->Text = L"µÈ¼¶: ";
+			   this->label5->Text = L"ç­‰çº§: ";
 			   this->label5->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label5->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label5->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -2027,7 +2027,7 @@ namespace Timelapse {
 			   this->label3->Name = L"label3";
 			   this->label3->Size = System::Drawing::Size(154, 37);
 			   this->label3->TabIndex = 4;
-			   this->label3->Text = L"»ù±¾ĞÅÏ¢:";
+			   this->label3->Text = L"åŸºæœ¬ä¿¡æ¯:";
 			   this->label3->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label3->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label3->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
@@ -2063,7 +2063,7 @@ namespace Timelapse {
 			   this->tabPage1->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage1->Size = System::Drawing::Size(589, 535);
 			   this->tabPage1->TabIndex = 0;
-			   this->tabPage1->Text = L"Ö÷Ò³";
+			   this->tabPage1->Text = L"ä¸»é¡µ";
 			   // 
 			   // pictureBox1
 			   // 
@@ -2103,7 +2103,7 @@ namespace Timelapse {
 			   this->tabPage3->RightToLeft = System::Windows::Forms::RightToLeft::No;
 			   this->tabPage3->Size = System::Drawing::Size(534, 333);
 			   this->tabPage3->TabIndex = 0;
-			   this->tabPage3->Text = L"ÈÕÖ¾";
+			   this->tabPage3->Text = L"æ—¥å¿—";
 			   // 
 			   // lbConsoleLog
 			   // 
@@ -2133,7 +2133,7 @@ namespace Timelapse {
 			   this->tabPage17->Name = L"tabPage17";
 			   this->tabPage17->Size = System::Drawing::Size(534, 333);
 			   this->tabPage17->TabIndex = 2;
-			   this->tabPage17->Text = L"×Ô¶¯µÇÂ¼";
+			   this->tabPage17->Text = L"è‡ªåŠ¨ç™»å½•";
 			   // 
 			   // panel22
 			   // 
@@ -2185,7 +2185,7 @@ namespace Timelapse {
 			   this->label95->Name = L"label95";
 			   this->label95->Size = System::Drawing::Size(50, 21);
 			   this->label95->TabIndex = 30;
-			   this->label95->Text = L"ÊÀ½ç:";
+			   this->label95->Text = L"ä¸–ç•Œ:";
 			   // 
 			   // cbAutoLoginPic
 			   // 
@@ -2238,7 +2238,7 @@ namespace Timelapse {
 			   this->label85->Name = L"label85";
 			   this->label85->Size = System::Drawing::Size(67, 21);
 			   this->label85->TabIndex = 18;
-			   this->label85->Text = L"ÓÃ»§Ãû:";
+			   this->label85->Text = L"ç”¨æˆ·å:";
 			   // 
 			   // label80
 			   // 
@@ -2248,7 +2248,7 @@ namespace Timelapse {
 			   this->label80->Name = L"label80";
 			   this->label80->Size = System::Drawing::Size(50, 21);
 			   this->label80->TabIndex = 20;
-			   this->label80->Text = L"½ÇÉ«:";
+			   this->label80->Text = L"è§’è‰²:";
 			   // 
 			   // comboAutoLoginChannel
 			   // 
@@ -2277,7 +2277,7 @@ namespace Timelapse {
 			   this->label84->Name = L"label84";
 			   this->label84->Size = System::Drawing::Size(50, 21);
 			   this->label84->TabIndex = 17;
-			   this->label84->Text = L"ÃÜÂë:";
+			   this->label84->Text = L"å¯†ç :";
 			   // 
 			   // tbAutoLoginPIC
 			   // 
@@ -2300,7 +2300,7 @@ namespace Timelapse {
 			   this->label83->Name = L"label83";
 			   this->label83->Size = System::Drawing::Size(50, 21);
 			   this->label83->TabIndex = 16;
-			   this->label83->Text = L"ÆµµÀ:";
+			   this->label83->Text = L"é¢‘é“:";
 			   // 
 			   // tbAutoLoginPassword
 			   // 
@@ -2340,7 +2340,7 @@ namespace Timelapse {
 			   this->cbAutoLoginSkipLogo->Name = L"cbAutoLoginSkipLogo";
 			   this->cbAutoLoginSkipLogo->Size = System::Drawing::Size(100, 25);
 			   this->cbAutoLoginSkipLogo->TabIndex = 28;
-			   this->cbAutoLoginSkipLogo->Text = L"Ìø¹ıLogo";
+			   this->cbAutoLoginSkipLogo->Text = L"è·³è¿‡å¯åŠ¨ç”»é¢";
 			   this->cbAutoLoginSkipLogo->UseVisualStyleBackColor = false;
 			   this->cbAutoLoginSkipLogo->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbAutoLoginSkipLogo_CheckedChanged);
 			   // 
@@ -2357,7 +2357,7 @@ namespace Timelapse {
 			   this->cbAutoLogin->Name = L"cbAutoLogin";
 			   this->cbAutoLogin->Size = System::Drawing::Size(99, 25);
 			   this->cbAutoLogin->TabIndex = 27;
-			   this->cbAutoLogin->Text = L"×Ô¶¯µÇÂ¼";
+			   this->cbAutoLogin->Text = L"è‡ªåŠ¨ç™»å½•";
 			   this->cbAutoLogin->UseVisualStyleBackColor = false;
 			   this->cbAutoLogin->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbAutoLogin_CheckedChanged);
 			   // 
@@ -2373,7 +2373,7 @@ namespace Timelapse {
 			   this->tabPage4->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage4->Size = System::Drawing::Size(534, 333);
 			   this->tabPage4->TabIndex = 1;
-			   this->tabPage4->Text = L"Ñ¡Ïî";
+			   this->tabPage4->Text = L"é€‰é¡¹";
 			   // 
 			   // transparencyTrackBar
 			   // 
@@ -2396,7 +2396,7 @@ namespace Timelapse {
 			   this->label2->Name = L"label2";
 			   this->label2->Size = System::Drawing::Size(67, 21);
 			   this->label2->TabIndex = 0;
-			   this->label2->Text = L"Í¸Ã÷¶È:";
+			   this->label2->Text = L"é€æ˜åº¦:";
 			   // 
 			   // tabPage2
 			   // 
@@ -2411,7 +2411,7 @@ namespace Timelapse {
 			   this->tabPage2->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage2->Size = System::Drawing::Size(589, 535);
 			   this->tabPage2->TabIndex = 1;
-			   this->tabPage2->Text = L"×Ô¶¯»¯";
+			   this->tabPage2->Text = L"è‡ªåŠ¨åŒ–";
 			   // 
 			   // tabControl3
 			   // 
@@ -2441,7 +2441,7 @@ namespace Timelapse {
 			   this->tabPage11->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage11->Size = System::Drawing::Size(595, 296);
 			   this->tabPage11->TabIndex = 1;
-			   this->tabPage11->Text = L"×Ô¶¯Buff";
+			   this->tabPage11->Text = L"è‡ªåŠ¨ Buff";
 			   // 
 			   // bBuffEnableAll
 			   // 
@@ -2452,7 +2452,7 @@ namespace Timelapse {
 			   this->bBuffEnableAll->Name = L"bBuffEnableAll";
 			   this->bBuffEnableAll->Size = System::Drawing::Size(186, 33);
 			   this->bBuffEnableAll->TabIndex = 15;
-			   this->bBuffEnableAll->Text = L"¿ªÆôËùÓĞ";
+			   this->bBuffEnableAll->Text = L"å¼€å¯æ‰€æœ‰";
 			   this->bBuffEnableAll->UseVisualStyleBackColor = true;
 			   this->bBuffEnableAll->Click += gcnew System::EventHandler(this, &MainForm::bBuffEnableAll_Click);
 			   // 
@@ -2465,7 +2465,7 @@ namespace Timelapse {
 			   this->bBuffDisableAll->Name = L"bBuffDisableAll";
 			   this->bBuffDisableAll->Size = System::Drawing::Size(186, 33);
 			   this->bBuffDisableAll->TabIndex = 14;
-			   this->bBuffDisableAll->Text = L"¹Ø±ÕËùÓĞ";
+			   this->bBuffDisableAll->Text = L"å…³é—­æ‰€æœ‰";
 			   this->bBuffDisableAll->UseVisualStyleBackColor = true;
 			   this->bBuffDisableAll->Click += gcnew System::EventHandler(this, &MainForm::bBuffDisableAll_Click);
 			   // 
@@ -2478,7 +2478,7 @@ namespace Timelapse {
 			   this->bBuffRemove->Name = L"bBuffRemove";
 			   this->bBuffRemove->Size = System::Drawing::Size(188, 35);
 			   this->bBuffRemove->TabIndex = 13;
-			   this->bBuffRemove->Text = L"ÒÆ³ıÑ¡Ôñ";
+			   this->bBuffRemove->Text = L"ç§»é™¤é€‰æ‹©";
 			   this->bBuffRemove->UseVisualStyleBackColor = true;
 			   this->bBuffRemove->Click += gcnew System::EventHandler(this, &MainForm::bBuffRemove_Click);
 			   // 
@@ -2491,7 +2491,7 @@ namespace Timelapse {
 			   this->bBuffClear->Name = L"bBuffClear";
 			   this->bBuffClear->Size = System::Drawing::Size(196, 35);
 			   this->bBuffClear->TabIndex = 12;
-			   this->bBuffClear->Text = L"Çå³ıËùÓĞ";
+			   this->bBuffClear->Text = L"æ¸…é™¤æ‰€æœ‰";
 			   this->bBuffClear->UseVisualStyleBackColor = true;
 			   this->bBuffClear->Click += gcnew System::EventHandler(this, &MainForm::bBuffClear_Click);
 			   // 
@@ -2533,7 +2533,7 @@ namespace Timelapse {
 			   this->bBuffAdd->Name = L"bBuffAdd";
 			   this->bBuffAdd->Size = System::Drawing::Size(170, 29);
 			   this->bBuffAdd->TabIndex = 11;
-			   this->bBuffAdd->Text = L"Ìí¼Ó";
+			   this->bBuffAdd->Text = L"æ·»åŠ ";
 			   this->bBuffAdd->UseVisualStyleBackColor = true;
 			   this->bBuffAdd->Click += gcnew System::EventHandler(this, &MainForm::bBuffAdd_Click);
 			   // 
@@ -2560,7 +2560,7 @@ namespace Timelapse {
 			   this->label40->Name = L"label40";
 			   this->label40->Size = System::Drawing::Size(50, 21);
 			   this->label40->TabIndex = 10;
-			   this->label40->Text = L"Ãû³Æ:";
+			   this->label40->Text = L"åç§°:";
 			   // 
 			   // label41
 			   // 
@@ -2571,7 +2571,7 @@ namespace Timelapse {
 			   this->label41->Name = L"label41";
 			   this->label41->Size = System::Drawing::Size(77, 21);
 			   this->label41->TabIndex = 7;
-			   this->label41->Text = L"¼ä¸ô [s]:";
+			   this->label41->Text = L"é—´éš” [s]:";
 			   // 
 			   // comboBuffKey
 			   // 
@@ -2618,18 +2618,18 @@ namespace Timelapse {
 			   // 
 			   // lvBuffHeaderName
 			   // 
-			   this->lvBuffHeaderName->Text = L"Ãû×Ö";
+			   this->lvBuffHeaderName->Text = L"åå­—";
 			   this->lvBuffHeaderName->Width = 100;
 			   // 
 			   // lvBuffHeaderKey
 			   // 
 			   this->lvBuffHeaderKey->DisplayIndex = 2;
-			   this->lvBuffHeaderKey->Text = L"ÈÈ¼ü";
+			   this->lvBuffHeaderKey->Text = L"çƒ­é”®";
 			   // 
 			   // lvBuffHeaderInterval
 			   // 
 			   this->lvBuffHeaderInterval->DisplayIndex = 1;
-			   this->lvBuffHeaderInterval->Text = L"¼ä¸ô [s]";
+			   this->lvBuffHeaderInterval->Text = L"é—´éš” [s]";
 			   this->lvBuffHeaderInterval->Width = 80;
 			   // 
 			   // tabPage12
@@ -2646,7 +2646,7 @@ namespace Timelapse {
 			   this->tabPage12->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage12->Size = System::Drawing::Size(595, 296);
 			   this->tabPage12->TabIndex = 2;
-			   this->tabPage12->Text = L"×Ô¶¯ CC/CS";
+			   this->tabPage12->Text = L"è‡ªåŠ¨ CC/CS";
 			   // 
 			   // panel8
 			   // 
@@ -2686,7 +2686,7 @@ namespace Timelapse {
 			   this->label48->Name = L"label48";
 			   this->label48->Size = System::Drawing::Size(91, 42);
 			   this->label48->TabIndex = 18;
-			   this->label48->Text = L"Àë¿ªÉÌ³¡ \r\nÑÓ³Ù (ms):";
+			   this->label48->Text = L"ç¦»å¼€å•†åœº \r\nå»¶è¿Ÿ (ms):";
 			   // 
 			   // bCS
 			   // 
@@ -2697,7 +2697,7 @@ namespace Timelapse {
 			   this->bCS->Name = L"bCS";
 			   this->bCS->Size = System::Drawing::Size(219, 32);
 			   this->bCS->TabIndex = 17;
-			   this->bCS->Text = L"×Ô¶¯ÉÌ³¡";
+			   this->bCS->Text = L"è‡ªåŠ¨å•†åœº";
 			   this->bCS->UseVisualStyleBackColor = true;
 			   this->bCS->Click += gcnew System::EventHandler(this, &MainForm::bCS_Click);
 			   // 
@@ -2710,7 +2710,7 @@ namespace Timelapse {
 			   this->bRandomCC->Name = L"bRandomCC";
 			   this->bRandomCC->Size = System::Drawing::Size(219, 32);
 			   this->bRandomCC->TabIndex = 16;
-			   this->bRandomCC->Text = L"Ëæ»úÆµµÀ";
+			   this->bRandomCC->Text = L"éšæœºé¢‘é“";
 			   this->bRandomCC->UseVisualStyleBackColor = true;
 			   this->bRandomCC->Click += gcnew System::EventHandler(this, &MainForm::bRandomCC_Click);
 			   // 
@@ -2735,7 +2735,7 @@ namespace Timelapse {
 			   this->bCC->Name = L"bCC";
 			   this->bCC->Size = System::Drawing::Size(219, 32);
 			   this->bCC->TabIndex = 14;
-			   this->bCC->Text = L"ÌØ¶¨Í¨µÀ";
+			   this->bCC->Text = L"ç‰¹å®šé€šé“";
 			   this->bCC->UseVisualStyleBackColor = true;
 			   this->bCC->Click += gcnew System::EventHandler(this, &MainForm::bCC_Click);
 			   // 
@@ -2766,7 +2766,7 @@ namespace Timelapse {
 			   this->label47->Name = L"label47";
 			   this->label47->Size = System::Drawing::Size(50, 21);
 			   this->label47->TabIndex = 7;
-			   this->label47->Text = L"ÆµµÀ:";
+			   this->label47->Text = L"é¢‘é“:";
 			   // 
 			   // panel7
 			   // 
@@ -2902,7 +2902,7 @@ namespace Timelapse {
 			   this->cbCCCSMob->Name = L"cbCCCSMob";
 			   this->cbCCCSMob->Size = System::Drawing::Size(65, 25);
 			   this->cbCCCSMob->TabIndex = 5;
-			   this->cbCCCSMob->Text = L"¹ÖÎï";
+			   this->cbCCCSMob->Text = L"æ€ªç‰©";
 			   this->cbCCCSMob->UseVisualStyleBackColor = false;
 			   // 
 			   // rbCS
@@ -2914,7 +2914,7 @@ namespace Timelapse {
 			   this->rbCS->Name = L"rbCS";
 			   this->rbCS->Size = System::Drawing::Size(67, 25);
 			   this->rbCS->TabIndex = 5;
-			   this->rbCS->Text = L"ÉÌ³¡";
+			   this->rbCS->Text = L"å•†åœº";
 			   this->rbCS->UseVisualStyleBackColor = true;
 			   // 
 			   // cbCCCSAttack
@@ -2928,7 +2928,7 @@ namespace Timelapse {
 			   this->cbCCCSAttack->Name = L"cbCCCSAttack";
 			   this->cbCCCSAttack->Size = System::Drawing::Size(65, 25);
 			   this->cbCCCSAttack->TabIndex = 4;
-			   this->cbCCCSAttack->Text = L"¹¥»÷";
+			   this->cbCCCSAttack->Text = L"æ”»å‡»";
 			   this->cbCCCSAttack->UseVisualStyleBackColor = false;
 			   // 
 			   // cbCCCSPeople
@@ -2942,7 +2942,7 @@ namespace Timelapse {
 			   this->cbCCCSPeople->Name = L"cbCCCSPeople";
 			   this->cbCCCSPeople->Size = System::Drawing::Size(65, 25);
 			   this->cbCCCSPeople->TabIndex = 3;
-			   this->cbCCCSPeople->Text = L"ÈËÎï";
+			   this->cbCCCSPeople->Text = L"äººç‰©";
 			   this->cbCCCSPeople->UseVisualStyleBackColor = false;
 			   // 
 			   // rbCC
@@ -2956,7 +2956,7 @@ namespace Timelapse {
 			   this->rbCC->Size = System::Drawing::Size(101, 25);
 			   this->rbCC->TabIndex = 4;
 			   this->rbCC->TabStop = true;
-			   this->rbCC->Text = L"¸ü¸ÄÆµµÀ";
+			   this->rbCC->Text = L"æ›´æ”¹é¢‘é“";
 			   this->rbCC->UseVisualStyleBackColor = true;
 			   this->rbCC->CheckedChanged += gcnew System::EventHandler(this, &MainForm::rbCC_CheckedChanged);
 			   // 
@@ -2971,7 +2971,7 @@ namespace Timelapse {
 			   this->cbCCCSTime->Name = L"cbCCCSTime";
 			   this->cbCCCSTime->Size = System::Drawing::Size(117, 25);
 			   this->cbCCCSTime->TabIndex = 2;
-			   this->cbCCCSTime->Text = L"Ê±¼ä (secs)";
+			   this->cbCCCSTime->Text = L"æ—¶é—´ï¼ˆç§’ï¼‰";
 			   this->cbCCCSTime->UseVisualStyleBackColor = false;
 			   // 
 			   // rbFunction
@@ -2983,7 +2983,7 @@ namespace Timelapse {
 			   this->rbFunction->Name = L"rbFunction";
 			   this->rbFunction->Size = System::Drawing::Size(67, 25);
 			   this->rbFunction->TabIndex = 1;
-			   this->rbFunction->Text = L"¹¦ÄÜ";
+			   this->rbFunction->Text = L"åŠŸèƒ½";
 			   this->rbFunction->UseVisualStyleBackColor = true;
 			   this->rbFunction->CheckedChanged += gcnew System::EventHandler(this, &MainForm::rbFunction_CheckedChanged);
 			   // 
@@ -2998,7 +2998,7 @@ namespace Timelapse {
 			   this->rbPacket->Size = System::Drawing::Size(82, 25);
 			   this->rbPacket->TabIndex = 0;
 			   this->rbPacket->TabStop = true;
-			   this->rbPacket->Text = L"Packet";
+			   this->rbPacket->Text = L"æ•°æ®åŒ…";
 			   this->rbPacket->UseVisualStyleBackColor = false;
 			   // 
 			   // tabPage10
@@ -3012,7 +3012,7 @@ namespace Timelapse {
 			   this->tabPage10->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage10->Size = System::Drawing::Size(595, 296);
 			   this->tabPage10->TabIndex = 3;
-			   this->tabPage10->Text = L"×Ô¶¯ÊÛÂô";
+			   this->tabPage10->Text = L"è‡ªåŠ¨å”®å–";
 			   // 
 			   // panel10
 			   // 
@@ -3033,7 +3033,7 @@ namespace Timelapse {
 			   this->cbSellAll->Name = L"cbSellAll";
 			   this->cbSellAll->Size = System::Drawing::Size(257, 25);
 			   this->cbSellAll->TabIndex = 2;
-			   this->cbSellAll->Text = L"±³°üÂúÊ±È«²¿³öÊÛ (heuristics)";
+			   this->cbSellAll->Text = L"èƒŒåŒ…æ»¡æ—¶å…¨éƒ¨å‡ºå”®ï¼ˆæŒ‰è§„åˆ™åˆ¤æ–­ï¼‰";
 			   this->cbSellAll->UseVisualStyleBackColor = false;
 			   this->cbSellAll->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbSellAll_CheckedChanged);
 			   // 
@@ -3108,7 +3108,7 @@ namespace Timelapse {
 			   this->label93->Name = L"label93";
 			   this->label93->Size = System::Drawing::Size(86, 21);
 			   this->label93->TabIndex = 12;
-			   this->label93->Text = L"ÑÓ³Ù[ms]:";
+			   this->label93->Text = L"å»¶è¿Ÿ[ms]:";
 			   // 
 			   // label91
 			   // 
@@ -3119,7 +3119,7 @@ namespace Timelapse {
 			   this->label91->Name = L"label91";
 			   this->label91->Size = System::Drawing::Size(86, 21);
 			   this->label91->TabIndex = 11;
-			   this->label91->Text = L"ÑÓ³Ù[ms]:";
+			   this->label91->Text = L"å»¶è¿Ÿ[ms]:";
 			   // 
 			   // tbLootItem
 			   // 
@@ -3190,7 +3190,7 @@ namespace Timelapse {
 			   this->label31->Name = L"label31";
 			   this->label31->Size = System::Drawing::Size(86, 21);
 			   this->label31->TabIndex = 7;
-			   this->label31->Text = L"ÑÓ³Ù[ms]:";
+			   this->label31->Text = L"å»¶è¿Ÿ[ms]:";
 			   // 
 			   // label29
 			   // 
@@ -3200,7 +3200,7 @@ namespace Timelapse {
 			   this->label29->Name = L"label29";
 			   this->label29->Size = System::Drawing::Size(95, 21);
 			   this->label29->TabIndex = 10;
-			   this->label29->Text = L"ÎïÆ·ÊıÁ¿ >";
+			   this->label29->Text = L"ç‰©å“æ•°é‡ >";
 			   // 
 			   // label28
 			   // 
@@ -3211,7 +3211,7 @@ namespace Timelapse {
 			   this->label28->Name = L"label28";
 			   this->label28->Size = System::Drawing::Size(86, 21);
 			   this->label28->TabIndex = 7;
-			   this->label28->Text = L"ÑÓ³Ù[ms]:";
+			   this->label28->Text = L"å»¶è¿Ÿ[ms]:";
 			   // 
 			   // label27
 			   // 
@@ -3234,7 +3234,7 @@ namespace Timelapse {
 			   this->cbLoot->Name = L"cbLoot";
 			   this->cbLoot->Size = System::Drawing::Size(99, 25);
 			   this->cbLoot->TabIndex = 1;
-			   this->cbLoot->Text = L"×Ô¶¯Ê°È¡";
+			   this->cbLoot->Text = L"è‡ªåŠ¨æ‹¾å–";
 			   this->cbLoot->UseVisualStyleBackColor = false;
 			   this->cbLoot->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbLoot_CheckedChanged);
 			   // 
@@ -3246,7 +3246,7 @@ namespace Timelapse {
 			   this->label30->Name = L"label30";
 			   this->label30->Size = System::Drawing::Size(95, 21);
 			   this->label30->TabIndex = 10;
-			   this->label30->Text = L"¹ÖÎïÊıÁ¿ >";
+			   this->label30->Text = L"æ€ªç‰©æ•°é‡ >";
 			   // 
 			   // comboLootKey
 			   // 
@@ -3334,7 +3334,7 @@ namespace Timelapse {
 			   this->cbAttack->Name = L"cbAttack";
 			   this->cbAttack->Size = System::Drawing::Size(99, 25);
 			   this->cbAttack->TabIndex = 1;
-			   this->cbAttack->Text = L"×Ô¶¯¹¥»÷";
+			   this->cbAttack->Text = L"è‡ªåŠ¨æ”»å‡»";
 			   this->cbAttack->UseVisualStyleBackColor = false;
 			   this->cbAttack->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbAttack_CheckedChanged);
 			   // 
@@ -3401,7 +3401,7 @@ namespace Timelapse {
 			   this->cbHP->Name = L"cbHP";
 			   this->cbHP->Size = System::Drawing::Size(85, 25);
 			   this->cbHP->TabIndex = 1;
-			   this->cbHP->Text = L"×Ô¶¯HP";
+			   this->cbHP->Text = L"è‡ªåŠ¨HP";
 			   this->cbHP->UseVisualStyleBackColor = false;
 			   this->cbHP->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbHP_CheckedChanged);
 			   // 
@@ -3416,7 +3416,7 @@ namespace Timelapse {
 			   this->cbMP->Name = L"cbMP";
 			   this->cbMP->Size = System::Drawing::Size(87, 25);
 			   this->cbMP->TabIndex = 2;
-			   this->cbMP->Text = L"×Ô¶¯MP";
+			   this->cbMP->Text = L"è‡ªåŠ¨MP";
 			   this->cbMP->UseVisualStyleBackColor = false;
 			   this->cbMP->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMP_CheckedChanged);
 			   // 
@@ -3436,7 +3436,7 @@ namespace Timelapse {
 			   this->tabPage5->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage5->Size = System::Drawing::Size(589, 535);
 			   this->tabPage5->TabIndex = 2;
-			   this->tabPage5->Text = L"°æ±¾1";
+			   this->tabPage5->Text = L"ç‰ˆæœ¬1";
 			   // 
 			   // groupBox6
 			   // 
@@ -3449,7 +3449,7 @@ namespace Timelapse {
 			   this->groupBox6->Size = System::Drawing::Size(202, 184);
 			   this->groupBox6->TabIndex = 28;
 			   this->groupBox6->TabStop = false;
-			   this->groupBox6->Text = L"ÎïÀíÉèÖÃ";
+			   this->groupBox6->Text = L"ç‰©ç†è®¾ç½®";
 			   // 
 			   // cbNoWalkingFriction
 			   // 
@@ -3462,7 +3462,7 @@ namespace Timelapse {
 			   this->cbNoWalkingFriction->Name = L"cbNoWalkingFriction";
 			   this->cbNoWalkingFriction->Size = System::Drawing::Size(116, 25);
 			   this->cbNoWalkingFriction->TabIndex = 11;
-			   this->cbNoWalkingFriction->Text = L"ÎŞĞĞ×ßÄ¦²Á";
+			   this->cbNoWalkingFriction->Text = L"æ— è¡Œèµ°æ‘©æ“¦";
 			   this->cbNoWalkingFriction->UseVisualStyleBackColor = false;
 			   this->cbNoWalkingFriction->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoWalkingFriction_CheckedChanged);
 			   // 
@@ -3483,7 +3483,7 @@ namespace Timelapse {
 			   this->groupBox5->Size = System::Drawing::Size(206, 234);
 			   this->groupBox5->TabIndex = 27;
 			   this->groupBox5->TabStop = false;
-			   this->groupBox5->Text = L"µØÍ¼ÉèÖÃ";
+			   this->groupBox5->Text = L"åœ°å›¾è®¾ç½®";
 			   // 
 			   // cbNoBlueBoxes
 			   // 
@@ -3496,7 +3496,7 @@ namespace Timelapse {
 			   this->cbNoBlueBoxes->Name = L"cbNoBlueBoxes";
 			   this->cbNoBlueBoxes->Size = System::Drawing::Size(116, 25);
 			   this->cbNoBlueBoxes->TabIndex = 10;
-			   this->cbNoBlueBoxes->Text = L"ÎŞÀ¶É«Ìì¿Õ";
+			   this->cbNoBlueBoxes->Text = L"æ— è“è‰²å¤©ç©º";
 			   this->cbNoBlueBoxes->UseVisualStyleBackColor = false;
 			   this->cbNoBlueBoxes->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoBlueBoxes_CheckedChanged);
 			   // 
@@ -3511,7 +3511,7 @@ namespace Timelapse {
 			   this->cbNoMapBackground->Name = L"cbNoMapBackground";
 			   this->cbNoMapBackground->Size = System::Drawing::Size(116, 25);
 			   this->cbNoMapBackground->TabIndex = 4;
-			   this->cbNoMapBackground->Text = L"ÎŞµØÍ¼±³¾°";
+			   this->cbNoMapBackground->Text = L"æ— åœ°å›¾èƒŒæ™¯";
 			   this->cbNoMapBackground->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			   this->cbNoMapBackground->UseVisualStyleBackColor = false;
 			   this->cbNoMapBackground->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMapBackground_CheckedChanged);
@@ -3527,7 +3527,7 @@ namespace Timelapse {
 			   this->cbNoMapTiles->Name = L"cbNoMapTiles";
 			   this->cbNoMapTiles->Size = System::Drawing::Size(116, 25);
 			   this->cbNoMapTiles->TabIndex = 9;
-			   this->cbNoMapTiles->Text = L"ÎŞµØÍ¼±êÌâ";
+			   this->cbNoMapTiles->Text = L"æ— åœ°å›¾æ ‡é¢˜";
 			   this->cbNoMapTiles->UseVisualStyleBackColor = false;
 			   this->cbNoMapTiles->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMapTiles_CheckedChanged);
 			   // 
@@ -3542,7 +3542,7 @@ namespace Timelapse {
 			   this->cbInfiniteChat->Name = L"cbInfiniteChat";
 			   this->cbInfiniteChat->Size = System::Drawing::Size(116, 25);
 			   this->cbInfiniteChat->TabIndex = 8;
-			   this->cbInfiniteChat->Text = L"ÎŞÏŞÖÆÁÄÌì";
+			   this->cbInfiniteChat->Text = L"æ— é™åˆ¶èŠå¤©";
 			   this->cbInfiniteChat->UseVisualStyleBackColor = false;
 			   this->cbInfiniteChat->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbInfiniteChat_CheckedChanged);
 			   // 
@@ -3557,7 +3557,7 @@ namespace Timelapse {
 			   this->cbMapSpeedUp->Name = L"cbMapSpeedUp";
 			   this->cbMapSpeedUp->Size = System::Drawing::Size(137, 25);
 			   this->cbMapSpeedUp->TabIndex = 8;
-			   this->cbMapSpeedUp->Text = L"Map Speed Up";
+			   this->cbMapSpeedUp->Text = L"åœ°å›¾åŠ é€Ÿ";
 			   this->cbMapSpeedUp->UseVisualStyleBackColor = false;
 			   this->cbMapSpeedUp->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMapSpeedUp_CheckedChanged);
 			   // 
@@ -3572,7 +3572,7 @@ namespace Timelapse {
 			   this->cbNoMapFadeEffect->Name = L"cbNoMapFadeEffect";
 			   this->cbNoMapFadeEffect->Size = System::Drawing::Size(184, 25);
 			   this->cbNoMapFadeEffect->TabIndex = 5;
-			   this->cbNoMapFadeEffect->Text = L"ÎŞÌùÍ¼µ­Èëµ­³öĞ§¹û";
+			   this->cbNoMapFadeEffect->Text = L"æ— è´´å›¾æ·¡å…¥æ·¡å‡ºæ•ˆæœ";
 			   this->cbNoMapFadeEffect->UseVisualStyleBackColor = false;
 			   this->cbNoMapFadeEffect->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMapFadeEffect_CheckedChanged);
 			   // 
@@ -3587,7 +3587,7 @@ namespace Timelapse {
 			   this->cbNoMapObjects->Name = L"cbNoMapObjects";
 			   this->cbNoMapObjects->Size = System::Drawing::Size(116, 25);
 			   this->cbNoMapObjects->TabIndex = 7;
-			   this->cbNoMapObjects->Text = L"ÎŞµØÍ¼¶ÔÏó";
+			   this->cbNoMapObjects->Text = L"æ— åœ°å›¾å¯¹è±¡";
 			   this->cbNoMapObjects->UseVisualStyleBackColor = false;
 			   this->cbNoMapObjects->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMapObjects_CheckedChanged);
 			   // 
@@ -3609,7 +3609,7 @@ namespace Timelapse {
 			   this->groupBox4->Size = System::Drawing::Size(567, 91);
 			   this->groupBox4->TabIndex = 26;
 			   this->groupBox4->TabStop = false;
-			   this->groupBox4->Text = L"ÒÆ¶¯ÉèÖÃ";
+			   this->groupBox4->Text = L"ç§»åŠ¨è®¾ç½®";
 			   // 
 			   // cbMouseFly
 			   // 
@@ -3622,7 +3622,7 @@ namespace Timelapse {
 			   this->cbMouseFly->Name = L"cbMouseFly";
 			   this->cbMouseFly->Size = System::Drawing::Size(132, 25);
 			   this->cbMouseFly->TabIndex = 9;
-			   this->cbMouseFly->Text = L"Êó±ê·ÉĞĞ[CS]";
+			   this->cbMouseFly->Text = L"é¼ æ ‡é£è¡Œ[CS]";
 			   this->cbMouseFly->UseVisualStyleBackColor = false;
 			   this->cbMouseFly->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMouseFly_CheckedChanged);
 			   // 
@@ -3637,7 +3637,7 @@ namespace Timelapse {
 			   this->cbClickTeleport->Name = L"cbClickTeleport";
 			   this->cbClickTeleport->Size = System::Drawing::Size(133, 25);
 			   this->cbClickTeleport->TabIndex = 1;
-			   this->cbClickTeleport->Text = L"Êó±êµã»÷´«ËÍ";
+			   this->cbClickTeleport->Text = L"é¼ æ ‡ç‚¹å‡»ä¼ é€";
 			   this->cbClickTeleport->UseVisualStyleBackColor = false;
 			   this->cbClickTeleport->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbClickTeleport_CheckedChanged);
 			   // 
@@ -3649,7 +3649,7 @@ namespace Timelapse {
 			   this->label49->Name = L"label49";
 			   this->label49->Size = System::Drawing::Size(86, 21);
 			   this->label49->TabIndex = 8;
-			   this->label49->Text = L"¼ä¸ô[ms]:";
+			   this->label49->Text = L"é—´éš”[ms]:";
 			   // 
 			   // cbMouseTeleport
 			   // 
@@ -3662,7 +3662,7 @@ namespace Timelapse {
 			   this->cbMouseTeleport->Name = L"cbMouseTeleport";
 			   this->cbMouseTeleport->Size = System::Drawing::Size(99, 25);
 			   this->cbMouseTeleport->TabIndex = 2;
-			   this->cbMouseTeleport->Text = L"Êó±ê´«ËÍ";
+			   this->cbMouseTeleport->Text = L"é¼ æ ‡ä¼ é€";
 			   this->cbMouseTeleport->UseVisualStyleBackColor = false;
 			   this->cbMouseTeleport->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMouseTeleport_CheckedChanged);
 			   // 
@@ -3674,7 +3674,7 @@ namespace Timelapse {
 			   this->label50->Name = L"label50";
 			   this->label50->Size = System::Drawing::Size(86, 21);
 			   this->label50->TabIndex = 7;
-			   this->label50->Text = L"¼ä¸ô[ms]:";
+			   this->label50->Text = L"é—´éš”[ms]:";
 			   // 
 			   // cbSwimInAir
 			   // 
@@ -3687,7 +3687,7 @@ namespace Timelapse {
 			   this->cbSwimInAir->Name = L"cbSwimInAir";
 			   this->cbSwimInAir->Size = System::Drawing::Size(116, 25);
 			   this->cbSwimInAir->TabIndex = 7;
-			   this->cbSwimInAir->Text = L"ÔÚ¿ÕÖĞÓÎÓ¾";
+			   this->cbSwimInAir->Text = L"åœ¨ç©ºä¸­æ¸¸æ³³";
 			   this->cbSwimInAir->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			   this->cbSwimInAir->UseVisualStyleBackColor = false;
 			   this->cbSwimInAir->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbSwimInAir_CheckedChanged);
@@ -3738,7 +3738,7 @@ namespace Timelapse {
 			   this->groupBox3->Size = System::Drawing::Size(354, 104);
 			   this->groupBox3->TabIndex = 25;
 			   this->groupBox3->TabStop = false;
-			   this->groupBox3->Text = L"¹ÖÎïÉèÖÃ";
+			   this->groupBox3->Text = L"æ€ªç‰©è®¾ç½®";
 			   // 
 			   // cbMobAutoAggro
 			   // 
@@ -3751,7 +3751,7 @@ namespace Timelapse {
 			   this->cbMobAutoAggro->Name = L"cbMobAutoAggro";
 			   this->cbMobAutoAggro->Size = System::Drawing::Size(151, 25);
 			   this->cbMobAutoAggro->TabIndex = 23;
-			   this->cbMobAutoAggro->Text = L"Mob Auto Aggro";
+			   this->cbMobAutoAggro->Text = L"æ€ªç‰©è‡ªåŠ¨ä»‡æ¨";
 			   this->cbMobAutoAggro->UseVisualStyleBackColor = false;
 			   this->cbMobAutoAggro->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMobAutoAggro_CheckedChanged);
 			   // 
@@ -3766,7 +3766,7 @@ namespace Timelapse {
 			   this->cbNoMobReaction->Name = L"cbNoMobReaction";
 			   this->cbNoMobReaction->Size = System::Drawing::Size(116, 25);
 			   this->cbNoMobReaction->TabIndex = 6;
-			   this->cbNoMobReaction->Text = L"ÎŞ¹ÖÎï·´Ó¦";
+			   this->cbNoMobReaction->Text = L"æ— æ€ªç‰©ååº”";
 			   this->cbNoMobReaction->UseVisualStyleBackColor = false;
 			   this->cbNoMobReaction->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMobReaction_CheckedChanged);
 			   // 
@@ -3781,7 +3781,7 @@ namespace Timelapse {
 			   this->cbMobDisarm->Name = L"cbMobDisarm";
 			   this->cbMobDisarm->Size = System::Drawing::Size(99, 25);
 			   this->cbMobDisarm->TabIndex = 7;
-			   this->cbMobDisarm->Text = L"¹ÖÎï½ÉĞµ";
+			   this->cbMobDisarm->Text = L"æ€ªç‰©ç¼´æ¢°";
 			   this->cbMobDisarm->UseVisualStyleBackColor = false;
 			   this->cbMobDisarm->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMobDisarm_CheckedChanged);
 			   // 
@@ -3796,7 +3796,7 @@ namespace Timelapse {
 			   this->cbMobFreeze->Name = L"cbMobFreeze";
 			   this->cbMobFreeze->Size = System::Drawing::Size(99, 25);
 			   this->cbMobFreeze->TabIndex = 9;
-			   this->cbMobFreeze->Text = L"¹ÖÎï¶³½á";
+			   this->cbMobFreeze->Text = L"æ€ªç‰©å†»ç»“";
 			   this->cbMobFreeze->UseVisualStyleBackColor = false;
 			   this->cbMobFreeze->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMobFreeze_CheckedChanged);
 			   // 
@@ -3811,7 +3811,7 @@ namespace Timelapse {
 			   this->cbNoMobDeathEffect->Name = L"cbNoMobDeathEffect";
 			   this->cbNoMobDeathEffect->Size = System::Drawing::Size(150, 25);
 			   this->cbNoMobDeathEffect->TabIndex = 8;
-			   this->cbNoMobDeathEffect->Text = L"ÎŞ¹ÖÎïËÀÍöÌØĞ§";
+			   this->cbNoMobDeathEffect->Text = L"æ— æ€ªç‰©æ­»äº¡ç‰¹æ•ˆ";
 			   this->cbNoMobDeathEffect->UseVisualStyleBackColor = false;
 			   this->cbNoMobDeathEffect->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMobDeathEffect_CheckedChanged);
 			   // 
@@ -3826,7 +3826,7 @@ namespace Timelapse {
 			   this->cbNoMobKnockback->Name = L"cbNoMobKnockback";
 			   this->cbNoMobKnockback->Size = System::Drawing::Size(116, 25);
 			   this->cbNoMobKnockback->TabIndex = 4;
-			   this->cbNoMobKnockback->Text = L"ÎŞ¹ÖÎï·´»÷";
+			   this->cbNoMobKnockback->Text = L"æ— æ€ªç‰©åå‡»";
 			   this->cbNoMobKnockback->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			   this->cbNoMobKnockback->UseVisualStyleBackColor = false;
 			   this->cbNoMobKnockback->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoMobKnockback_CheckedChanged);
@@ -3845,7 +3845,7 @@ namespace Timelapse {
 			   this->groupBox2->Size = System::Drawing::Size(354, 76);
 			   this->groupBox2->TabIndex = 24;
 			   this->groupBox2->TabStop = false;
-			   this->groupBox2->Text = L"ÎïÆ·ÉèÖÃ";
+			   this->groupBox2->Text = L"ç‰©å“è®¾ç½®";
 			   // 
 			   // cbTubi
 			   // 
@@ -3873,7 +3873,7 @@ namespace Timelapse {
 			   this->cbInstantDropItems->Name = L"cbInstantDropItems";
 			   this->cbInstantDropItems->Size = System::Drawing::Size(173, 25);
 			   this->cbInstantDropItems->TabIndex = 4;
-			   this->cbInstantDropItems->Text = L"Instant Drop Items";
+			   this->cbInstantDropItems->Text = L"ç«‹å³ä¸¢å¼ƒç‰©å“";
 			   this->cbInstantDropItems->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			   this->cbInstantDropItems->UseVisualStyleBackColor = false;
 			   this->cbInstantDropItems->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbInstantDropItems_CheckedChanged);
@@ -3889,7 +3889,7 @@ namespace Timelapse {
 			   this->cbItemVac->Name = L"cbItemVac";
 			   this->cbItemVac->Size = System::Drawing::Size(99, 25);
 			   this->cbItemVac->TabIndex = 13;
-			   this->cbItemVac->Text = L"È«Í¼ÎüÎï";
+			   this->cbItemVac->Text = L"å…¨å›¾å¸ç‰©";
 			   this->cbItemVac->UseVisualStyleBackColor = false;
 			   this->cbItemVac->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbItemVac_CheckedChanged);
 			   // 
@@ -3904,7 +3904,7 @@ namespace Timelapse {
 			   this->cbInstantLootItems->Name = L"cbInstantLootItems";
 			   this->cbInstantLootItems->Size = System::Drawing::Size(169, 25);
 			   this->cbInstantLootItems->TabIndex = 6;
-			   this->cbInstantLootItems->Text = L"Instant Loot Items";
+			   this->cbInstantLootItems->Text = L"ç«‹å³æ‹¾å–ç‰©å“";
 			   this->cbInstantLootItems->UseVisualStyleBackColor = false;
 			   this->cbInstantLootItems->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbInstantLootItems_CheckedChanged);
 			   // 
@@ -3937,7 +3937,7 @@ namespace Timelapse {
 			   this->groupBox1->Size = System::Drawing::Size(354, 234);
 			   this->groupBox1->TabIndex = 23;
 			   this->groupBox1->TabStop = false;
-			   this->groupBox1->Text = L"½ÇÉ«ÉèÖÃ";
+			   this->groupBox1->Text = L"è§’è‰²è®¾ç½®";
 			   // 
 			   // label90
 			   // 
@@ -3947,7 +3947,7 @@ namespace Timelapse {
 			   this->label90->Name = L"label90";
 			   this->label90->Size = System::Drawing::Size(50, 21);
 			   this->label90->TabIndex = 48;
-			   this->label90->Text = L"ÑÓ³Ù:";
+			   this->label90->Text = L"å»¶è¿Ÿ:";
 			   // 
 			   // tbAttackDelay
 			   // 
@@ -3974,7 +3974,7 @@ namespace Timelapse {
 			   this->label89->Name = L"label89";
 			   this->label89->Size = System::Drawing::Size(59, 21);
 			   this->label89->TabIndex = 46;
-			   this->label89->Text = L"Blinks:";
+			   this->label89->Text = L"é—ªçƒæ¬¡æ•°:";
 			   // 
 			   // label88
 			   // 
@@ -3985,7 +3985,7 @@ namespace Timelapse {
 			   this->label88->Name = L"label88";
 			   this->label88->Size = System::Drawing::Size(66, 21);
 			   this->label88->TabIndex = 45;
-			   this->label88->Text = L"Misses:";
+			   this->label88->Text = L"æœªå‘½ä¸­æ¬¡æ•°:";
 			   // 
 			   // tbBlinkGodmodeBlinks
 			   // 
@@ -4033,7 +4033,7 @@ namespace Timelapse {
 			   this->cbMissGodmode->Name = L"cbMissGodmode";
 			   this->cbMissGodmode->Size = System::Drawing::Size(139, 25);
 			   this->cbMissGodmode->TabIndex = 41;
-			   this->cbMissGodmode->Text = L"Miss Godmode";
+			   this->cbMissGodmode->Text = L"æœªå‘½ä¸­æ— æ•Œ";
 			   this->cbMissGodmode->UseVisualStyleBackColor = false;
 			   // 
 			   // cbAttackDelay
@@ -4047,7 +4047,7 @@ namespace Timelapse {
 			   this->cbAttackDelay->Name = L"cbAttackDelay";
 			   this->cbAttackDelay->Size = System::Drawing::Size(99, 25);
 			   this->cbAttackDelay->TabIndex = 42;
-			   this->cbAttackDelay->Text = L"¹¥»÷ÑÓ³Ù";
+			   this->cbAttackDelay->Text = L"æ”»å‡»å»¶è¿Ÿ";
 			   this->cbAttackDelay->UseVisualStyleBackColor = false;
 			   this->cbAttackDelay->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbAttackDelay_CheckedChanged);
 			   // 
@@ -4062,7 +4062,7 @@ namespace Timelapse {
 			   this->cbBlinkGodmode->Name = L"cbBlinkGodmode";
 			   this->cbBlinkGodmode->Size = System::Drawing::Size(141, 25);
 			   this->cbBlinkGodmode->TabIndex = 40;
-			   this->cbBlinkGodmode->Text = L"Blink Godmode";
+			   this->cbBlinkGodmode->Text = L"é—ªçƒæ— æ•Œ";
 			   this->cbBlinkGodmode->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			   this->cbBlinkGodmode->UseVisualStyleBackColor = false;
 			   // 
@@ -4077,7 +4077,7 @@ namespace Timelapse {
 			   this->cbNoAttackDelay->Name = L"cbNoAttackDelay";
 			   this->cbNoAttackDelay->Size = System::Drawing::Size(116, 25);
 			   this->cbNoAttackDelay->TabIndex = 23;
-			   this->cbNoAttackDelay->Text = L"ÎŞ¹¥»÷ÑÓ³Ù";
+			   this->cbNoAttackDelay->Text = L"æ— æ”»å‡»å»¶è¿Ÿ";
 			   this->cbNoAttackDelay->UseVisualStyleBackColor = false;
 			   this->cbNoAttackDelay->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoAttackDelay_CheckedChanged);
 			   // 
@@ -4092,7 +4092,7 @@ namespace Timelapse {
 			   this->cbNoPlayerNameTag->Name = L"cbNoPlayerNameTag";
 			   this->cbNoPlayerNameTag->Size = System::Drawing::Size(150, 25);
 			   this->cbNoPlayerNameTag->TabIndex = 24;
-			   this->cbNoPlayerNameTag->Text = L"ÎŞÍæ¼ÒĞÕÃû±êÇ©";
+			   this->cbNoPlayerNameTag->Text = L"æ— ç©å®¶å§“åæ ‡ç­¾";
 			   this->cbNoPlayerNameTag->UseVisualStyleBackColor = false;
 			   this->cbNoPlayerNameTag->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoPlayerNameTag_CheckedChanged);
 			   // 
@@ -4107,7 +4107,7 @@ namespace Timelapse {
 			   this->cbFullGodmode->Name = L"cbFullGodmode";
 			   this->cbFullGodmode->Size = System::Drawing::Size(99, 25);
 			   this->cbFullGodmode->TabIndex = 6;
-			   this->cbFullGodmode->Text = L"ÉÏµÛÄ£Ê½";
+			   this->cbFullGodmode->Text = L"ä¸Šå¸æ¨¡å¼";
 			   this->cbFullGodmode->UseVisualStyleBackColor = false;
 			   this->cbFullGodmode->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbFullGodmode_CheckedChanged);
 			   // 
@@ -4122,7 +4122,7 @@ namespace Timelapse {
 			   this->cbJumpDownAnyTile->Name = L"cbJumpDownAnyTile";
 			   this->cbJumpDownAnyTile->Size = System::Drawing::Size(183, 25);
 			   this->cbJumpDownAnyTile->TabIndex = 4;
-			   this->cbJumpDownAnyTile->Text = L"Jump Down Any Tile";
+			   this->cbJumpDownAnyTile->Text = L"ä»»æ„åœ°å½¢å‘ä¸‹è·³";
 			   this->cbJumpDownAnyTile->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			   this->cbJumpDownAnyTile->UseVisualStyleBackColor = false;
 			   this->cbJumpDownAnyTile->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbJumpDownAnyTile_CheckedChanged);
@@ -4138,7 +4138,7 @@ namespace Timelapse {
 			   this->cbPetVac->Name = L"cbPetVac";
 			   this->cbPetVac->Size = System::Drawing::Size(116, 25);
 			   this->cbPetVac->TabIndex = 4;
-			   this->cbPetVac->Text = L"³èÎïÈ«Í¼Îü";
+			   this->cbPetVac->Text = L"å® ç‰©å…¨å›¾å¸";
 			   this->cbPetVac->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			   this->cbPetVac->UseVisualStyleBackColor = false;
 			   this->cbPetVac->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbPetVac_CheckedChanged);
@@ -4154,7 +4154,7 @@ namespace Timelapse {
 			   this->cbNoBreath->Name = L"cbNoBreath";
 			   this->cbNoBreath->Size = System::Drawing::Size(82, 25);
 			   this->cbNoBreath->TabIndex = 12;
-			   this->cbNoBreath->Text = L"ÎŞºôÎü";
+			   this->cbNoBreath->Text = L"æ— å‘¼å¸";
 			   this->cbNoBreath->UseVisualStyleBackColor = false;
 			   this->cbNoBreath->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoBreath_CheckedChanged);
 			   // 
@@ -4169,7 +4169,7 @@ namespace Timelapse {
 			   this->cbNoPlayerKnockback->Name = L"cbNoPlayerKnockback";
 			   this->cbNoPlayerKnockback->Size = System::Drawing::Size(150, 25);
 			   this->cbNoPlayerKnockback->TabIndex = 5;
-			   this->cbNoPlayerKnockback->Text = L"Íæ¼ÒÎŞ·¨±»»÷ÍË";
+			   this->cbNoPlayerKnockback->Text = L"ç©å®¶æ— æ³•è¢«å‡»é€€";
 			   this->cbNoPlayerKnockback->UseVisualStyleBackColor = false;
 			   this->cbNoPlayerKnockback->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoPlayerKnockback_CheckedChanged);
 			   // 
@@ -4184,7 +4184,7 @@ namespace Timelapse {
 			   this->cbMpHack->Name = L"cbMpHack";
 			   this->cbMpHack->Size = System::Drawing::Size(94, 25);
 			   this->cbMpHack->TabIndex = 10;
-			   this->cbMpHack->Text = L"Mp Hack";
+			   this->cbMpHack->Text = L"MP ä¿®æ”¹";
 			   this->cbMpHack->UseVisualStyleBackColor = false;
 			   this->cbMpHack->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMpHack_CheckedChanged);
 			   // 
@@ -4199,7 +4199,7 @@ namespace Timelapse {
 			   this->cbNoPlayerDeath->Name = L"cbNoPlayerDeath";
 			   this->cbNoPlayerDeath->Size = System::Drawing::Size(116, 25);
 			   this->cbNoPlayerDeath->TabIndex = 9;
-			   this->cbNoPlayerDeath->Text = L"ÎŞÍæ¼ÒËÀÍö";
+			   this->cbNoPlayerDeath->Text = L"æ— ç©å®¶æ­»äº¡";
 			   this->cbNoPlayerDeath->UseVisualStyleBackColor = false;
 			   this->cbNoPlayerDeath->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoPlayerDeath_CheckedChanged);
 			   // 
@@ -4214,7 +4214,7 @@ namespace Timelapse {
 			   this->cbUnlimitedAttack->Name = L"cbUnlimitedAttack";
 			   this->cbUnlimitedAttack->Size = System::Drawing::Size(99, 25);
 			   this->cbUnlimitedAttack->TabIndex = 6;
-			   this->cbUnlimitedAttack->Text = L"ÎŞÏŞ¹¥»÷";
+			   this->cbUnlimitedAttack->Text = L"æ— é™æ”»å‡»";
 			   this->cbUnlimitedAttack->UseVisualStyleBackColor = false;
 			   this->cbUnlimitedAttack->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbUnlimitedAttack_CheckedChanged);
 			   // 
@@ -4230,7 +4230,7 @@ namespace Timelapse {
 			   this->tabPage20->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage20->Size = System::Drawing::Size(589, 535);
 			   this->tabPage20->TabIndex = 7;
-			   this->tabPage20->Text = L"°æ±¾2";
+			   this->tabPage20->Text = L"ç‰ˆæœ¬2";
 			   // 
 			   // panel27
 			   // 
@@ -4255,7 +4255,7 @@ namespace Timelapse {
 			   this->bSpawnControl->Name = L"bSpawnControl";
 			   this->bSpawnControl->Size = System::Drawing::Size(260, 35);
 			   this->bSpawnControl->TabIndex = 41;
-			   this->bSpawnControl->Text = L"¿ªÆôÉú³É¿ØÖÆ";
+			   this->bSpawnControl->Text = L"å¼€å¯ç”Ÿæˆæ§åˆ¶";
 			   this->bSpawnControl->UseVisualStyleBackColor = true;
 			   this->bSpawnControl->Click += gcnew System::EventHandler(this, &MainForm::bSpawnControl_Click);
 			   // 
@@ -4300,7 +4300,7 @@ namespace Timelapse {
 			   this->label71->Name = L"label71";
 			   this->label71->Size = System::Drawing::Size(78, 21);
 			   this->label71->TabIndex = 38;
-			   this->label71->Text = L"µØÍ¼ ID: ";
+			   this->label71->Text = L"åœ°å›¾ ID: ";
 			   // 
 			   // tbSpawnControlY
 			   // 
@@ -4326,7 +4326,7 @@ namespace Timelapse {
 			   this->bSpawnControlAdd->Name = L"bSpawnControlAdd";
 			   this->bSpawnControlAdd->Size = System::Drawing::Size(230, 35);
 			   this->bSpawnControlAdd->TabIndex = 26;
-			   this->bSpawnControlAdd->Text = L"Ìí¼Ó";
+			   this->bSpawnControlAdd->Text = L"æ·»åŠ ";
 			   this->bSpawnControlAdd->UseVisualStyleBackColor = true;
 			   this->bSpawnControlAdd->Click += gcnew System::EventHandler(this, &MainForm::bSpawnControlAdd_Click);
 			   // 
@@ -4365,7 +4365,7 @@ namespace Timelapse {
 			   this->bSpawnControlGetCurrentLocation->Name = L"bSpawnControlGetCurrentLocation";
 			   this->bSpawnControlGetCurrentLocation->Size = System::Drawing::Size(230, 35);
 			   this->bSpawnControlGetCurrentLocation->TabIndex = 31;
-			   this->bSpawnControlGetCurrentLocation->Text = L"»ñÈ¡µ±Ç°Î»ÖÃ";
+			   this->bSpawnControlGetCurrentLocation->Text = L"è·å–å½“å‰ä½ç½®";
 			   this->bSpawnControlGetCurrentLocation->UseVisualStyleBackColor = true;
 			   this->bSpawnControlGetCurrentLocation->Click += gcnew System::EventHandler(this, &MainForm::bSpawnControlGetCurrentLocation_Click);
 			   // 
@@ -4389,7 +4389,7 @@ namespace Timelapse {
 			   this->label65->Name = L"label65";
 			   this->label65->Size = System::Drawing::Size(84, 21);
 			   this->label65->TabIndex = 25;
-			   this->label65->Text = L"Éú³É¿ØÖÆ:";
+			   this->label65->Text = L"ç”Ÿæˆæ§åˆ¶:";
 			   // 
 			   // lvSpawnControl
 			   // 
@@ -4414,7 +4414,7 @@ namespace Timelapse {
 			   // 
 			   // columnHeader3
 			   // 
-			   this->columnHeader3->Text = L"µØÍ¼ ID:";
+			   this->columnHeader3->Text = L"åœ°å›¾ ID:";
 			   this->columnHeader3->Width = 117;
 			   // 
 			   // columnHeader4
@@ -4436,7 +4436,7 @@ namespace Timelapse {
 			   this->bSpawnControlDelete->Name = L"bSpawnControlDelete";
 			   this->bSpawnControlDelete->Size = System::Drawing::Size(296, 35);
 			   this->bSpawnControlDelete->TabIndex = 27;
-			   this->bSpawnControlDelete->Text = L"É¾³ı";
+			   this->bSpawnControlDelete->Text = L"åˆ é™¤";
 			   this->bSpawnControlDelete->UseVisualStyleBackColor = true;
 			   this->bSpawnControlDelete->Click += gcnew System::EventHandler(this, &MainForm::bSpawnControlDelete_Click);
 			   // 
@@ -4466,7 +4466,7 @@ namespace Timelapse {
 			   this->label42->Name = L"label42";
 			   this->label42->Size = System::Drawing::Size(96, 21);
 			   this->label42->TabIndex = 24;
-			   this->label42->Text = L"´«ËÍµ½(x,y)";
+			   this->label42->Text = L"ä¼ é€åˆ°(x,y)";
 			   // 
 			   // tbTeleportLoopDelay
 			   // 
@@ -4492,7 +4492,7 @@ namespace Timelapse {
 			   this->label86->Name = L"label86";
 			   this->label86->Size = System::Drawing::Size(50, 21);
 			   this->label86->TabIndex = 34;
-			   this->label86->Text = L"ÑÓ³Ù:";
+			   this->label86->Text = L"å»¶è¿Ÿ:";
 			   // 
 			   // bTeleportLoop
 			   // 
@@ -4503,7 +4503,7 @@ namespace Timelapse {
 			   this->bTeleportLoop->Name = L"bTeleportLoop";
 			   this->bTeleportLoop->Size = System::Drawing::Size(102, 35);
 			   this->bTeleportLoop->TabIndex = 32;
-			   this->bTeleportLoop->Text = L"Ñ­»·";
+			   this->bTeleportLoop->Text = L"å¾ªç¯";
 			   this->bTeleportLoop->UseVisualStyleBackColor = true;
 			   this->bTeleportLoop->Click += gcnew System::EventHandler(this, &MainForm::bTeleportLoop_Click);
 			   // 
@@ -4516,7 +4516,7 @@ namespace Timelapse {
 			   this->bTeleportDelete->Name = L"bTeleportDelete";
 			   this->bTeleportDelete->Size = System::Drawing::Size(146, 35);
 			   this->bTeleportDelete->TabIndex = 31;
-			   this->bTeleportDelete->Text = L"É¾³ı";
+			   this->bTeleportDelete->Text = L"åˆ é™¤";
 			   this->bTeleportDelete->UseVisualStyleBackColor = true;
 			   this->bTeleportDelete->Click += gcnew System::EventHandler(this, &MainForm::bTeleportDelete_Click);
 			   // 
@@ -4529,7 +4529,7 @@ namespace Timelapse {
 			   this->bTeleport->Name = L"bTeleport";
 			   this->bTeleport->Size = System::Drawing::Size(146, 35);
 			   this->bTeleport->TabIndex = 30;
-			   this->bTeleport->Text = L"´«ËÍ";
+			   this->bTeleport->Text = L"ä¼ é€";
 			   this->bTeleport->UseVisualStyleBackColor = true;
 			   this->bTeleport->Click += gcnew System::EventHandler(this, &MainForm::bTeleport_Click);
 			   // 
@@ -4586,7 +4586,7 @@ namespace Timelapse {
 			   this->bTeleportGetCurrentLocation->Name = L"bTeleportGetCurrentLocation";
 			   this->bTeleportGetCurrentLocation->Size = System::Drawing::Size(234, 35);
 			   this->bTeleportGetCurrentLocation->TabIndex = 22;
-			   this->bTeleportGetCurrentLocation->Text = L"»ñÈ¡µ±Ç°Î»ÖÃ";
+			   this->bTeleportGetCurrentLocation->Text = L"è·å–å½“å‰ä½ç½®";
 			   this->bTeleportGetCurrentLocation->UseVisualStyleBackColor = true;
 			   this->bTeleportGetCurrentLocation->Click += gcnew System::EventHandler(this, &MainForm::bTeleportGetCurrentLocation_Click);
 			   // 
@@ -4625,7 +4625,7 @@ namespace Timelapse {
 			   this->bTeleportAdd->Name = L"bTeleportAdd";
 			   this->bTeleportAdd->Size = System::Drawing::Size(234, 35);
 			   this->bTeleportAdd->TabIndex = 24;
-			   this->bTeleportAdd->Text = L"Ìí¼Óµ½ÁĞ±í";
+			   this->bTeleportAdd->Text = L"æ·»åŠ åˆ°åˆ—è¡¨";
 			   this->bTeleportAdd->UseVisualStyleBackColor = true;
 			   this->bTeleportAdd->Click += gcnew System::EventHandler(this, &MainForm::bTeleportAdd_Click);
 			   // 
@@ -4670,7 +4670,7 @@ namespace Timelapse {
 			   this->tabPage6->Name = L"tabPage6";
 			   this->tabPage6->Size = System::Drawing::Size(589, 535);
 			   this->tabPage6->TabIndex = 3;
-			   this->tabPage6->Text = L"Îü¹Ö";
+			   this->tabPage6->Text = L"å¸æ€ª";
 			   // 
 			   // panel28
 			   // 
@@ -4703,7 +4703,7 @@ namespace Timelapse {
 			   this->checkBox10->Name = L"checkBox10";
 			   this->checkBox10->Size = System::Drawing::Size(113, 25);
 			   this->checkBox10->TabIndex = 32;
-			   this->checkBox10->Text = L"CSEAX Vac";
+			   this->checkBox10->Text = L"CSEAX å¸æ€ª";
 			   this->checkBox10->UseVisualStyleBackColor = false;
 			   // 
 			   // checkBox9
@@ -4718,7 +4718,7 @@ namespace Timelapse {
 			   this->checkBox9->Name = L"checkBox9";
 			   this->checkBox9->Size = System::Drawing::Size(67, 25);
 			   this->checkBox9->TabIndex = 31;
-			   this->checkBox9->Text = L"pVac";
+			   this->checkBox9->Text = L"pVac å¸æ€ª";
 			   this->checkBox9->UseVisualStyleBackColor = false;
 			   // 
 			   // checkBox8
@@ -4733,7 +4733,7 @@ namespace Timelapse {
 			   this->checkBox8->Name = L"checkBox8";
 			   this->checkBox8->Size = System::Drawing::Size(114, 25);
 			   this->checkBox8->TabIndex = 30;
-			   this->checkBox8->Text = L"Fangor Vac";
+			   this->checkBox8->Text = L"Fangor å¸æ€ª";
 			   this->checkBox8->UseVisualStyleBackColor = false;
 			   // 
 			   // cbVacJumpLeft
@@ -4747,7 +4747,7 @@ namespace Timelapse {
 			   this->cbVacJumpLeft->Name = L"cbVacJumpLeft";
 			   this->cbVacJumpLeft->Size = System::Drawing::Size(135, 25);
 			   this->cbVacJumpLeft->TabIndex = 29;
-			   this->cbVacJumpLeft->Text = L"Vac Jump Left";
+			   this->cbVacJumpLeft->Text = L"å‘å·¦è·³è·ƒå¸æ€ª";
 			   this->cbVacJumpLeft->UseVisualStyleBackColor = false;
 			   this->cbVacJumpLeft->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbVacJumpLeft_CheckedChanged);
 			   // 
@@ -4762,7 +4762,7 @@ namespace Timelapse {
 			   this->cbVacJumpRight->Name = L"cbVacJumpRight";
 			   this->cbVacJumpRight->Size = System::Drawing::Size(146, 25);
 			   this->cbVacJumpRight->TabIndex = 28;
-			   this->cbVacJumpRight->Text = L"Vac Jump Right";
+			   this->cbVacJumpRight->Text = L"å‘å³è·³è·ƒå¸æ€ª";
 			   this->cbVacJumpRight->UseVisualStyleBackColor = false;
 			   this->cbVacJumpRight->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbVacJumpRight_CheckedChanged);
 			   // 
@@ -4777,7 +4777,7 @@ namespace Timelapse {
 			   this->cbVacLeft->Name = L"cbVacLeft";
 			   this->cbVacLeft->Size = System::Drawing::Size(133, 25);
 			   this->cbVacLeft->TabIndex = 27;
-			   this->cbVacLeft->Text = L"Ïò×ó×Ô¶¯Îü¹Ö";
+			   this->cbVacLeft->Text = L"å‘å·¦è‡ªåŠ¨å¸æ€ª";
 			   this->cbVacLeft->UseVisualStyleBackColor = false;
 			   this->cbVacLeft->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbVacLeft_CheckedChanged);
 			   // 
@@ -4792,7 +4792,7 @@ namespace Timelapse {
 			   this->cbZzVac->Name = L"cbZzVac";
 			   this->cbZzVac->Size = System::Drawing::Size(83, 25);
 			   this->cbZzVac->TabIndex = 24;
-			   this->cbZzVac->Text = L"ZZ Vac";
+			   this->cbZzVac->Text = L"ZZ å¸æ€ª";
 			   this->cbZzVac->UseVisualStyleBackColor = false;
 			   this->cbZzVac->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbZzVac_CheckedChanged);
 			   // 
@@ -4807,7 +4807,7 @@ namespace Timelapse {
 			   this->cbFullMapAttack->Name = L"cbFullMapAttack";
 			   this->cbFullMapAttack->Size = System::Drawing::Size(99, 25);
 			   this->cbFullMapAttack->TabIndex = 23;
-			   this->cbFullMapAttack->Text = L"È«Í¼¹¥»÷";
+			   this->cbFullMapAttack->Text = L"å…¨å›¾æ”»å‡»";
 			   this->cbFullMapAttack->UseVisualStyleBackColor = false;
 			   this->cbFullMapAttack->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbFullMapAttack_CheckedChanged);
 			   // 
@@ -4822,7 +4822,7 @@ namespace Timelapse {
 			   this->cbVacRight->Name = L"cbVacRight";
 			   this->cbVacRight->Size = System::Drawing::Size(133, 25);
 			   this->cbVacRight->TabIndex = 26;
-			   this->cbVacRight->Text = L"ÏòÓÒ×Ô¶¯Îü¹Ö";
+			   this->cbVacRight->Text = L"å‘å³è‡ªåŠ¨å¸æ€ª";
 			   this->cbVacRight->UseVisualStyleBackColor = false;
 			   this->cbVacRight->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbVacRight_CheckedChanged);
 			   // 
@@ -4837,7 +4837,7 @@ namespace Timelapse {
 			   this->cbVacForceRight->Name = L"cbVacForceRight";
 			   this->cbVacForceRight->Size = System::Drawing::Size(167, 25);
 			   this->cbVacForceRight->TabIndex = 25;
-			   this->cbVacForceRight->Text = L"Ç¿ÖÆÏòÓÒ×Ô¶¯Îü¹Ö";
+			   this->cbVacForceRight->Text = L"å¼ºåˆ¶å‘å³è‡ªåŠ¨å¸æ€ª";
 			   this->cbVacForceRight->UseVisualStyleBackColor = false;
 			   this->cbVacForceRight->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbVacForceRight_CheckedChanged);
 			   // 
@@ -4865,7 +4865,7 @@ namespace Timelapse {
 			   this->bUEMIGetCurrentLocation->Name = L"bUEMIGetCurrentLocation";
 			   this->bUEMIGetCurrentLocation->Size = System::Drawing::Size(186, 35);
 			   this->bUEMIGetCurrentLocation->TabIndex = 30;
-			   this->bUEMIGetCurrentLocation->Text = L"»ñÈ¡µ±Ç°Î»ÖÃ";
+			   this->bUEMIGetCurrentLocation->Text = L"è·å–å½“å‰ä½ç½®";
 			   this->bUEMIGetCurrentLocation->UseVisualStyleBackColor = true;
 			   this->bUEMIGetCurrentLocation->Click += gcnew System::EventHandler(this, &MainForm::bUEMIGetCurrentLocation_Click);
 			   // 
@@ -4972,7 +4972,7 @@ namespace Timelapse {
 			   this->button1->Name = L"button1";
 			   this->button1->Size = System::Drawing::Size(196, 29);
 			   this->button1->TabIndex = 31;
-			   this->button1->Text = L"»ñÈ¡µ±Ç°Î»ÖÃ";
+			   this->button1->Text = L"è·å–å½“å‰ä½ç½®";
 			   this->button1->UseVisualStyleBackColor = true;
 			   // 
 			   // tbMMCX
@@ -5067,7 +5067,7 @@ namespace Timelapse {
 			   this->label60->Name = L"label60";
 			   this->label60->Size = System::Drawing::Size(101, 21);
 			   this->label60->TabIndex = 17;
-			   this->label60->Text = L"Õ¾Á¢µã±àºÅ:";
+			   this->label60->Text = L"ç«™ç«‹ç‚¹ç¼–å·:";
 			   // 
 			   // bDupeXGetFoothold
 			   // 
@@ -5079,7 +5079,7 @@ namespace Timelapse {
 			   this->bDupeXGetFoothold->Name = L"bDupeXGetFoothold";
 			   this->bDupeXGetFoothold->Size = System::Drawing::Size(141, 29);
 			   this->bDupeXGetFoothold->TabIndex = 15;
-			   this->bDupeXGetFoothold->Text = L"»ñÈ¡Õ¾Á¢µã";
+			   this->bDupeXGetFoothold->Text = L"è·å–ç«™ç«‹ç‚¹";
 			   this->bDupeXGetFoothold->UseVisualStyleBackColor = true;
 			   this->bDupeXGetFoothold->Click += gcnew System::EventHandler(this, &MainForm::bDupeXGetFoothold_Click);
 			   // 
@@ -5094,7 +5094,7 @@ namespace Timelapse {
 			   this->cbDupeX->Name = L"cbDupeX";
 			   this->cbDupeX->Size = System::Drawing::Size(99, 25);
 			   this->cbDupeX->TabIndex = 1;
-			   this->cbDupeX->Text = L"ÎïÆ·¸´ÖÆ";
+			   this->cbDupeX->Text = L"ç‰©å“å¤åˆ¶";
 			   this->cbDupeX->UseVisualStyleBackColor = false;
 			   this->cbDupeX->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbDupeX_CheckedChanged);
 			   // 
@@ -5141,7 +5141,7 @@ namespace Timelapse {
 			   this->label61->Name = L"label61";
 			   this->label61->Size = System::Drawing::Size(65, 21);
 			   this->label61->TabIndex = 18;
-			   this->label61->Text = L"Y ·¶Î§:";
+			   this->label61->Text = L"Y èŒƒå›´:";
 			   // 
 			   // bWallVacGetCurrentLocation
 			   // 
@@ -5152,7 +5152,7 @@ namespace Timelapse {
 			   this->bWallVacGetCurrentLocation->Name = L"bWallVacGetCurrentLocation";
 			   this->bWallVacGetCurrentLocation->Size = System::Drawing::Size(348, 35);
 			   this->bWallVacGetCurrentLocation->TabIndex = 14;
-			   this->bWallVacGetCurrentLocation->Text = L"»ñÈ¡µ±Ç°Î»ÖÃ";
+			   this->bWallVacGetCurrentLocation->Text = L"è·å–å½“å‰ä½ç½®";
 			   this->bWallVacGetCurrentLocation->UseVisualStyleBackColor = true;
 			   this->bWallVacGetCurrentLocation->Click += gcnew System::EventHandler(this, &MainForm::bWallVacGetCurrentLocation_Click);
 			   // 
@@ -5180,7 +5180,7 @@ namespace Timelapse {
 			   this->label59->Name = L"label59";
 			   this->label59->Size = System::Drawing::Size(65, 21);
 			   this->label59->TabIndex = 16;
-			   this->label59->Text = L"X ·¶Î§:";
+			   this->label59->Text = L"X èŒƒå›´:";
 			   // 
 			   // tbWallVacY
 			   // 
@@ -5245,7 +5245,7 @@ namespace Timelapse {
 			   this->cbWallVac->Name = L"cbWallVac";
 			   this->cbWallVac->Size = System::Drawing::Size(99, 25);
 			   this->cbWallVac->TabIndex = 1;
-			   this->cbWallVac->Text = L"¶¨µãÎü¹Ö";
+			   this->cbWallVac->Text = L"å®šç‚¹å¸æ€ª";
 			   this->cbWallVac->UseVisualStyleBackColor = false;
 			   this->cbWallVac->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbWallVac_CheckedChanged);
 			   // 
@@ -5301,7 +5301,7 @@ namespace Timelapse {
 			   this->label57->Name = L"label57";
 			   this->label57->Size = System::Drawing::Size(112, 21);
 			   this->label57->TabIndex = 10;
-			   this->label57->Text = L"µ±ÎïÆ·ÊıÁ¿ >";
+			   this->label57->Text = L"å½“ç‰©å“æ•°é‡ >";
 			   // 
 			   // label58
 			   // 
@@ -5312,7 +5312,7 @@ namespace Timelapse {
 			   this->label58->Name = L"label58";
 			   this->label58->Size = System::Drawing::Size(91, 21);
 			   this->label58->TabIndex = 7;
-			   this->label58->Text = L"¼ä¸ô [ms]:";
+			   this->label58->Text = L"é—´éš” [ms]:";
 			   // 
 			   // cbKamiLoot
 			   // 
@@ -5325,7 +5325,7 @@ namespace Timelapse {
 			   this->cbKamiLoot->Name = L"cbKamiLoot";
 			   this->cbKamiLoot->Size = System::Drawing::Size(133, 25);
 			   this->cbKamiLoot->TabIndex = 1;
-			   this->cbKamiLoot->Text = L"×Ô¶¯Ê°È¡ÎïÆ·";
+			   this->cbKamiLoot->Text = L"è‡ªåŠ¨æ‹¾å–ç‰©å“";
 			   this->cbKamiLoot->UseVisualStyleBackColor = false;
 			   this->cbKamiLoot->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbKamiLoot_CheckedChanged);
 			   // 
@@ -5437,7 +5437,7 @@ namespace Timelapse {
 			   this->label53->Name = L"label53";
 			   this->label53->Size = System::Drawing::Size(112, 21);
 			   this->label53->TabIndex = 10;
-			   this->label53->Text = L"µ±¹ÖÎïÊıÁ¿ >";
+			   this->label53->Text = L"å½“æ€ªç‰©æ•°é‡ >";
 			   // 
 			   // label54
 			   // 
@@ -5448,7 +5448,7 @@ namespace Timelapse {
 			   this->label54->Name = L"label54";
 			   this->label54->Size = System::Drawing::Size(91, 21);
 			   this->label54->TabIndex = 7;
-			   this->label54->Text = L"¼ä¸ô [ms]:";
+			   this->label54->Text = L"é—´éš” [ms]:";
 			   // 
 			   // cbKami
 			   // 
@@ -5461,7 +5461,7 @@ namespace Timelapse {
 			   this->cbKami->Name = L"cbKami";
 			   this->cbKami->Size = System::Drawing::Size(133, 25);
 			   this->cbKami->TabIndex = 1;
-			   this->cbKami->Text = L"×Ô¶¯»÷É±¹ÖÎï";
+			   this->cbKami->Text = L"è‡ªåŠ¨å‡»æ€æ€ªç‰©";
 			   this->cbKami->UseVisualStyleBackColor = false;
 			   this->cbKami->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbKami_CheckedChanged);
 			   // 
@@ -5476,7 +5476,7 @@ namespace Timelapse {
 			   this->tabPage7->Name = L"tabPage7";
 			   this->tabPage7->Size = System::Drawing::Size(589, 535);
 			   this->tabPage7->TabIndex = 4;
-			   this->tabPage7->Text = L"¹ıÂË";
+			   this->tabPage7->Text = L"è¿‡æ»¤";
 			   // 
 			   // panel21
 			   // 
@@ -5541,7 +5541,7 @@ namespace Timelapse {
 			   this->cbMobFilterLog->Name = L"cbMobFilterLog";
 			   this->cbMobFilterLog->Size = System::Drawing::Size(101, 25);
 			   this->cbMobFilterLog->TabIndex = 33;
-			   this->cbMobFilterLog->Text = L"Log Mobs";
+			   this->cbMobFilterLog->Text = L"è®°å½•æ€ªç‰©";
 			   this->cbMobFilterLog->UseVisualStyleBackColor = false;
 			   this->cbMobFilterLog->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbMobFilterLog_CheckedChanged);
 			   // 
@@ -5556,7 +5556,7 @@ namespace Timelapse {
 			   this->bMobSearchLogClear->Name = L"bMobSearchLogClear";
 			   this->bMobSearchLogClear->Size = System::Drawing::Size(70, 32);
 			   this->bMobSearchLogClear->TabIndex = 29;
-			   this->bMobSearchLogClear->Text = L"Clear";
+			   this->bMobSearchLogClear->Text = L"æ¸…ç©º";
 			   this->bMobSearchLogClear->UseVisualStyleBackColor = true;
 			   this->bMobSearchLogClear->Click += gcnew System::EventHandler(this, &MainForm::bMobSearchLogClear_Click);
 			   // 
@@ -5571,7 +5571,7 @@ namespace Timelapse {
 			   this->rbMobFilterWhiteList->Size = System::Drawing::Size(102, 25);
 			   this->rbMobFilterWhiteList->TabIndex = 32;
 			   this->rbMobFilterWhiteList->TabStop = true;
-			   this->rbMobFilterWhiteList->Text = L"WhiteList";
+			   this->rbMobFilterWhiteList->Text = L"ç™½åå•";
 			   this->rbMobFilterWhiteList->UseVisualStyleBackColor = true;
 			   this->rbMobFilterWhiteList->CheckedChanged += gcnew System::EventHandler(this, &MainForm::rbMobFilterWhiteList_CheckedChanged);
 			   // 
@@ -5598,7 +5598,7 @@ namespace Timelapse {
 			   this->rbMobFilterBlackList->Name = L"rbMobFilterBlackList";
 			   this->rbMobFilterBlackList->Size = System::Drawing::Size(98, 25);
 			   this->rbMobFilterBlackList->TabIndex = 31;
-			   this->rbMobFilterBlackList->Text = L"BlackList";
+			   this->rbMobFilterBlackList->Text = L"é»‘åå•";
 			   this->rbMobFilterBlackList->UseVisualStyleBackColor = false;
 			   // 
 			   // label75
@@ -5609,7 +5609,7 @@ namespace Timelapse {
 			   this->label75->Name = L"label75";
 			   this->label75->Size = System::Drawing::Size(66, 21);
 			   this->label75->TabIndex = 28;
-			   this->label75->Text = L"Search:";
+			   this->label75->Text = L"æœç´¢:";
 			   // 
 			   // bMobFilterAdd
 			   // 
@@ -5622,7 +5622,7 @@ namespace Timelapse {
 			   this->bMobFilterAdd->Name = L"bMobFilterAdd";
 			   this->bMobFilterAdd->Size = System::Drawing::Size(54, 32);
 			   this->bMobFilterAdd->TabIndex = 26;
-			   this->bMobFilterAdd->Text = L"Add";
+			   this->bMobFilterAdd->Text = L"æ·»åŠ ";
 			   this->bMobFilterAdd->UseVisualStyleBackColor = true;
 			   this->bMobFilterAdd->Click += gcnew System::EventHandler(this, &MainForm::bMobFilterAdd_Click);
 			   // 
@@ -5649,7 +5649,7 @@ namespace Timelapse {
 			   this->label76->Name = L"label76";
 			   this->label76->Size = System::Drawing::Size(90, 21);
 			   this->label76->TabIndex = 25;
-			   this->label76->Text = L"Add by ID:";
+			   this->label76->Text = L"æŒ‰ ID æ·»åŠ :";
 			   // 
 			   // label77
 			   // 
@@ -5662,7 +5662,7 @@ namespace Timelapse {
 			   this->label77->Name = L"label77";
 			   this->label77->Size = System::Drawing::Size(177, 21);
 			   this->label77->TabIndex = 23;
-			   this->label77->Text = L"Filters Mobs on Spawn";
+			   this->label77->Text = L"æ€ªç‰©ç”Ÿæˆæ—¶è¿‡æ»¤";
 			   this->label77->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			   // 
 			   // bMobFilter
@@ -5676,7 +5676,7 @@ namespace Timelapse {
 			   this->bMobFilter->Name = L"bMobFilter";
 			   this->bMobFilter->Size = System::Drawing::Size(270, 32);
 			   this->bMobFilter->TabIndex = 19;
-			   this->bMobFilter->Text = L"Enable Mob Filter";
+			   this->bMobFilter->Text = L"å¼€å¯æ€ªç‰©è¿‡æ»¤";
 			   this->bMobFilter->UseVisualStyleBackColor = true;
 			   this->bMobFilter->Click += gcnew System::EventHandler(this, &MainForm::bMobFilter_Click);
 			   // 
@@ -5744,7 +5744,7 @@ namespace Timelapse {
 			   this->cbItemFilterLog->Name = L"cbItemFilterLog";
 			   this->cbItemFilterLog->Size = System::Drawing::Size(105, 25);
 			   this->cbItemFilterLog->TabIndex = 30;
-			   this->cbItemFilterLog->Text = L"Log Items";
+			   this->cbItemFilterLog->Text = L"è®°å½•ç‰©å“";
 			   this->cbItemFilterLog->UseVisualStyleBackColor = false;
 			   this->cbItemFilterLog->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbItemFilterLog_CheckedChanged);
 			   // 
@@ -5759,7 +5759,7 @@ namespace Timelapse {
 			   this->bItemSearchLogClear->Name = L"bItemSearchLogClear";
 			   this->bItemSearchLogClear->Size = System::Drawing::Size(70, 32);
 			   this->bItemSearchLogClear->TabIndex = 29;
-			   this->bItemSearchLogClear->Text = L"Clear";
+			   this->bItemSearchLogClear->Text = L"æ¸…ç©º";
 			   this->bItemSearchLogClear->UseVisualStyleBackColor = true;
 			   this->bItemSearchLogClear->Click += gcnew System::EventHandler(this, &MainForm::bItemSearchLogClear_Click);
 			   // 
@@ -5785,7 +5785,7 @@ namespace Timelapse {
 			   this->label74->Name = L"label74";
 			   this->label74->Size = System::Drawing::Size(66, 21);
 			   this->label74->TabIndex = 28;
-			   this->label74->Text = L"Search:";
+			   this->label74->Text = L"æœç´¢:";
 			   // 
 			   // bItemFilterAdd
 			   // 
@@ -5798,7 +5798,7 @@ namespace Timelapse {
 			   this->bItemFilterAdd->Name = L"bItemFilterAdd";
 			   this->bItemFilterAdd->Size = System::Drawing::Size(56, 32);
 			   this->bItemFilterAdd->TabIndex = 26;
-			   this->bItemFilterAdd->Text = L"Add";
+			   this->bItemFilterAdd->Text = L"æ·»åŠ ";
 			   this->bItemFilterAdd->UseVisualStyleBackColor = true;
 			   this->bItemFilterAdd->Click += gcnew System::EventHandler(this, &MainForm::bItemFilterAdd_Click);
 			   // 
@@ -5825,7 +5825,7 @@ namespace Timelapse {
 			   this->label73->Name = L"label73";
 			   this->label73->Size = System::Drawing::Size(90, 21);
 			   this->label73->TabIndex = 25;
-			   this->label73->Text = L"Add by ID:";
+			   this->label73->Text = L"æŒ‰ ID æ·»åŠ :";
 			   // 
 			   // tbItemFilterMesos
 			   // 
@@ -5852,7 +5852,7 @@ namespace Timelapse {
 			   this->label70->Name = L"label70";
 			   this->label70->Size = System::Drawing::Size(86, 21);
 			   this->label70->TabIndex = 23;
-			   this->label70->Text = L"Mesos <=";
+			   this->label70->Text = L"é‡‘å¸ <=";
 			   // 
 			   // rbItemFilterWhiteList
 			   // 
@@ -5865,7 +5865,7 @@ namespace Timelapse {
 			   this->rbItemFilterWhiteList->Size = System::Drawing::Size(102, 25);
 			   this->rbItemFilterWhiteList->TabIndex = 21;
 			   this->rbItemFilterWhiteList->TabStop = true;
-			   this->rbItemFilterWhiteList->Text = L"WhiteList";
+			   this->rbItemFilterWhiteList->Text = L"ç™½åå•";
 			   this->rbItemFilterWhiteList->UseVisualStyleBackColor = true;
 			   this->rbItemFilterWhiteList->CheckedChanged += gcnew System::EventHandler(this, &MainForm::rbItemFilterWhiteList_CheckedChanged);
 			   // 
@@ -5878,7 +5878,7 @@ namespace Timelapse {
 			   this->rbItemFilterBlackList->Name = L"rbItemFilterBlackList";
 			   this->rbItemFilterBlackList->Size = System::Drawing::Size(98, 25);
 			   this->rbItemFilterBlackList->TabIndex = 20;
-			   this->rbItemFilterBlackList->Text = L"BlackList";
+			   this->rbItemFilterBlackList->Text = L"é»‘åå•";
 			   this->rbItemFilterBlackList->UseVisualStyleBackColor = false;
 			   // 
 			   // bItemFilter
@@ -5892,7 +5892,7 @@ namespace Timelapse {
 			   this->bItemFilter->Name = L"bItemFilter";
 			   this->bItemFilter->Size = System::Drawing::Size(270, 32);
 			   this->bItemFilter->TabIndex = 19;
-			   this->bItemFilter->Text = L"Enable Item Filter";
+			   this->bItemFilter->Text = L"å¼€å¯ç‰©å“è¿‡æ»¤";
 			   this->bItemFilter->UseVisualStyleBackColor = true;
 			   this->bItemFilter->Click += gcnew System::EventHandler(this, &MainForm::bItemFilter_Click);
 			   // 
@@ -5906,7 +5906,7 @@ namespace Timelapse {
 			   this->tabPage8->Name = L"tabPage8";
 			   this->tabPage8->Size = System::Drawing::Size(589, 535);
 			   this->tabPage8->TabIndex = 5;
-			   this->tabPage8->Text = L"Êı¾İ°ü";
+			   this->tabPage8->Text = L"æ•°æ®åŒ…";
 			   // 
 			   // tabControl5
 			   // 
@@ -5942,7 +5942,7 @@ namespace Timelapse {
 			   this->tabPage16->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage16->Size = System::Drawing::Size(595, 505);
 			   this->tabPage16->TabIndex = 1;
-			   this->tabPage16->Text = L"Send";
+			   this->tabPage16->Text = L"å‘é€";
 			   // 
 			   // tvSendPackets
 			   // 
@@ -5964,7 +5964,7 @@ namespace Timelapse {
 			   this->label81->Name = L"label81";
 			   this->label81->Size = System::Drawing::Size(98, 42);
 			   this->label81->TabIndex = 21;
-			   this->label81->Text = L"Spam Delay\r\n [ms]:";
+			   this->label81->Text = L"è¿ç»­å‘é€é—´éš”\r\n [ms]:";
 			   this->label81->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			   // 
 			   // tbSendSpamDelay
@@ -5993,7 +5993,7 @@ namespace Timelapse {
 			   this->cbSendSpam->Name = L"cbSendSpam";
 			   this->cbSendSpam->Size = System::Drawing::Size(72, 25);
 			   this->cbSendSpam->TabIndex = 19;
-			   this->cbSendSpam->Text = L"Spam";
+			   this->cbSendSpam->Text = L"è¿ç»­å‘é€";
 			   this->cbSendSpam->UseVisualStyleBackColor = false;
 			   // 
 			   // bSendRemove
@@ -6005,7 +6005,7 @@ namespace Timelapse {
 			   this->bSendRemove->Name = L"bSendRemove";
 			   this->bSendRemove->Size = System::Drawing::Size(99, 35);
 			   this->bSendRemove->TabIndex = 18;
-			   this->bSendRemove->Text = L"Remove";
+			   this->bSendRemove->Text = L"ç§»é™¤";
 			   this->bSendRemove->UseVisualStyleBackColor = true;
 			   // 
 			   // lvSendBlock
@@ -6046,7 +6046,7 @@ namespace Timelapse {
 			   this->bSendBlock->Name = L"bSendBlock";
 			   this->bSendBlock->Size = System::Drawing::Size(69, 35);
 			   this->bSendBlock->TabIndex = 15;
-			   this->bSendBlock->Text = L"Block Header";
+			   this->bSendBlock->Text = L"å±è”½åŒ…å¤´";
 			   this->bSendBlock->UseVisualStyleBackColor = true;
 			   // 
 			   // bSendLog
@@ -6058,7 +6058,7 @@ namespace Timelapse {
 			   this->bSendLog->Name = L"bSendLog";
 			   this->bSendLog->Size = System::Drawing::Size(108, 35);
 			   this->bSendLog->TabIndex = 14;
-			   this->bSendLog->Text = L"Enable Log";
+			   this->bSendLog->Text = L"å¼€å¯æ—¥å¿—";
 			   this->bSendLog->UseVisualStyleBackColor = true;
 			   this->bSendLog->Click += gcnew System::EventHandler(this, &MainForm::bSendLog_Click);
 			   // 
@@ -6071,7 +6071,7 @@ namespace Timelapse {
 			   this->bSendClear->Name = L"bSendClear";
 			   this->bSendClear->Size = System::Drawing::Size(75, 35);
 			   this->bSendClear->TabIndex = 13;
-			   this->bSendClear->Text = L"Clear";
+			   this->bSendClear->Text = L"æ¸…ç©º";
 			   this->bSendClear->UseVisualStyleBackColor = true;
 			   // 
 			   // bSendPacket
@@ -6083,7 +6083,7 @@ namespace Timelapse {
 			   this->bSendPacket->Name = L"bSendPacket";
 			   this->bSendPacket->Size = System::Drawing::Size(146, 35);
 			   this->bSendPacket->TabIndex = 12;
-			   this->bSendPacket->Text = L"Send Packet";
+			   this->bSendPacket->Text = L"å‘é€æ•°æ®åŒ…";
 			   this->bSendPacket->UseVisualStyleBackColor = true;
 			   this->bSendPacket->Click += gcnew System::EventHandler(this, &MainForm::bSendPacket_Click);
 			   // 
@@ -6105,7 +6105,7 @@ namespace Timelapse {
 			   this->tabPage15->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage15->Size = System::Drawing::Size(595, 505);
 			   this->tabPage15->TabIndex = 0;
-			   this->tabPage15->Text = L"Recv";
+			   this->tabPage15->Text = L"æ¥æ”¶";
 			   // 
 			   // tvRecvPackets
 			   // 
@@ -6128,7 +6128,7 @@ namespace Timelapse {
 			   this->bRecvRemove->Name = L"bRecvRemove";
 			   this->bRecvRemove->Size = System::Drawing::Size(99, 35);
 			   this->bRecvRemove->TabIndex = 26;
-			   this->bRecvRemove->Text = L"Remove";
+			   this->bRecvRemove->Text = L"ç§»é™¤";
 			   this->bRecvRemove->UseVisualStyleBackColor = true;
 			   // 
 			   // lvRecvBlock
@@ -6169,7 +6169,7 @@ namespace Timelapse {
 			   this->bRecvBlock->Name = L"bRecvBlock";
 			   this->bRecvBlock->Size = System::Drawing::Size(99, 35);
 			   this->bRecvBlock->TabIndex = 23;
-			   this->bRecvBlock->Text = L"Block Header";
+			   this->bRecvBlock->Text = L"å±è”½åŒ…å¤´";
 			   this->bRecvBlock->UseVisualStyleBackColor = true;
 			   // 
 			   // bRecvLog
@@ -6181,7 +6181,7 @@ namespace Timelapse {
 			   this->bRecvLog->Name = L"bRecvLog";
 			   this->bRecvLog->Size = System::Drawing::Size(129, 35);
 			   this->bRecvLog->TabIndex = 22;
-			   this->bRecvLog->Text = L"Enable Log";
+			   this->bRecvLog->Text = L"å¯ç”¨æ—¥å¿—";
 			   this->bRecvLog->UseVisualStyleBackColor = true;
 			   // 
 			   // bRecvClear
@@ -6193,7 +6193,7 @@ namespace Timelapse {
 			   this->bRecvClear->Name = L"bRecvClear";
 			   this->bRecvClear->Size = System::Drawing::Size(110, 35);
 			   this->bRecvClear->TabIndex = 21;
-			   this->bRecvClear->Text = L"Clear";
+			   this->bRecvClear->Text = L"æ¸…ç©º";
 			   this->bRecvClear->UseVisualStyleBackColor = true;
 			   // 
 			   // bRecvPacket
@@ -6205,7 +6205,7 @@ namespace Timelapse {
 			   this->bRecvPacket->Name = L"bRecvPacket";
 			   this->bRecvPacket->Size = System::Drawing::Size(146, 35);
 			   this->bRecvPacket->TabIndex = 20;
-			   this->bRecvPacket->Text = L"Receive Packet";
+			   this->bRecvPacket->Text = L"æ¥æ”¶æ•°æ®åŒ…";
 			   this->bRecvPacket->UseVisualStyleBackColor = true;
 			   this->bRecvPacket->Click += gcnew System::EventHandler(this, &MainForm::bRecvPacket_Click);
 			   // 
@@ -6219,7 +6219,7 @@ namespace Timelapse {
 			   this->tabPage18->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage18->Size = System::Drawing::Size(595, 505);
 			   this->tabPage18->TabIndex = 2;
-			   this->tabPage18->Text = L"Multi Packet";
+			   this->tabPage18->Text = L"å¤šé‡æ•°æ®åŒ…";
 			   // 
 			   // tabPage19
 			   // 
@@ -6245,7 +6245,7 @@ namespace Timelapse {
 			   this->tabPage19->Padding = System::Windows::Forms::Padding(4);
 			   this->tabPage19->Size = System::Drawing::Size(595, 505);
 			   this->tabPage19->TabIndex = 3;
-			   this->tabPage19->Text = L"Defined Packets";
+			   this->tabPage19->Text = L"é¢„è®¾æ•°æ®åŒ…";
 			   // 
 			   // comboInUseSlot
 			   // 
@@ -6270,7 +6270,7 @@ namespace Timelapse {
 			   this->lbInUseSlot->Name = L"lbInUseSlot";
 			   this->lbInUseSlot->Size = System::Drawing::Size(98, 21);
 			   this->lbInUseSlot->TabIndex = 26;
-			   this->lbInUseSlot->Text = L"In USE slot:";
+			   this->lbInUseSlot->Text = L"ä½¿ç”¨æ§½ä½:";
 			   // 
 			   // comboToTown
 			   // 
@@ -6288,7 +6288,7 @@ namespace Timelapse {
 			   this->comboToTown->Name = L"comboToTown";
 			   this->comboToTown->Size = System::Drawing::Size(91, 29);
 			   this->comboToTown->TabIndex = 25;
-			   this->comboToTown->Text = L"Nearest";
+			   this->comboToTown->Text = L"æœ€è¿‘åŸé•‡";
 			   this->comboToTown->SelectedIndexChanged += gcnew System::EventHandler(this, &MainForm::comboToTown_SelectedIndexChanged);
 			   // 
 			   // lbToTown
@@ -6299,7 +6299,7 @@ namespace Timelapse {
 			   this->lbToTown->Name = L"lbToTown";
 			   this->lbToTown->Size = System::Drawing::Size(81, 21);
 			   this->lbToTown->TabIndex = 24;
-			   this->lbToTown->Text = L"To Town:";
+			   this->lbToTown->Text = L"è¿”å›åŸé•‡:";
 			   // 
 			   // bUseRtrnScroll
 			   // 
@@ -6309,7 +6309,7 @@ namespace Timelapse {
 			   this->bUseRtrnScroll->Name = L"bUseRtrnScroll";
 			   this->bUseRtrnScroll->Size = System::Drawing::Size(176, 35);
 			   this->bUseRtrnScroll->TabIndex = 23;
-			   this->bUseRtrnScroll->Text = L"Use Return Scroll";
+			   this->bUseRtrnScroll->Text = L"ä½¿ç”¨å›åŸå·è½´";
 			   this->bUseRtrnScroll->UseVisualStyleBackColor = true;
 			   this->bUseRtrnScroll->Click += gcnew System::EventHandler(this, &MainForm::bUseRtrnScroll_Click);
 			   // 
@@ -6322,7 +6322,7 @@ namespace Timelapse {
 			   this->bSendRevive->Name = L"bSendRevive";
 			   this->bSendRevive->Size = System::Drawing::Size(176, 35);
 			   this->bSendRevive->TabIndex = 22;
-			   this->bSendRevive->Text = L"Revive";
+			   this->bSendRevive->Text = L"å¤æ´»";
 			   this->bSendRevive->UseVisualStyleBackColor = true;
 			   this->bSendRevive->Click += gcnew System::EventHandler(this, &MainForm::bSendRevive_Click);
 			   // 
@@ -6335,7 +6335,7 @@ namespace Timelapse {
 			   this->bSendRestore127Health->Name = L"bSendRestore127Health";
 			   this->bSendRestore127Health->Size = System::Drawing::Size(176, 35);
 			   this->bSendRestore127Health->TabIndex = 21;
-			   this->bSendRestore127Health->Text = L"Restore 127 Health";
+			   this->bSendRestore127Health->Text = L"æ¢å¤ 127 ç‚¹ç”Ÿå‘½";
 			   this->bSendRestore127Health->UseVisualStyleBackColor = true;
 			   this->bSendRestore127Health->Click += gcnew System::EventHandler(this, &MainForm::bSendRestore127Health_Click);
 			   // 
@@ -6376,7 +6376,7 @@ namespace Timelapse {
 			   this->label39->Name = L"label39";
 			   this->label39->Size = System::Drawing::Size(168, 42);
 			   this->label39->TabIndex = 22;
-			   this->label39->Text = L"Auto Distributes Per \r\nEach Level till AP < 5\r\n";
+			   this->label39->Text = L"æ¯æ¬¡å‡çº§è‡ªåŠ¨åˆ†é…\r\nç›´åˆ° AP å°‘äº 5\r\n";
 			   // 
 			   // tbAPDEX
 			   // 
@@ -6543,7 +6543,7 @@ namespace Timelapse {
 			   this->label32->Name = L"label32";
 			   this->label32->Size = System::Drawing::Size(81, 21);
 			   this->label32->TabIndex = 8;
-			   this->label32->Text = L"Till Level:";
+			   this->label32->Text = L"æˆªæ­¢ç­‰çº§:";
 			   // 
 			   // tbAPLevel
 			   // 
@@ -6572,7 +6572,7 @@ namespace Timelapse {
 			   this->cbAP->Name = L"cbAP";
 			   this->cbAP->Size = System::Drawing::Size(91, 25);
 			   this->cbAP->TabIndex = 1;
-			   this->cbAP->Text = L"Auto AP";
+			   this->cbAP->Text = L"è‡ªåŠ¨åˆ†é… AP";
 			   this->cbAP->UseVisualStyleBackColor = false;
 			   this->cbAP->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbAP_CheckedChanged);
 			   // 
@@ -6585,7 +6585,7 @@ namespace Timelapse {
 			   this->bSendSuicide->Name = L"bSendSuicide";
 			   this->bSendSuicide->Size = System::Drawing::Size(176, 35);
 			   this->bSendSuicide->TabIndex = 15;
-			   this->bSendSuicide->Text = L"Suicide";
+			   this->bSendSuicide->Text = L"è‡ªæ€";
 			   this->bSendSuicide->UseVisualStyleBackColor = true;
 			   this->bSendSuicide->Click += gcnew System::EventHandler(this, &MainForm::bSendSuicide_Click);
 			   // 
@@ -6598,7 +6598,7 @@ namespace Timelapse {
 			   this->bSendDrop50000->Name = L"bSendDrop50000";
 			   this->bSendDrop50000->Size = System::Drawing::Size(176, 35);
 			   this->bSendDrop50000->TabIndex = 20;
-			   this->bSendDrop50000->Text = L"Drop 50,000 Mesos";
+			   this->bSendDrop50000->Text = L"ä¸¢å¼ƒ 50,000 é‡‘å¸";
 			   this->bSendDrop50000->UseVisualStyleBackColor = true;
 			   this->bSendDrop50000->Click += gcnew System::EventHandler(this, &MainForm::bSendDrop50000_Click);
 			   // 
@@ -6611,7 +6611,7 @@ namespace Timelapse {
 			   this->bSendDrop1000->Name = L"bSendDrop1000";
 			   this->bSendDrop1000->Size = System::Drawing::Size(176, 35);
 			   this->bSendDrop1000->TabIndex = 18;
-			   this->bSendDrop1000->Text = L"Drop 1000 Mesos";
+			   this->bSendDrop1000->Text = L"ä¸¢å¼ƒ 1,000 é‡‘å¸";
 			   this->bSendDrop1000->UseVisualStyleBackColor = true;
 			   this->bSendDrop1000->Click += gcnew System::EventHandler(this, &MainForm::bSendDrop1000_Click);
 			   // 
@@ -6624,7 +6624,7 @@ namespace Timelapse {
 			   this->bSendMount->Name = L"bSendMount";
 			   this->bSendMount->Size = System::Drawing::Size(176, 35);
 			   this->bSendMount->TabIndex = 16;
-			   this->bSendMount->Text = L"Get On Mount";
+			   this->bSendMount->Text = L"éª‘ä¹˜åéª‘";
 			   this->bSendMount->UseVisualStyleBackColor = true;
 			   this->bSendMount->Click += gcnew System::EventHandler(this, &MainForm::bSendMount_Click);
 			   // 
@@ -6637,7 +6637,7 @@ namespace Timelapse {
 			   this->bSendDrop10->Name = L"bSendDrop10";
 			   this->bSendDrop10->Size = System::Drawing::Size(176, 35);
 			   this->bSendDrop10->TabIndex = 17;
-			   this->bSendDrop10->Text = L"Drop 10 Mesos";
+			   this->bSendDrop10->Text = L"ä¸¢å¼ƒ 10 é‡‘å¸";
 			   this->bSendDrop10->UseVisualStyleBackColor = true;
 			   this->bSendDrop10->Click += gcnew System::EventHandler(this, &MainForm::bSendDrop10_Click);
 			   // 
@@ -6650,7 +6650,7 @@ namespace Timelapse {
 			   this->bSendDrop10000->Name = L"bSendDrop10000";
 			   this->bSendDrop10000->Size = System::Drawing::Size(176, 35);
 			   this->bSendDrop10000->TabIndex = 19;
-			   this->bSendDrop10000->Text = L"Drop 10,000 Mesos";
+			   this->bSendDrop10000->Text = L"ä¸¢å¼ƒ 10,000 é‡‘å¸";
 			   this->bSendDrop10000->UseVisualStyleBackColor = true;
 			   this->bSendDrop10000->Click += gcnew System::EventHandler(this, &MainForm::bSendDrop10000_Click);
 			   // 
@@ -6671,7 +6671,7 @@ namespace Timelapse {
 			   this->tabPage9->Name = L"tabPage9";
 			   this->tabPage9->Size = System::Drawing::Size(589, 535);
 			   this->tabPage9->TabIndex = 6;
-			   this->tabPage9->Text = L"µØÍ¼´«ËÍ";
+			   this->tabPage9->Text = L"åœ°å›¾ä¼ é€";
 			   // 
 			   // label66
 			   // 
@@ -6682,7 +6682,7 @@ namespace Timelapse {
 			   this->label66->Name = L"label66";
 			   this->label66->Size = System::Drawing::Size(91, 21);
 			   this->label66->TabIndex = 45;
-			   this->label66->Text = L"ÑÓ³Ù [ms]:";
+			   this->label66->Text = L"å»¶è¿Ÿ [ms]:";
 			   // 
 			   // tbMapRusherDelay
 			   // 
@@ -6720,7 +6720,7 @@ namespace Timelapse {
 			   this->lbMapRusherStatus->Name = L"lbMapRusherStatus";
 			   this->lbMapRusherStatus->Size = System::Drawing::Size(584, 21);
 			   this->lbMapRusherStatus->TabIndex = 37;
-			   this->lbMapRusherStatus->Text = L"×´Ì¬: µÈ´ı...                                                                        "
+			   this->lbMapRusherStatus->Text = L"çŠ¶æ€: ç­‰å¾…...                                                                        "
 				   L"                        \r\n";
 			   this->lbMapRusherStatus->TextChanged += gcnew System::EventHandler(this, &MainForm::lbMapRusherStatus_TextChanged);
 			   // 
@@ -6747,7 +6747,7 @@ namespace Timelapse {
 			   this->label79->Name = L"label79";
 			   this->label79->Size = System::Drawing::Size(124, 21);
 			   this->label79->TabIndex = 36;
-			   this->label79->Text = L"Ä¿µÄµØ µØÍ¼ID:";
+			   this->label79->Text = L"ç›®çš„åœ° åœ°å›¾ID:";
 			   // 
 			   // bMapRush
 			   // 
@@ -6760,7 +6760,7 @@ namespace Timelapse {
 			   this->bMapRush->Name = L"bMapRush";
 			   this->bMapRush->Size = System::Drawing::Size(128, 33);
 			   this->bMapRush->TabIndex = 34;
-			   this->bMapRush->Text = L"µØÍ¼´«ËÍ";
+			   this->bMapRush->Text = L"åœ°å›¾ä¼ é€";
 			   this->bMapRush->UseVisualStyleBackColor = true;
 			   this->bMapRush->Click += gcnew System::EventHandler(this, &MainForm::bMapRush_Click);
 			   // 
@@ -6801,12 +6801,12 @@ namespace Timelapse {
 			   // 
 			   // columnHeader7
 			   // 
-			   this->columnHeader7->Text = L"µØÍ¼Ãû³Æ:";
+			   this->columnHeader7->Text = L"åœ°å›¾åç§°:";
 			   this->columnHeader7->Width = 105;
 			   // 
 			   // columnHeader8
 			   // 
-			   this->columnHeader8->Text = L"µØÍ¼ID:";
+			   this->columnHeader8->Text = L"åœ°å›¾ID:";
 			   this->columnHeader8->Width = 67;
 			   // 
 			   // tbMapRusherSearch
@@ -6831,7 +6831,7 @@ namespace Timelapse {
 			   this->label78->Name = L"label78";
 			   this->label78->Size = System::Drawing::Size(50, 21);
 			   this->label78->TabIndex = 33;
-			   this->label78->Text = L"ËÑË÷:";
+			   this->label78->Text = L"æœç´¢:";
 			   // 
 			   // btnClose
 			   // 
@@ -6865,7 +6865,7 @@ namespace Timelapse {
 			   this->cbNoSkillEffects->Name = L"cbNoSkillEffects";
 			   this->cbNoSkillEffects->Size = System::Drawing::Size(93, 17);
 			   this->cbNoSkillEffects->TabIndex = 8;
-			   this->cbNoSkillEffects->Text = L"Pet Vac";
+			   this->cbNoSkillEffects->Text = L"éšè—æŠ€èƒ½ç‰¹æ•ˆ";
 			   this->cbNoSkillEffects->UseVisualStyleBackColor = false;
 			   this->cbNoSkillEffects->CheckedChanged += gcnew System::EventHandler(this, &MainForm::cbNoSkillEffects_CheckedChanged);
 			   // 

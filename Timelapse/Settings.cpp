@@ -16,13 +16,13 @@ Object^ MacroSystem::Settings::Deserialize(String^ path, XmlSerializer^ serializ
 			return serializer->Deserialize(stream);
 		}
 		catch (Exception^ ex) {
-			Log::WriteLine("Exception occured while reading from " + path + " : " + ex->Message);
+			Log::WriteLine("读取设定档时发生异常 " + path + " : " + ex->Message);
 		}
 		finally {
 			if (stream)
 				delete static_cast<IDisposable^>(stream);
 
-			Log::WriteLine("���� " + path);
+			Log::WriteLine("加载 " + path);
 		}
 	}
 
@@ -38,13 +38,13 @@ void MacroSystem::Settings::Serialize(String^ path, XmlSerializer^ serializer, O
 			serializer->Serialize(stream, object);
 		}
 		catch (Exception^ ex) {
-			Log::WriteLine("Exception occured while writing to " + path + " : " + ex->Message);
+			Log::WriteLine("写入设定档时发生异常 " + path + " : " + ex->Message);
 		}
 		finally {
 			if (stream)
 				delete static_cast<IDisposable^>(stream);
 
-			Log::WriteLine("���� " + path);
+			Log::WriteLine("保存 " + path);
 		}
 	}
 }
@@ -64,7 +64,7 @@ void MacroSystem::Settings::Serialize(Control^ c, String^ XmlFileName) {
 	xmlSerializedForm->Flush();
 	xmlSerializedForm->Close();
 
-	Log::WriteLine("�ѱ��� " + XmlFileName);
+	Log::WriteLine("已保存 " + XmlFileName);
 }
 
 bool MacroSystem::Settings::isExcluded(Control^ ctrl) {
@@ -166,7 +166,7 @@ void MacroSystem::Settings::Deserialize(Control^ c, String^ XmlFileName) {
 				SetControlProperties(safe_cast<Control^>(c), n);
 		}
 		catch (Exception^ ex) {
-			Log::WriteLine("While deserializing \"" + c->Name + "\" the following exception occured: \"" + ex->Message + "\"");
+			Log::WriteLine("反序列化 \"" + c->Name + "\" 时发生异常: \"" + ex->Message + "\"");
 		}
 	}
 }
@@ -233,7 +233,7 @@ void MacroSystem::Settings::SetControlProperties(Control^ currentCtrl, XmlNode^ 
 		}
 	}
 	catch (Exception^ ex) {
-		Log::WriteLine("While deserializing \"" + n->Attributes["Name"]->Value + "\" the following exception occured: \"" + ex->Message + "\"");
+		Log::WriteLine("反序列化 \"" + n->Attributes["Name"]->Value + "\" 时发生异常: \"" + ex->Message + "\"");
 	}
 }
 
@@ -246,9 +246,9 @@ String^ MacroSystem::Settings::GetSettingsPath() {
 		SettingsFilePath = Path::Combine(TimelapseFolderPath, "Settings.xml");
 	}
 	catch (Exception^ ex) {
-		Log::WriteLine("Exception occured while generating path to settings file" + ex->Message);
+		Log::WriteLine("生成设定档路径时发生异常: " + ex->Message);
 	}
 
-	Log::WriteLine("Generated path to Timelapse settings file at" + ": " + SettingsFilePath);
+	Log::WriteLine("Timelapse 设定档路径: " + SettingsFilePath);
 	return SettingsFilePath;
 }

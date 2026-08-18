@@ -101,11 +101,11 @@ namespace PointerFuncs {
 		}
 		catch (System::Exception^ ex) {
 			// Handle .NET exceptions here
-			System::Console::WriteLine("Managed exception caught: {0}", ex->Message);
+			System::Console::WriteLine("捕获到托管异常: {0}", ex->Message);
 		}
 		catch (...) {
 			// Handle standard C++ exceptions or any unexpected errors here
-			System::Console::WriteLine("Native exception caught.");
+			System::Console::WriteLine("捕获到本机异常。");
 		}
 
 		// Default fallback value in case of an error. 

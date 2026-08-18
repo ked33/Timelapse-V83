@@ -770,11 +770,11 @@ void AutoLoginMouse()
 		}
 		catch (System::Exception^ ex) {
 			// Handle .NET exceptions here
-			Log::WriteLine(String::Format("Managed exception caught: {0}", ex->Message));
+			Log::WriteLine(String::Format("捕获到托管异常: {0}", ex->Message));
 		}
 		catch (...) {
 			// Handle standard C++ exceptions or any unexpected errors here
-			Log::WriteLine(String::Format("Native exception caught."));
+			Log::WriteLine(String::Format("捕获到本机异常。"));
 		}
 
 		Sleep(5000);  // Pause for 100ms. Adjust as needed.
@@ -1237,7 +1237,7 @@ void _stdcall AutoCS()
 	{
 		if (String::IsNullOrWhiteSpace(MainForm::TheInstance->tbCSDelay->Text))
 		{
-			MessageBox::Show("Error: CS Delay textbox cannot be empty");
+			MessageBox::Show("错误: 商城延迟不能为空");
 			return;
 		}
 		SendPacket(gcnew String("28 00 ** ** ** 00")); // Send go to CS packet
@@ -1908,9 +1908,9 @@ void MainForm::lvTeleport_MouseDoubleClick(Object^ sender, Windows::Forms::Mouse
 
 void MainForm::bTeleportLoop_Click(Object^ sender, EventArgs^ e)
 {
-	if (!bTeleportLoop->Text->Equals("停机循环"))
+	if (!bTeleportLoop->Text->Equals("停止循环"))
 	{
-		bTeleportLoop->Text = "停机循环";
+		bTeleportLoop->Text = "停止循环";
 		bTeleportGetCurrentLocation->Enabled = false;
 		bTeleportAdd->Enabled = false;
 		bTeleportDelete->Enabled = false;
@@ -2018,7 +2018,7 @@ void MainForm::bSpawnControl_Click(Object^ sender, EventArgs^ e)
 	}
 	else
 	{
-		bSpawnControl->Text = "启动生成控制";
+		bSpawnControl->Text = "开启生成控制";
 		bSpawnControlGetCurrentLocation->Enabled = true;
 		bSpawnControlAdd->Enabled = true;
 		bSpawnControlDelete->Enabled = true;
@@ -3209,7 +3209,7 @@ static void loadMaps()
 	}
 	catch (...)
 	{
-		MessageBox::Show("Error: Couldn't load map data");
+		MessageBox::Show("错误: 无法加载地图数据");
 	}
 
 	// Load all maps into the tree view in Map Rusher tab
