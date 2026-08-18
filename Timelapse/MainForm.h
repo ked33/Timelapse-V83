@@ -3622,10 +3622,10 @@ namespace Timelapse {
 			   this->btnMovementShortcuts->FlatAppearance->BorderColor = System::Drawing::Color::Gray;
 			   this->btnMovementShortcuts->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->btnMovementShortcuts->ForeColor = System::Drawing::Color::WhiteSmoke;
-			   this->btnMovementShortcuts->Location = System::Drawing::Point(478, 0);
+			   this->btnMovementShortcuts->Location = System::Drawing::Point(468, 20);
 			   this->btnMovementShortcuts->Margin = System::Windows::Forms::Padding(4);
 			   this->btnMovementShortcuts->Name = L"btnMovementShortcuts";
-			   this->btnMovementShortcuts->Size = System::Drawing::Size(80, 21);
+			   this->btnMovementShortcuts->Size = System::Drawing::Size(90, 28);
 			   this->btnMovementShortcuts->TabIndex = 10;
 			   this->btnMovementShortcuts->Text = L"快捷键...";
 			   this->btnMovementShortcuts->UseVisualStyleBackColor = false;
@@ -3637,7 +3637,7 @@ namespace Timelapse {
 			   this->cbMouseFly->FlatAppearance->BorderColor = System::Drawing::Color::Maroon;
 			   this->cbMouseFly->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->cbMouseFly->ForeColor = System::Drawing::Color::White;
-			   this->cbMouseFly->Location = System::Drawing::Point(376, 22);
+			   this->cbMouseFly->Location = System::Drawing::Point(325, 22);
 			   this->cbMouseFly->Margin = System::Windows::Forms::Padding(4);
 			   this->cbMouseFly->Name = L"cbMouseFly";
 			   this->cbMouseFly->Size = System::Drawing::Size(132, 25);
@@ -3664,7 +3664,7 @@ namespace Timelapse {
 			   // label49
 			   // 
 			   this->label49->AutoSize = true;
-			   this->label49->Location = System::Drawing::Point(170, 57);
+			   this->label49->Location = System::Drawing::Point(160, 57);
 			   this->label49->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label49->Name = L"label49";
 			   this->label49->Size = System::Drawing::Size(86, 21);
@@ -3689,7 +3689,7 @@ namespace Timelapse {
 			   // label50
 			   // 
 			   this->label50->AutoSize = true;
-			   this->label50->Location = System::Drawing::Point(170, 24);
+			   this->label50->Location = System::Drawing::Point(160, 24);
 			   this->label50->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label50->Name = L"label50";
 			   this->label50->Size = System::Drawing::Size(86, 21);
@@ -3702,7 +3702,7 @@ namespace Timelapse {
 			   this->cbSwimInAir->FlatAppearance->BorderColor = System::Drawing::Color::Maroon;
 			   this->cbSwimInAir->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->cbSwimInAir->ForeColor = System::Drawing::Color::White;
-			   this->cbSwimInAir->Location = System::Drawing::Point(376, 53);
+			   this->cbSwimInAir->Location = System::Drawing::Point(325, 53);
 			   this->cbSwimInAir->Margin = System::Windows::Forms::Padding(4);
 			   this->cbSwimInAir->Name = L"cbSwimInAir";
 			   this->cbSwimInAir->Size = System::Drawing::Size(116, 25);
@@ -3718,10 +3718,10 @@ namespace Timelapse {
 				   static_cast<System::Int32>(static_cast<System::Byte>(35)));
 			   this->tbMouseTeleport->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			   this->tbMouseTeleport->ForeColor = System::Drawing::Color::White;
-			   this->tbMouseTeleport->Location = System::Drawing::Point(280, 54);
+			   this->tbMouseTeleport->Location = System::Drawing::Point(250, 54);
 			   this->tbMouseTeleport->Margin = System::Windows::Forms::Padding(4);
 			   this->tbMouseTeleport->Name = L"tbMouseTeleport";
-			   this->tbMouseTeleport->Size = System::Drawing::Size(72, 27);
+			   this->tbMouseTeleport->Size = System::Drawing::Size(60, 27);
 			   this->tbMouseTeleport->TabIndex = 4;
 			   this->tbMouseTeleport->Text = L"100";
 			   this->tbMouseTeleport->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -3733,10 +3733,10 @@ namespace Timelapse {
 				   static_cast<System::Int32>(static_cast<System::Byte>(35)));
 			   this->tbClickTeleport->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			   this->tbClickTeleport->ForeColor = System::Drawing::Color::White;
-			   this->tbClickTeleport->Location = System::Drawing::Point(280, 21);
+			   this->tbClickTeleport->Location = System::Drawing::Point(250, 21);
 			   this->tbClickTeleport->Margin = System::Windows::Forms::Padding(4);
 			   this->tbClickTeleport->Name = L"tbClickTeleport";
-			   this->tbClickTeleport->Size = System::Drawing::Size(72, 27);
+			   this->tbClickTeleport->Size = System::Drawing::Size(60, 27);
 			   this->tbClickTeleport->TabIndex = 3;
 			   this->tbClickTeleport->Text = L"100";
 			   this->tbClickTeleport->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;

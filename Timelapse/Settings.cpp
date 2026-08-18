@@ -35,6 +35,10 @@ void MacroSystem::Settings::Serialize(String^ path, XmlSerializer^ serializer, O
 		FileStream^ stream = {};
 
 		try {
+			String^ directory = Path::GetDirectoryName(path);
+			if (!String::IsNullOrEmpty(directory))
+				Directory::CreateDirectory(directory);
+
 			stream = gcnew FileStream(path, FileMode::Create, FileAccess::Write, FileShare::None);
 			serializer->Serialize(stream, object);
 		}
@@ -51,22 +55,36 @@ void MacroSystem::Settings::Serialize(String^ path, XmlSerializer^ serializer, O
 }
 
 void MacroSystem::Settings::Serialize(Control^ c, String^ XmlFileName) {
-	XmlTextWriter^ xmlSerializedForm = gcnew XmlTextWriter(XmlFileName, System::Text::Encoding::Default);
+	if (c == nullptr || String::IsNullOrWhiteSpace(XmlFileName))
+		return;
 
-	xmlSerializedForm->Formatting = Formatting::Indented;
-	xmlSerializedForm->WriteStartDocument();
-	xmlSerializedForm->WriteStartElement("Timelapse");
+	XmlTextWriter^ xmlSerializedForm = nullptr;
+	try {
+		String^ directory = Path::GetDirectoryName(XmlFileName);
+		if (!String::IsNullOrEmpty(directory))
+			Directory::CreateDirectory(directory);
 
-	// enumerate all controls on the form, and serialize them as appropriate
-	AddChildControls(xmlSerializedForm, c);
-	AddShortcutSettings(xmlSerializedForm);
+		xmlSerializedForm = gcnew XmlTextWriter(XmlFileName, System::Text::Encoding::Default);
+		xmlSerializedForm->Formatting = Formatting::Indented;
+		xmlSerializedForm->WriteStartDocument();
+		xmlSerializedForm->WriteStartElement("Timelapse");
 
-	xmlSerializedForm->WriteEndElement();
-	xmlSerializedForm->WriteEndDocument();
-	xmlSerializedForm->Flush();
-	xmlSerializedForm->Close();
+		// enumerate all controls on the form, and serialize them as appropriate
+		AddChildControls(xmlSerializedForm, c);
+		AddShortcutSettings(xmlSerializedForm);
 
-	Log::WriteLine("已保存 " + XmlFileName);
+		xmlSerializedForm->WriteEndElement();
+		xmlSerializedForm->WriteEndDocument();
+		xmlSerializedForm->Flush();
+		Log::WriteLine("已保存 " + XmlFileName);
+	}
+	catch (Exception^ ex) {
+		Log::WriteLine("写入设定档时发生异常 " + XmlFileName + " : " + ex->Message);
+	}
+	finally {
+		if (xmlSerializedForm != nullptr)
+			delete xmlSerializedForm;
+	}
 }
 
 void MacroSystem::Settings::AddShortcutSettings(XmlTextWriter^ xmlSerializedForm) {
