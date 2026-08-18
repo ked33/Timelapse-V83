@@ -181,6 +181,7 @@
     <ClInclude Include="Settings.h" />
     <ClInclude Include="ShortcutHelper.h" />
     <ClInclude Include="ShortcutManager.h" />
+    <ClInclude Include="ShortcutSettingsForm.h" />
     <ClInclude Include="Structs.h" />
   </ItemGroup>
   <ItemGroup>

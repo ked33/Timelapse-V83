@@ -1,6 +1,7 @@
 #include "Settings.h"
 #include "Log.h"
 #include "MainForm.h"
+#include "ShortcutManager.h"
 
 using namespace Timelapse;
 using namespace System;
@@ -58,6 +59,7 @@ void MacroSystem::Settings::Serialize(Control^ c, String^ XmlFileName) {
 
 	// enumerate all controls on the form, and serialize them as appropriate
 	AddChildControls(xmlSerializedForm, c);
+	AddShortcutSettings(xmlSerializedForm);
 
 	xmlSerializedForm->WriteEndElement();
 	xmlSerializedForm->WriteEndDocument();
@@ -65,6 +67,70 @@ void MacroSystem::Settings::Serialize(Control^ c, String^ XmlFileName) {
 	xmlSerializedForm->Close();
 
 	Log::WriteLine("已保存 " + XmlFileName);
+}
+
+void MacroSystem::Settings::AddShortcutSettings(XmlTextWriter^ xmlSerializedForm) {
+	ShortcutManager^ manager = ShortcutManager::Instance();
+	xmlSerializedForm->WriteStartElement("Shortcuts");
+	xmlSerializedForm->WriteAttributeString("version", "1");
+
+	for each (ShortcutActionId actionId in ShortcutManager::GetConfigurableActions()) {
+		ShortcutBinding^ binding = manager->GetBinding(actionId);
+		xmlSerializedForm->WriteStartElement("Shortcut");
+		xmlSerializedForm->WriteAttributeString("action", actionId.ToString());
+		xmlSerializedForm->WriteAttributeString("key", binding->VirtualKey.ToString(Globalization::CultureInfo::InvariantCulture));
+		xmlSerializedForm->WriteAttributeString("modifiers", binding->Modifiers.ToString());
+		xmlSerializedForm->WriteAttributeString("enabled", binding->Enabled.ToString()->ToLowerInvariant());
+		xmlSerializedForm->WriteEndElement();
+	}
+
+	xmlSerializedForm->WriteEndElement();
+}
+
+void MacroSystem::Settings::LoadShortcutSettings(XmlNode^ shortcutsNode) {
+	if (shortcutsNode == nullptr)
+		return;
+
+	ShortcutManager^ manager = ShortcutManager::Instance();
+	Dictionary<ShortcutActionId, ShortcutBinding^>^ proposedBindings = manager->GetBindings();
+
+	for each (XmlNode^ shortcutNode in shortcutsNode->SelectNodes("Shortcut")) {
+		try {
+			XmlAttribute^ actionAttribute = shortcutNode->Attributes["action"];
+			XmlAttribute^ keyAttribute = shortcutNode->Attributes["key"];
+			XmlAttribute^ modifiersAttribute = shortcutNode->Attributes["modifiers"];
+			XmlAttribute^ enabledAttribute = shortcutNode->Attributes["enabled"];
+			if (actionAttribute == nullptr || keyAttribute == nullptr || modifiersAttribute == nullptr)
+				continue;
+
+			ShortcutActionId actionId = safe_cast<ShortcutActionId>(
+				Enum::Parse(ShortcutActionId::typeid, actionAttribute->Value, true));
+			if (!Enum::IsDefined(ShortcutActionId::typeid, actionId))
+				continue;
+
+			int virtualKey = Convert::ToInt32(keyAttribute->Value, Globalization::CultureInfo::InvariantCulture);
+			ShortcutModifiers modifiers = safe_cast<ShortcutModifiers>(
+				Enum::Parse(ShortcutModifiers::typeid, modifiersAttribute->Value, true));
+			if ((static_cast<int>(modifiers) & ~static_cast<int>(
+				ShortcutModifiers::Ctrl | ShortcutModifiers::Alt | ShortcutModifiers::Shift)) != 0)
+				continue;
+
+			bool enabled = enabledAttribute != nullptr && Convert::ToBoolean(enabledAttribute->Value);
+			if (virtualKey <= 0)
+				enabled = false;
+
+			proposedBindings[actionId] = gcnew ShortcutBinding(actionId, virtualKey, modifiers, enabled);
+		}
+		catch (Exception^ ex) {
+			Log::WriteLine("忽略无效的快捷键设定: " + ex->Message);
+		}
+	}
+
+	String^ errorMessage;
+	if (manager->ValidateBindings(proposedBindings, errorMessage))
+		manager->ApplyBindings(proposedBindings);
+	else
+		Log::WriteLine("未加载快捷键设定: " + errorMessage);
 }
 
 bool MacroSystem::Settings::isExcluded(Control^ ctrl) {
@@ -161,9 +227,13 @@ void MacroSystem::Settings::Deserialize(Control^ c, String^ XmlFileName) {
 			XmlDocument^ xmlSerializedForm = gcnew XmlDocument();
 			xmlSerializedForm->Load(XmlFileName);
 
-			XmlNode^ topLevel = xmlSerializedForm->ChildNodes[1];
-			for each (XmlNode ^ n in topLevel->ChildNodes)
-				SetControlProperties(safe_cast<Control^>(c), n);
+			XmlNode^ topLevel = xmlSerializedForm->DocumentElement;
+			for each (XmlNode ^ n in topLevel->ChildNodes) {
+				if (n->Name == "Control")
+					SetControlProperties(safe_cast<Control^>(c), n);
+				else if (n->Name == "Shortcuts")
+					LoadShortcutSettings(n);
+			}
 		}
 		catch (Exception^ ex) {
 			Log::WriteLine("反序列化 \"" + c->Name + "\" 时发生异常: \"" + ex->Message + "\"");

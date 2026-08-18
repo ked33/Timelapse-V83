@@ -19,6 +19,33 @@ void ShortcutHelper::ManualToggleCheckBox(CheckBox^ cb) {
 	cb->Checked = !cb->Checked;
 }
 
+void ShortcutHelper::InvokeOnUI(Action^ action) {
+	Timelapse::MainForm^ form = Timelapse::MainForm::TheInstance;
+	if (form == nullptr || form->IsDisposed || !form->IsHandleCreated || action == nullptr)
+		return;
+
+	if (form->InvokeRequired)
+		form->BeginInvoke(action);
+	else
+		action->Invoke();
+}
+
+void ShortcutHelper::ToggleControl(String^ controlName) {
+	auto controls = Timelapse::MainForm::ControlMap;
+	Control^ control;
+	if (!controls->TryGetValue(controlName, control))
+		return;
+
+	CheckBox^ cb = dynamic_cast<CheckBox^>(control);
+	if (cb == nullptr || cb->IsDisposed || !cb->IsHandleCreated)
+		return;
+
+	if (cb->InvokeRequired)
+		cb->BeginInvoke(gcnew ToggleAndLogDelegate(ToggleAndLog), cb);
+	else
+		ToggleAndLog(cb);
+}
+
 void ShortcutHelper::ToggleControl(String^ controlName, Action^ additionalAction) {
 	auto controls = Timelapse::MainForm::ControlMap;
 	CheckBox^ cb = (CheckBox^)controls[controlName];

@@ -1,6 +1,6 @@
 #pragma once
 using namespace System;
-using namespace Windows::Forms;
+using namespace System::Windows::Forms;
 using namespace Xml;
 using namespace Serialization;
 using namespace Collections::Generic;
@@ -19,6 +19,8 @@ namespace MacroSystem {
 
 	private:
 		static void AddChildControls(XmlTextWriter^ xmlSerialisedForm, Control^ c);
+		static void AddShortcutSettings(XmlTextWriter^ xmlSerializedForm);
+		static void LoadShortcutSettings(XmlNode^ shortcutsNode);
 		static void SetControlProperties(Control^ currentCtrl, XmlNode^ n);
 	};
 

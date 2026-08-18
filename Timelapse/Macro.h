@@ -122,49 +122,90 @@ ref struct KeyMacro {
 };
 
 ref class PriorityQueue {
-public:
+private:
 	static cliext::priority_queue<KeyMacro^>^ macroQueue = gcnew cliext::priority_queue<KeyMacro^>();
-	static bool closeMacroQueue = false;
+	static volatile bool closeMacroQueue = false;
+	static Object^ queueLock = gcnew Object();
+	static Threading::AutoResetEvent^ queueSignal = gcnew Threading::AutoResetEvent(false);
+
+	static bool TryDequeue(KeyMacro^% key) {
+		key = nullptr;
+		Threading::Monitor::Enter(queueLock);
+		try {
+			if (macroQueue == nullptr || macroQueue->empty())
+				return false;
+
+			key = macroQueue->top();
+			macroQueue->pop();
+			if (DBG_Macro) Log::WriteLineToConsole("MacroQueueSizeAfterPop: " + macroQueue->size());
+			return true;
+		}
+		finally {
+			Threading::Monitor::Exit(queueLock);
+		}
+	}
+
+public:
+	static void StartWorker() {
+		closeMacroQueue = false;
+	}
+
+	static void StopWorker() {
+		closeMacroQueue = true;
+		queueSignal->Set();
+	}
+
+	static void Enqueue(KeyMacro^ key) {
+		if (key == nullptr || closeMacroQueue)
+			return;
+
+		Threading::Monitor::Enter(queueLock);
+		try {
+			macroQueue->push(key);
+		}
+		finally {
+			Threading::Monitor::Exit(queueLock);
+		}
+		queueSignal->Set();
+	}
 
 	static void MacroQueueWorker() {
 		if (GlobalVars::mapleWindow == nullptr)
 			GlobalVars::mapleWindow = GetMSWindowHandle();
 
 		while (!closeMacroQueue) {
-			if (macroQueue == nullptr || macroQueue->empty())
-				continue;
+			queueSignal->WaitOne();
+			if (closeMacroQueue)
+				break;
 
-			Threading::Monitor::Enter(macroQueue);
-			KeyMacro^ key = macroQueue->top();
-			macroQueue->pop();
-			if (DBG_Macro) Log::WriteLineToConsole("MacroQueueSizeAfterPop: " + macroQueue->size());
-
-			switch (key->macroType) {
-			case MacroType::BUFFMACRO:
-				if (HelperFuncs::IsInGame()) {
-					KeyMacro::PressKey(key->keyCode);
+			KeyMacro^ key;
+			while (TryDequeue(key)) {
+				switch (key->macroType) {
+				case MacroType::BUFFMACRO:
+					if (HelperFuncs::IsInGame()) {
+						KeyMacro::PressKey(key->keyCode);
+					}
+					break;
+				case MacroType::HPPOTMACRO:
+					if (MacrosEnabled::bMacroHP && HelperFuncs::IsInGame()) {
+						KeyMacro::PressKey(key->keyCode);
+					}
+					break;
+				case MacroType::MPPOTMACRO:
+					if (MacrosEnabled::bMacroMP && HelperFuncs::IsInGame()) {
+						KeyMacro::PressKey(key->keyCode);
+					}
+					break;
+				case MacroType::LOOTMACRO:
+					if (MacrosEnabled::bMacroLoot && HelperFuncs::ValidToLoot())
+						KeyMacro::SpamSendKey(key->keyCode, 2);
+					break;
+				case MacroType::ATTACKMACRO:
+					if (MacrosEnabled::bMacroAttack && HelperFuncs::ValidToAttack())
+						KeyMacro::SpamSendKey(key->keyCode, 2);
+					break;
 				}
-				break;
-			case MacroType::HPPOTMACRO:
-				if (MacrosEnabled::bMacroHP && HelperFuncs::IsInGame()) {
-					KeyMacro::PressKey(key->keyCode);
-				}
-				break;
-			case MacroType::MPPOTMACRO:
-				if (MacrosEnabled::bMacroMP && HelperFuncs::IsInGame()) {
-					KeyMacro::PressKey(key->keyCode);
-				}
-				break;
-			case MacroType::LOOTMACRO:
-				if (MacrosEnabled::bMacroLoot && HelperFuncs::ValidToLoot())
-					KeyMacro::SpamSendKey(key->keyCode, 2);
-				break;
-			case MacroType::ATTACKMACRO:
-				if (MacrosEnabled::bMacroAttack && HelperFuncs::ValidToAttack())
-					KeyMacro::SpamSendKey(key->keyCode, 2);
-				break;
 			}
-			Threading::Monitor::Exit(macroQueue);
 		}
 	}
 };
@@ -183,7 +224,7 @@ ref class Macro {
 			// TODO: buffs need better handling
 		case MacroType::BUFFMACRO:
 			if (DBG_Macro) Log::WriteLineToConsole("Pushing macro to queue: " + MacroTypeToStr(keyMacro->macroType));
-			PriorityQueue::macroQueue->push(keyMacro);
+			PriorityQueue::Enqueue(keyMacro);
 			break;
 		case MacroType::HPPOTMACRO:
 			if (MacrosEnabled::bMacroHP && HelperFuncs::IsInGame()) {
@@ -193,7 +234,7 @@ ref class Macro {
 
 				if (hpCntCurrent < hpCntDrinkLimit) {
 					if (DBG_Macro) Log::WriteLineToConsole("Pushing macro to queue: " + MacroTypeToStr(keyMacro->macroType));
-					PriorityQueue::macroQueue->push(keyMacro);
+					PriorityQueue::Enqueue(keyMacro);
 				}
 			}
 			break;
@@ -205,7 +246,7 @@ ref class Macro {
 
 				if (mpCntCurrent < mpCntDrinkLimit) {
 					if (DBG_Macro) Log::WriteLineToConsole("Pushing macro to queue: " + MacroTypeToStr(keyMacro->macroType));
-					PriorityQueue::macroQueue->push(keyMacro);
+					PriorityQueue::Enqueue(keyMacro);
 				}
 			}
 			break;
@@ -217,7 +258,7 @@ ref class Macro {
 
 				if (itemCntCurrent > itemCntLootLimit) {
 					if (DBG_Macro) Log::WriteLineToConsole("Pushing macro to queue: " + MacroTypeToStr(keyMacro->macroType));
-					PriorityQueue::macroQueue->push(keyMacro);
+					PriorityQueue::Enqueue(keyMacro);
 				}
 			}
 			break;
@@ -229,7 +270,7 @@ ref class Macro {
 
 				if (mobCntCurrent > mobCntAttackLimit) {
 					if (DBG_Macro) Log::WriteLineToConsole("Pushing macro to queue: " + MacroTypeToStr(keyMacro->macroType));
-					PriorityQueue::macroQueue->push(keyMacro);
+					PriorityQueue::Enqueue(keyMacro);
 				}
 			}
 			break;

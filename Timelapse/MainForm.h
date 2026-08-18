@@ -126,6 +126,7 @@ namespace Timelapse {
 	private: System::Windows::Forms::CheckBox^ cbSwimInAir;
 	private: System::Windows::Forms::CheckBox^ cbClickTeleport;
 	private: System::Windows::Forms::CheckBox^ cbMouseTeleport;
+	private: System::Windows::Forms::Button^ btnMovementShortcuts;
 	private: System::Windows::Forms::CheckBox^ cbFullGodmode;
 	private: System::Windows::Forms::CheckBox^ cbMpHack;
 	private: System::Windows::Forms::Panel^ panel16;
@@ -672,6 +673,7 @@ namespace Timelapse {
 			   this->cbMouseTeleport = (gcnew System::Windows::Forms::CheckBox());
 			   this->label50 = (gcnew System::Windows::Forms::Label());
 			   this->cbSwimInAir = (gcnew System::Windows::Forms::CheckBox());
+			   this->btnMovementShortcuts = (gcnew System::Windows::Forms::Button());
 			   this->tbMouseTeleport = (gcnew System::Windows::Forms::TextBox());
 			   this->tbClickTeleport = (gcnew System::Windows::Forms::TextBox());
 			   this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
@@ -3599,6 +3601,7 @@ namespace Timelapse {
 			   this->groupBox4->Controls->Add(this->cbMouseTeleport);
 			   this->groupBox4->Controls->Add(this->label50);
 			   this->groupBox4->Controls->Add(this->cbSwimInAir);
+			   this->groupBox4->Controls->Add(this->btnMovementShortcuts);
 			   this->groupBox4->Controls->Add(this->tbMouseTeleport);
 			   this->groupBox4->Controls->Add(this->tbClickTeleport);
 			   this->groupBox4->ForeColor = System::Drawing::Color::WhiteSmoke;
@@ -3610,6 +3613,23 @@ namespace Timelapse {
 			   this->groupBox4->TabIndex = 26;
 			   this->groupBox4->TabStop = false;
 			   this->groupBox4->Text = L"移动设置";
+			   //
+			   // btnMovementShortcuts
+			   //
+			   this->btnMovementShortcuts->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			   this->btnMovementShortcuts->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)),
+				   static_cast<System::Int32>(static_cast<System::Byte>(35)));
+			   this->btnMovementShortcuts->FlatAppearance->BorderColor = System::Drawing::Color::Gray;
+			   this->btnMovementShortcuts->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			   this->btnMovementShortcuts->ForeColor = System::Drawing::Color::WhiteSmoke;
+			   this->btnMovementShortcuts->Location = System::Drawing::Point(478, 0);
+			   this->btnMovementShortcuts->Margin = System::Windows::Forms::Padding(4);
+			   this->btnMovementShortcuts->Name = L"btnMovementShortcuts";
+			   this->btnMovementShortcuts->Size = System::Drawing::Size(80, 21);
+			   this->btnMovementShortcuts->TabIndex = 10;
+			   this->btnMovementShortcuts->Text = L"快捷键...";
+			   this->btnMovementShortcuts->UseVisualStyleBackColor = false;
+			   this->btnMovementShortcuts->Click += gcnew System::EventHandler(this, &MainForm::btnMovementShortcuts_Click);
 			   // 
 			   // cbMouseFly
 			   // 
@@ -6879,7 +6899,7 @@ namespace Timelapse {
 			   // GUITimer
 			   // 
 			   this->GUITimer->Enabled = true;
-			   this->GUITimer->Interval = 17;
+			   this->GUITimer->Interval = 200;
 			   this->GUITimer->Tick += gcnew System::EventHandler(this, &MainForm::GUITimer_Tick);
 			   // 
 			   // AutoCCCSTimer
@@ -7030,6 +7050,7 @@ namespace Timelapse {
 	private: System::Void closeMapleStoryToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void loadSettingsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void saveSettingsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void btnMovementShortcuts_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void lbEXP_MouseHover(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void lbMP_MouseHover(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void lbHP_MouseHover(System::Object^ sender, System::EventArgs^ e);
@@ -7115,7 +7136,7 @@ namespace Timelapse {
 	private: System::Void cbNoPlayerDeath_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void cbFullAccuracy_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void cbAttackDelay_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void tbAttackDelay_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e);
+	private: System::Void tbAttackDelay_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e);
 	private: System::Void cbNoBreath_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void cbMouseFly_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void cbSwimInAir_CheckedChanged(System::Object^ sender, System::EventArgs^ e);

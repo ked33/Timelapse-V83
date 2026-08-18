@@ -10,9 +10,11 @@
 #include "Log.h"	
 #include "Hooks.h"
 #include "ShortcutManager.h"
+#include "ShortcutSettingsForm.h"
 #include "CheatFunctions.h"
 #include "RegisterShortcuts.h"
 #include <map>
+#include <unordered_map>
 
 [assembly:System::Diagnostics::DebuggableAttribute(true, true)]; // For debugging purposes
 
@@ -58,25 +60,6 @@ ref struct GlobalRefs
 }
 
 #pragma unmanaged
-void KeyboardHookThread()
-{
-	HHOOK keyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, NULL, 0);
-	if (!keyboardHook)
-	{
-		DWORD error = GetLastError();
-		return;
-	}
-
-	MSG msg;
-	while (GetMessage(&msg, NULL, 0, 0))
-	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-	}
-
-	UnhookWindowsHookEx(keyboardHook);
-}
-
 void allocateConsole() {
 	if (GlobalVars::enableConsole)
 	{
@@ -104,9 +87,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReser
 
 			allocateConsole();
 			GlobalVars::hDLL = hModule;
-			RegisterShortcuts();
 			CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)&Main, nullptr, 0, nullptr);
-			CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)&KeyboardHookThread, nullptr, 0, nullptr);
 			break;
 
 			// ... other cases
@@ -127,11 +108,37 @@ void MainForm::MainForm_Load(Object^ sender, EventArgs^ e)
 	Log::WriteLineToConsole(":::::::::::::::::::::::::::::::::::::::::");
 	Log::WriteLineToConsole("使用: 冒险岛管理器 by Knat-Dev");
 	Log::WriteLineToConsole("正在初始化...");
-	RECT msRect;
-	GetWindowRect(GetMSWindowHandle(), &msRect);
-	this->Left = msRect.right;
-	this->Top = msRect.top;
-	ControlMap->Add("FMA", this->cbFullMapAttack);
+	GlobalVars::mapleWindow = GetMSWindowHandle();
+	RECT msRect = {};
+	if (GlobalVars::mapleWindow != nullptr && GetWindowRect(GlobalVars::mapleWindow, &msRect))
+	{
+		this->Left = msRect.right;
+		this->Top = msRect.top;
+	}
+
+	ControlMap->Clear();
+	ControlMap["FMA"] = this->cbFullMapAttack;
+	ControlMap["DupeX"] = this->cbDupeX;
+	ControlMap["DupexFoothold"] = this->tbDupeXFoothold;
+	ControlMap["DupexGetFoothold"] = this->bDupeXGetFoothold;
+	ControlMap["AutoAttack"] = this->cbAttack;
+	ControlMap["AutoAttackKey"] = this->comboAttackKey;
+	ControlMap["MainTabs"] = this->tabControl1;
+	ControlMap["ItemFilterEnable"] = this->bItemFilter;
+	ControlMap["ItemFilterListBox"] = this->lbItemFilter;
+	ControlMap["ItemFilterID"] = this->tbItemFilterID;
+	ControlMap["ItemFilterAdd"] = this->bItemFilterAdd;
+	ControlMap["ClickTeleport"] = this->cbClickTeleport;
+	ControlMap["MouseTeleport"] = this->cbMouseTeleport;
+	ControlMap["MouseFly"] = this->cbMouseFly;
+	ControlMap["SwimInAir"] = this->cbSwimInAir;
+
+	RegisterShortcuts();
+	if (GlobalVars::mapleWindow == nullptr ||
+		!ShortcutManager::Instance()->Start(IntPtr(GlobalVars::mapleWindow)))
+	{
+		Log::WriteLineToConsole("无法安装游戏窗口快捷键 Hook。");
+	}
 }
 
 
@@ -149,7 +156,9 @@ void MainForm::MainForm_Shown(Object^ sender, EventArgs^ e)
 
 	lbTitle->Text = "Timelapse Trainer - PID: " + GetMSProcID();
 	Log::WriteLineToConsole("创建和启动宏线程 ...");
+	PriorityQueue::StartWorker();
 	Threading::Thread^ macroThread = gcnew Threading::Thread(gcnew Threading::ThreadStart(PriorityQueue::MacroQueueWorker));
+	macroThread->IsBackground = true;
 	macroThread->Start();
 	Log::WriteLineToConsole("正在为地图传送加载地图 ......");
 	loadMaps();
@@ -168,15 +177,17 @@ void MainForm::MainForm_Shown(Object^ sender, EventArgs^ e)
 	}
 }
 
-void MainForm::MainForm_FormClosing(Object^ sender, Windows::Forms::FormClosingEventArgs^ e)
+void MainForm::MainForm_FormClosing(Object^ sender, System::Windows::Forms::FormClosingEventArgs^ e)
 {
+	ShortcutManager::Instance()->Stop();
+
 	// Turn off all loops
 	GlobalRefs::isChangingField = false, GlobalRefs::isMapRushing = false;
 	GlobalRefs::bClickTeleport = false, GlobalRefs::bMouseTeleport = false, GlobalRefs::bTeleport = false;
 	GlobalRefs::bWallVac = false, GlobalRefs::bDupeX = false, GlobalRefs::bMMC = false, GlobalRefs::bUEMI = false;
 	GlobalRefs::bKami = false, GlobalRefs::bKamiLoot = false;
 	GlobalRefs::isDragging = false;
-	PriorityQueue::closeMacroQueue = true;
+	PriorityQueue::StopWorker();
 
 	for (double i = this->Opacity; i > 0;)
 	{
@@ -200,7 +211,7 @@ void MainForm::btnMinimize_Click(Object^ sender, EventArgs^ e)
 		WindowState = FormWindowState::Minimized;
 }
 
-void MainForm::pnlFull_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^ e)
+void MainForm::pnlFull_MouseDown(Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
 {
 	if (!GlobalRefs::isDragging)
 	{
@@ -216,7 +227,7 @@ void MainForm::pnlFull_MouseDown(Object^ sender, Windows::Forms::MouseEventArgs^
 	}
 }
 
-void MainForm::pnlFull_MouseUp(Object^ sender, Windows::Forms::MouseEventArgs^ e)
+void MainForm::pnlFull_MouseUp(Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
 {
 	if (GlobalRefs::isDragging)
 	{
@@ -230,7 +241,7 @@ void MainForm::pnlFull_MouseUp(Object^ sender, Windows::Forms::MouseEventArgs^ e
 	}
 }
 
-void MainForm::pnlFull_MouseMove(Object^ sender, Windows::Forms::MouseEventArgs^ e)
+void MainForm::pnlFull_MouseMove(Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
 {
 	if (GlobalRefs::isDragging)
 	{
@@ -313,6 +324,20 @@ void ProcessMacroDataList(List<MacroData^>^ macroDataList, ListView^ lv) {
 void MainForm::saveSettingsToolStripMenuItem_Click(Object^ sender, EventArgs^ e)
 {
 	Settings::Serialize(this, Settings::GetSettingsPath());
+}
+
+void MainForm::btnMovementShortcuts_Click(Object^ sender, EventArgs^ e)
+{
+	ShortcutSettingsForm^ shortcutSettings = gcnew ShortcutSettingsForm();
+	try
+	{
+		if (shortcutSettings->ShowDialog(this) == System::Windows::Forms::DialogResult::OK)
+			Settings::Serialize(this, Settings::GetSettingsPath());
+	}
+	finally
+	{
+		delete shortcutSettings;
+	}
 }
 
 void MainForm::closeMapleStoryToolStripMenuItem_Click(Object^ sender, EventArgs^ e)
@@ -879,7 +904,7 @@ static std::unordered_map<int, wchar_t*> keyMappings = {
 };
 
 // Check if keypress is valid
-static bool isKeyValid(Object^ sender, Windows::Forms::KeyPressEventArgs^ e, bool isSigned)
+static bool isKeyValid(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e, bool isSigned)
 {
 	bool result = true;
 
@@ -890,7 +915,7 @@ static bool isKeyValid(Object^ sender, Windows::Forms::KeyPressEventArgs^ e, boo
 	// If the textbox is supposed to contain a signed value, check to see if '-' should be permitted
 	if (isSigned && e->KeyChar == '-')
 	{
-		Windows::Forms::TextBox^ textBox = safe_cast<Windows::Forms::TextBox^>(sender);
+		System::Windows::Forms::TextBox^ textBox = safe_cast<System::Windows::Forms::TextBox^>(sender);
 
 		// If the selected text does not start at the beginning of the text, don't allow the '-' keypress
 		if (textBox->SelectionStart > 0)
@@ -927,7 +952,7 @@ void MainForm::comboHPKey_SelectedIndexChanged(Object^ sender, EventArgs^ e)
 		GlobalRefs::macroHP->keyCode = keyCollection[this->comboHPKey->SelectedIndex];
 }
 
-void MainForm::tbHP_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbHP_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -959,7 +984,7 @@ void MainForm::comboMPKey_SelectedIndexChanged(Object^ sender, EventArgs^ e)
 		GlobalRefs::macroMP->keyCode = keyCollection[this->comboMPKey->SelectedIndex];
 }
 
-void MainForm::tbMP_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbMP_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -991,7 +1016,7 @@ void MainForm::cbAttack_CheckedChanged(Object^ sender, EventArgs^ e)
 	}
 }
 
-void MainForm::tbAttackInterval_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbAttackInterval_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -1018,7 +1043,7 @@ void MainForm::tbAttackInterval_TextChanged(Object^ sender, EventArgs^ e)
 	}
 }
 
-void MainForm::tbAttackMob_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbAttackMob_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -1056,7 +1081,7 @@ void MainForm::cbLoot_CheckedChanged(Object^ sender, EventArgs^ e)
 	}
 }
 
-void MainForm::tbLootInterval_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbLootInterval_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -1083,7 +1108,7 @@ void MainForm::tbLootInterval_TextChanged(Object^ sender, EventArgs^ e)
 	}
 }
 
-void MainForm::tbLootItem_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbLootItem_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -1180,13 +1205,13 @@ void MainForm::bBuffClear_Click(Object^ sender, EventArgs^ e)
 	}
 }
 
-void MainForm::lvBuff_ItemChecked(Object^ sender, Windows::Forms::ItemCheckedEventArgs^ e)
+void MainForm::lvBuff_ItemChecked(Object^ sender, System::Windows::Forms::ItemCheckedEventArgs^ e)
 {
 	Macro^ macro = ((MacroData^)e->Item->Tag)->macro;
 	macro->Toggle(e->Item->Checked);
 }
 
-void MainForm::tbBuffInterval_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbBuffInterval_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -1358,31 +1383,31 @@ void MainForm::bCS_Click(Object^ sender, EventArgs^ e)
 	}
 }
 
-void MainForm::tbCCCSTime_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbCCCSTime_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbCCCSPeople_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbCCCSPeople_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbCCCSAttack_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbCCCSAttack_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbCCCSMob_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbCCCSMob_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbCSDelay_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbCSDelay_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -1504,13 +1529,13 @@ void MainForm::cbMouseTeleport_CheckedChanged(Object^ sender, EventArgs^ e)
 		GlobalRefs::bMouseTeleport = false;
 }
 
-void MainForm::tbClickTeleport_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbClickTeleport_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbMouseTeleport_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbMouseTeleport_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -1636,7 +1661,7 @@ void MainForm::cbNoPlayerNameTag_CheckedChanged(Object^ sender, EventArgs^ e)
 		WriteMemory(noPlayerNameTagAddr, 5, 0xB8, 0x14, 0xDA, 0xAD, 0x00); // mov eax,00ADDA14
 }
 
-void MainForm::tbAttackDelay_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbAttackDelay_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -1900,7 +1925,7 @@ void MainForm::bTeleport_Click(Object^ sender, EventArgs^ e)
 		Teleport(Convert::ToInt32(lvTeleport->SelectedItems[0]->Text), Convert::ToInt32(lvTeleport->SelectedItems[0]->SubItems[1]->Text));
 }
 
-void MainForm::lvTeleport_MouseDoubleClick(Object^ sender, Windows::Forms::MouseEventArgs^ e)
+void MainForm::lvTeleport_MouseDoubleClick(Object^ sender, System::Windows::Forms::MouseEventArgs^ e)
 {
 	if (lvTeleport->Items->Count > 0 && lvTeleport->SelectedItems->Count != 0)
 		Teleport(Convert::ToInt32(lvTeleport->SelectedItems[0]->Text), Convert::ToInt32(lvTeleport->SelectedItems[0]->SubItems[1]->Text));
@@ -1931,19 +1956,19 @@ void MainForm::bTeleportLoop_Click(Object^ sender, EventArgs^ e)
 	}
 }
 
-void MainForm::tbTeleportX_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbTeleportX_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbTeleportY_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbTeleportY_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbTeleportLoopDelay_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbTeleportLoopDelay_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -2027,19 +2052,19 @@ void MainForm::bSpawnControl_Click(Object^ sender, EventArgs^ e)
 	}
 }
 
-void MainForm::tbSpawnControlMapID_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbSpawnControlMapID_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbSpawnControlX_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbSpawnControlX_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbSpawnControlY_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbSpawnControlY_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -2149,37 +2174,37 @@ void MainForm::cbKamiLoot_CheckedChanged(System::Object^ sender, System::EventAr
 	}
 }
 
-void MainForm::tbKamiX_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbKamiX_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbKamiY_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbKamiY_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbKamiInterval_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbKamiInterval_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbKamiMob_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbKamiMob_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbKamiLootInterval_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbKamiLootInterval_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbKamiLootItem_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbKamiLootItem_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -2242,25 +2267,25 @@ void MainForm::bWallVacGetCurrentLocation_Click(System::Object^ sender, System::
 	tbWallVacY->Text = PointerFuncs::getCharPosY();
 }
 
-void MainForm::tbWallVacX_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbWallVacX_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbWallVacY_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbWallVacY_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbWallVacRangeX_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbWallVacRangeX_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbWallVacRangeY_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbWallVacRangeY_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -2349,13 +2374,13 @@ void MainForm::tbDupeXFoothold_KeyPress(System::Object^ sender, System::Windows:
 #pragma endregion
 
 #pragma region MMC
-void MainForm::tbMMCX_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbMMCX_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbMMCY_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbMMCY_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, true))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -2646,13 +2671,13 @@ void MainForm::tbItemFilterMesos_TextChanged(System::Object^ sender, System::Eve
 	}
 }
 
-void MainForm::tbItemFilterID_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbItemFilterID_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
 }
 
-void MainForm::tbItemFilterMesos_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbItemFilterMesos_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -2827,7 +2852,7 @@ void MainForm::tbMobFilterSearch_TextChanged(System::Object^ sender, System::Eve
 	findMobsStartingWithStr(tbMobFilterSearch->Text);
 }
 
-void MainForm::tbMobFilterID_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbMobFilterID_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -2843,7 +2868,7 @@ void MainForm::bSendPacket_Click(Object^ sender, EventArgs^ e)
 	// SendPacket(gcnew String("28 00 ** ** ** 00"));
 }
 
-void MainForm::tbSendSpamDelay_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbSendSpamDelay_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -3006,7 +3031,7 @@ void MainForm::bSendRestore127Health_Click(System::Object^ sender, System::Event
 #pragma endregion
 
 #pragma region AutoAP
-void MainForm::tbAPLevel_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbAPLevel_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -3015,7 +3040,7 @@ void MainForm::tbAPLevel_TextChanged(System::Object^ sender, System::EventArgs^ 
 {
 }
 
-void MainForm::tbAPHP_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbAPHP_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -3024,7 +3049,7 @@ void MainForm::tbAPHP_TextChanged(System::Object^ sender, System::EventArgs^ e)
 {
 }
 
-void MainForm::tbAPMP_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbAPMP_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -3033,7 +3058,7 @@ void MainForm::tbAPMP_TextChanged(System::Object^ sender, System::EventArgs^ e)
 {
 }
 
-void MainForm::tbAPSTR_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbAPSTR_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -3042,7 +3067,7 @@ void MainForm::tbAPSTR_TextChanged(System::Object^ sender, System::EventArgs^ e)
 {
 }
 
-void MainForm::tbAPDEX_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbAPDEX_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -3051,7 +3076,7 @@ void MainForm::tbAPDEX_TextChanged(System::Object^ sender, System::EventArgs^ e)
 {
 }
 
-void MainForm::tbAPINT_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbAPINT_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -3060,7 +3085,7 @@ void MainForm::tbAPINT_TextChanged(System::Object^ sender, System::EventArgs^ e)
 {
 }
 
-void MainForm::tbAPLUK_KeyPress(Object^ sender, Windows::Forms::KeyPressEventArgs^ e)
+void MainForm::tbAPLUK_KeyPress(Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e)
 {
 	if (!isKeyValid(sender, e, false))
 		e->Handled = true; // If key is not valid, do nothing and indicate that it has been handled
@@ -3106,10 +3131,10 @@ void MainForm::tPacketLog_Tick(System::Object^ sender, System::EventArgs^ e)
 				writeByte(packetData, packetBytes[i]);#1#
 
 
-			/*Windows::Forms::TreeNode^ headerNode = gcnew Windows::Forms::TreeNode(packetHeader);
+			/*System::Windows::Forms::TreeNode^ headerNode = gcnew System::Windows::Forms::TreeNode(packetHeader);
 			headerNode->Name = packetHeader;
 
-			Windows::Forms::TreeNode^ packetNode = gcnew Windows::Forms::TreeNode(packetData);
+			System::Windows::Forms::TreeNode^ packetNode = gcnew System::Windows::Forms::TreeNode(packetData);
 			packetNode->Name = packetData;
 
 			Timelapse::MainForm::TheInstance->tvSendPackets->Nodes->Add(headerNode);#1#
@@ -3118,7 +3143,7 @@ void MainForm::tPacketLog_Tick(System::Object^ sender, System::EventArgs^ e)
 				//Header exists in tree
 			}
 			else {
-				Windows::Forms::TreeNode^ headerNode = gcnew Windows::Forms::TreeNode(packetHeader);
+				System::Windows::Forms::TreeNode^ headerNode = gcnew System::Windows::Forms::TreeNode(packetHeader);
 				headerNode->Name = packetHeader;
 				//headerNode->Nodes->Add(packetNode);
 				Timelapse::MainForm::TheInstance->tvSendPackets->BeginUpdate();
