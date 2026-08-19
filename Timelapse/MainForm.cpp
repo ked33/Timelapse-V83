@@ -144,7 +144,6 @@ void MainForm::MainForm_Load(Object^ sender, EventArgs^ e)
 	ControlMap["MouseTeleport"] = this->cbMouseTeleport;
 	ControlMap["MouseFly"] = this->cbMouseFly;
 	ControlMap["SwimInAir"] = this->cbSwimInAir;
-	ControlMap["PortalLoop"] = this->bPortalLoop;
 
 	RegisterShortcuts();
 	if (GlobalVars::mapleWindow == nullptr ||
@@ -3348,7 +3347,18 @@ static long long getPortalDistanceSquared(int charX, int charY, int portalX, int
 // Prefer the live portal list because private-server data can differ from the
 // embedded WZ data. The embedded map list remains a fallback for maps that are
 // not currently loaded or whose live portal list cannot be read.
-static PortalData^ findNearestPortalForLoop(int fromMapID, int toMapID, int charX, int charY)
+static bool isPortalLoopDestinationMatch(int fromMapID, int requestedMapID, int portalDestination)
+{
+	if (portalDestination <= 0 || portalDestination >= 999999999 ||
+		portalDestination == fromMapID)
+		return false;
+
+	return requestedMapID <= 0 || portalDestination == requestedMapID;
+}
+
+// requestedMapID <= 0 means that the loop is starting from the character's
+// current map and should choose the nearest portal with a valid destination.
+static PortalData^ findNearestPortalForLoop(int fromMapID, int requestedMapID, int charX, int charY)
 {
 	PortalData^ nearestPortal = nullptr;
 	long long nearestDistance = System::Int64::MaxValue;
@@ -3369,7 +3379,8 @@ static PortalData^ findNearestPortalForLoop(int fromMapID, int toMapID, int char
 
 				int portalDestination = static_cast<int>(ReadMultiPointerSigned(
 					PortalListBase, 3, 0x4, portalZRef, 0x1C));
-				if (portalDestination != toMapID)
+				if (!isPortalLoopDestinationMatch(
+					fromMapID, requestedMapID, portalDestination))
 					continue;
 
 				int portalType = static_cast<int>(ReadMultiPointerSigned(
@@ -3379,7 +3390,7 @@ static PortalData^ findNearestPortalForLoop(int fromMapID, int toMapID, int char
 					PortalListBase, 3, 0x4, portalZRef, 0x0C));
 				int portalY = static_cast<int>(ReadMultiPointerSigned(
 					PortalListBase, 3, 0x4, portalZRef, 0x10));
-				long long distance = getPortalDistanceSquared(charX, charY, portalX, portalY);
+				long long distance = getPortalDistanceSquared(charX, charY, portalX, portalY - 20);
 				if (distance >= nearestDistance)
 					continue;
 
@@ -3403,10 +3414,12 @@ static PortalData^ findNearestPortalForLoop(int fromMapID, int toMapID, int char
 
 	for each (PortalData ^ portal in map->portals)
 	{
-		if (portal == nullptr || portal->toMapID != toMapID)
+		if (portal == nullptr || !isPortalLoopDestinationMatch(
+			fromMapID, requestedMapID, portal->toMapID))
 			continue;
 
-		long long distance = getPortalDistanceSquared(charX, charY, portal->xPos, portal->yPos);
+		long long distance = getPortalDistanceSquared(
+			charX, charY, portal->xPos, portal->yPos - 20);
 		if (distance < nearestDistance)
 		{
 			nearestPortal = portal;
@@ -3879,13 +3892,17 @@ void MainForm::StopPortalLoop(String^ statusText)
 
 	bPortalLoop->Text = L"双图光柱循环";
 	bMapRush->Enabled = !GlobalRefs::isMapRushing;
-	tbMapRusherDestination->Enabled = true;
 
 	if (!String::IsNullOrWhiteSpace(statusText))
 		lbMapRusherStatus->Text = statusText;
 }
 
 void MainForm::bPortalLoop_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	TogglePortalLoop();
+}
+
+void MainForm::TogglePortalLoop()
 {
 	if (portalLoopState != PortalLoopIdle || tPortalLoop->Enabled)
 	{
@@ -3900,36 +3917,24 @@ void MainForm::bPortalLoop_Click(System::Object^ sender, System::EventArgs^ e)
 	}
 
 	int currentMapID = ReadPointerSignedInt(UIMiniMapBase, OFS_MapID);
-	int targetMapID = 0;
 	if (currentMapID <= 0)
 	{
 		lbMapRusherStatus->Text = L"状态: 尚未进入可用地图";
-		return;
-	}
-	if (!Int32::TryParse(tbMapRusherDestination->Text, targetMapID) ||
-		targetMapID <= 0 || targetMapID > 999999999)
-	{
-		lbMapRusherStatus->Text = L"状态: 请输入有效的目标地图 ID";
-		return;
-	}
-	if (currentMapID == targetMapID)
-	{
-		lbMapRusherStatus->Text = L"状态: 目标地图不能与当前地图相同";
 		return;
 	}
 
 	int charX = ReadPointerSignedInt(UserLocalBase, OFS_CharX);
 	int charY = ReadPointerSignedInt(UserLocalBase, OFS_CharY);
 	PortalData^ firstPortal = findNearestPortalForLoop(
-		currentMapID, targetMapID, charX, charY);
+		currentMapID, 0, charX, charY);
 	if (firstPortal == nullptr)
 	{
 		lbMapRusherStatus->Text = String::Format(
-			L"状态: 未找到地图 {0} 通往 {1} 的直连光柱",
-			currentMapID,
-			targetMapID);
+			L"状态: 地图 {0} 未找到可进入其他地图的光柱",
+			currentMapID);
 		return;
 	}
+	int targetMapID = firstPortal->toMapID;
 
 	int configuredDelay = 0;
 	if (!Int32::TryParse(tbMapRusherDelay->Text, configuredDelay) ||
@@ -3950,10 +3955,9 @@ void MainForm::bPortalLoop_Click(System::Object^ sender, System::EventArgs^ e)
 
 	bPortalLoop->Text = L"停止光柱循环";
 	bMapRush->Enabled = false;
-	tbMapRusherDestination->Enabled = false;
 	tPortalLoop->Start();
 	lbMapRusherStatus->Text = String::Format(
-		L"状态: 启动双图光柱循环 {0} ⇄ {1}",
+		L"状态: 已选择当前地图最近光柱，启动循环 {0} ⇄ {1}",
 		portalLoopMapA,
 		portalLoopMapB);
 }

@@ -31,6 +31,7 @@ namespace Timelapse {
 			portalLoopTransitionDeadlineTicks = 0;
 			TheInstance = this;
 		}
+		void TogglePortalLoop();
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.

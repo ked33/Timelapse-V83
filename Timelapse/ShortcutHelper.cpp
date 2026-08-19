@@ -8,7 +8,6 @@ using namespace System::Collections::Generic;
 using namespace System::Windows::Forms;
 
 public delegate void ToggleAndLogDelegate(CheckBox^ cb);
-public delegate void PerformButtonClickDelegate(Button^ button);
 
 void ToggleAndLog(CheckBox^ cb) {
 	ShortcutHelper::ManualToggleCheckBox(cb);
@@ -18,14 +17,6 @@ void ToggleAndLog(CheckBox^ cb) {
 
 void ShortcutHelper::ManualToggleCheckBox(CheckBox^ cb) {
 	cb->Checked = !cb->Checked;
-}
-
-void PerformButtonClick(Button^ button) {
-	if (!button->Enabled)
-		return;
-
-	button->PerformClick();
-	Log::WriteLineToConsole(String::Format("{0} was clicked", button->Name));
 }
 
 void ShortcutHelper::InvokeOnUI(Action^ action) {
@@ -62,18 +53,10 @@ void ShortcutHelper::ToggleControl(String^ controlName, Action^ additionalAction
 	additionalAction();
 }
 
-void ShortcutHelper::ClickControl(String^ controlName) {
-	auto controls = Timelapse::MainForm::ControlMap;
-	Control^ control;
-	if (!controls->TryGetValue(controlName, control))
+void ShortcutHelper::TogglePortalLoop() {
+	Timelapse::MainForm^ form = Timelapse::MainForm::TheInstance;
+	if (form == nullptr || form->IsDisposed || !form->IsHandleCreated)
 		return;
 
-	Button^ button = dynamic_cast<Button^>(control);
-	if (button == nullptr || button->IsDisposed || !button->IsHandleCreated)
-		return;
-
-	if (button->InvokeRequired)
-		button->BeginInvoke(gcnew PerformButtonClickDelegate(PerformButtonClick), button);
-	else
-		PerformButtonClick(button);
+	InvokeOnUI(gcnew Action(form, &Timelapse::MainForm::TogglePortalLoop));
 }

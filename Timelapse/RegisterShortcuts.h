@@ -20,7 +20,7 @@ void SwimInAirAction() {
 }
 
 void PortalLoopAction() {
-	ShortcutHelper::ClickControl("PortalLoop");
+	ShortcutHelper::TogglePortalLoop();
 }
 
 
@@ -35,5 +35,4 @@ void RegisterShortcuts() {
 	sm->RegisterAction(ShortcutActionId::PortalLoop, gcnew ShortcutAction(PortalLoopAction));
 
 }
-
 
