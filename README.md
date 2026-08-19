@@ -67,6 +67,21 @@ A MapleStory v83 Trainer
 - (ADD) Code allowing for both packet based and teleport based map rush
 - Remake wz xml parser in C++ since there are a lot of portals missing from maps (ie kerning square from subway lobby in kerning)
 
+### Chinese map names
+
+The build merges the legacy English map route graph in `Timelapse.rc` with
+`Timelapse/Resources/MapNames.zh-CN.tsv`. MSBuild runs
+`Timelapse/tools/Merge-MapData.ps1` before resource compilation and embeds the
+generated UTF-8 map data in the DLL; no game client or server directory is
+required at runtime.
+
+To refresh the checked-in Chinese name table from a server WZ export:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\Timelapse\tools\Import-ChineseMapNames.ps1 `
+  -SourceXml 'D:\path\to\wz-zh-CN\String.wz\Map.img.xml'
+```
+
 ## Overall
 - The GUI needs overall change
 - Look into making sure trainer can be injected into multiple instances with no interference between

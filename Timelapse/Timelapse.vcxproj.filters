@@ -129,6 +129,9 @@
     <ResourceCompile Include="Timelapse.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+    <ResourceCompile Include="MapResources.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Timelapse.ico">
@@ -140,6 +143,9 @@
     <None Include="..\README.md" />
     <None Include="ClassDiagram.cd" />
     <None Include="Timelapse.aps" />
+    <None Include="Resources\MapNames.zh-CN.tsv" />
+    <None Include="tools\Import-ChineseMapNames.ps1" />
+    <None Include="tools\Merge-MapData.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="detours.lib">

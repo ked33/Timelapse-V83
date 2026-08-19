@@ -192,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Timelapse.rc" />
+    <ResourceCompile Include="MapResources.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Timelapse.ico" />
@@ -201,10 +202,19 @@
     <None Include="..\README.md" />
     <None Include="ClassDiagram.cd" />
     <None Include="Timelapse.aps" />
+    <None Include="Resources\MapNames.zh-CN.tsv" />
+    <None Include="tools\Import-ChineseMapNames.ps1" />
+    <None Include="tools\Merge-MapData.ps1" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="detours.lib" />
   </ItemGroup>
+  <Target Name="GenerateMergedMapResource"
+          BeforeTargets="PrepareForBuild"
+          Inputs="$(ProjectDir)Timelapse.rc;$(ProjectDir)Resources\MapNames.zh-CN.tsv;$(ProjectDir)tools\Merge-MapData.ps1"
+          Outputs="$(ProjectDir)Generated\MapsList.zh-CN.txt">
+    <Exec Command="powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File &quot;$(ProjectDir)tools\Merge-MapData.ps1&quot;" />
+  </Target>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

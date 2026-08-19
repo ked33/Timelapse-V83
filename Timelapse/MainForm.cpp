@@ -3175,10 +3175,30 @@ static void loadMaps()
 	GlobalRefs::maps = gcnew Generic::List<MapData^>();
 	try
 	{
-		HRSRC hRes = FindResource(GlobalVars::hDLL, MAKEINTRESOURCE(MapsList), _T("TEXT"));
+		HRSRC hRes = FindResource(GlobalVars::hDLL, MAKEINTRESOURCE(MergedMapsList), _T("TEXT"));
+		if (hRes == nullptr)
+			throw gcnew System::InvalidOperationException("Merged map resource was not found.");
+
 		HGLOBAL hGlob = LoadResource(GlobalVars::hDLL, hRes);
-		const char* pData = reinterpret_cast<const char*>(::LockResource(hGlob));
-		IO::StringReader^ strReader = gcnew IO::StringReader(gcnew String(pData));
+		if (hGlob == nullptr)
+			throw gcnew System::InvalidOperationException("Merged map resource could not be loaded.");
+
+		DWORD resourceSize = SizeofResource(GlobalVars::hDLL, hRes);
+		const BYTE* pData = reinterpret_cast<const BYTE*>(::LockResource(hGlob));
+		if (resourceSize == 0 || pData == nullptr)
+			throw gcnew System::InvalidOperationException("Merged map resource is empty.");
+
+		cli::array<System::Byte>^ resourceBytes = gcnew cli::array<System::Byte>(static_cast<int>(resourceSize));
+		System::Runtime::InteropServices::Marshal::Copy(
+			System::IntPtr(const_cast<BYTE*>(pData)),
+			resourceBytes,
+			0,
+			resourceBytes->Length);
+		String^ mergedMapText = System::Text::Encoding::UTF8->GetString(resourceBytes);
+		int nullTerminatorIndex = mergedMapText->IndexOf('\0');
+		if (nullTerminatorIndex >= 0)
+			mergedMapText = mergedMapText->Substring(0, nullTerminatorIndex);
+		IO::StringReader^ strReader = gcnew IO::StringReader(mergedMapText);
 
 		while (strReader->Peek() != -1)
 		{
@@ -3199,13 +3219,24 @@ static void loadMaps()
 			tempString = strReader->ReadLine();
 			tempMapData->islandName = tempString->Substring(7);
 
-			// Get Map's Street Name
+			// Get Map's English Street Name
 			tempString = strReader->ReadLine();
-			tempMapData->streetName = tempString->Substring(11);
+			tempMapData->streetNameEnglish = tempString->Substring(11);
 
-			// Get Map's Street Name
+			// Get Map's English Map Name
 			tempString = strReader->ReadLine();
-			tempMapData->mapName = tempString->Substring(8);
+			tempMapData->mapNameEnglish = tempString->Substring(8);
+
+			// Get the build-time merged Chinese names. Fall back to English if a
+			// future map does not have a localized name.
+			tempString = strReader->ReadLine();
+			String^ streetNameZh = tempString->Substring(13);
+			tempString = strReader->ReadLine();
+			String^ mapNameZh = tempString->Substring(10);
+			tempMapData->streetName = String::IsNullOrWhiteSpace(streetNameZh) ?
+				tempMapData->streetNameEnglish : streetNameZh;
+			tempMapData->mapName = String::IsNullOrWhiteSpace(mapNameZh) ?
+				tempMapData->mapNameEnglish : mapNameZh;
 
 			// Get the number of portals in Map
 			tempString = strReader->ReadLine();
@@ -3678,13 +3709,23 @@ static void mapRush(int destMapID)
 	GlobalRefs::isMapRushing = false;
 }
 
-// Find maps with names starting with text entered so far
+// Find maps whose Chinese/English name or street contains the query; map IDs
+// use prefix matching.
 static void findMapNamesStartingWithStr(String^ str)
 {
+	String^ query = str->Trim();
+	if (String::IsNullOrEmpty(query))
+		return;
+
 	MainForm::TheInstance->lvMapRusherSearch->BeginUpdate();
 	for each (MapData ^ map in GlobalRefs::maps)
 	{
-		if (map->mapName->ToLower()->StartsWith(str->ToLower()))
+		String^ mapID = Convert::ToString(map->mapID);
+		if (map->mapName->IndexOf(query, System::StringComparison::OrdinalIgnoreCase) >= 0 ||
+			map->mapNameEnglish->IndexOf(query, System::StringComparison::OrdinalIgnoreCase) >= 0 ||
+			map->streetName->IndexOf(query, System::StringComparison::OrdinalIgnoreCase) >= 0 ||
+			map->streetNameEnglish->IndexOf(query, System::StringComparison::OrdinalIgnoreCase) >= 0 ||
+			mapID->StartsWith(query, System::StringComparison::OrdinalIgnoreCase))
 		{
 			array<String^>^ row = { map->mapName, Convert::ToString(map->mapID) };
 			ListViewItem^ lvi = gcnew ListViewItem(row);
@@ -3731,7 +3772,7 @@ void MainForm::lvMapRusherSearch_MouseDoubleClick(System::Object^ sender, System
 	lvMapRusherSearch->SelectedItems->Clear();
 }
 
-// Find maps with names starting with text entered so far
+// Find maps as the search text changes.
 void MainForm::tbMapRusherSearch_TextChanged(System::Object^ sender, System::EventArgs^ e)
 {
 	lvMapRusherSearch->Items->Clear();

@@ -20,6 +20,33 @@ jobs:
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v2
 
+      - name: Verify generated Chinese map resource
+        shell: pwsh
+        run: |
+          $mergeScript = Join-Path $env:GITHUB_WORKSPACE 'Timelapse\tools\Merge-MapData.ps1'
+          & powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File $mergeScript
+          if ($LASTEXITCODE -ne 0) {
+            exit $LASTEXITCODE
+          }
+
+          $generatedMapData = Join-Path $env:GITHUB_WORKSPACE 'Timelapse\Generated\MapsList.zh-CN.txt'
+          if (-not (Test-Path -LiteralPath $generatedMapData)) {
+            throw "The map merge did not produce $generatedMapData"
+          }
+
+          $generatedText = [System.IO.File]::ReadAllText(
+            $generatedMapData,
+            (New-Object System.Text.UTF8Encoding($false, $true)))
+          $mapCount = [System.Text.RegularExpressions.Regex]::Matches(
+            $generatedText,
+            '(?m)^\[\d+\]$').Count
+          if ($mapCount -ne 3878) {
+            throw "Expected 3878 merged maps, but found $mapCount"
+          }
+          if (-not $generatedText.Contains('mapNameZh=射手村')) {
+            throw 'The generated map resource does not contain expected UTF-8 Chinese map names.'
+          }
+
       # The trainer targets the 32-bit v83 client and uses x86 inline assembly.
       - name: Build Debug x86
         shell: pwsh

@@ -67,6 +67,8 @@ ref struct MapData {
 	System::String^ islandName;
 	System::String^ streetName;
 	System::String^ mapName;
+	System::String^ streetNameEnglish;
+	System::String^ mapNameEnglish;
 	System::Collections::Generic::List<PortalData^>^ portals;
 };
 

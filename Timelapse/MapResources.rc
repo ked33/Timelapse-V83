@@ -1,0 +1,3 @@
+#include "resource.h"
+
+MergedMapsList TEXT "Generated\\MapsList.zh-CN.txt"
