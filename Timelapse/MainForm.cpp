@@ -3342,6 +3342,13 @@ static int getPortalTeleportY(PortalData^ portal)
 	return portal->yPos - 20;
 }
 
+static bool isPortalLoopCandidate(int currentMapID, int destinationMapID)
+{
+	return destinationMapID > 0 &&
+		destinationMapID < 999999999 &&
+		destinationMapID != currentMapID;
+}
+
 // Prefer the live portal list because private-server data can differ from the
 // embedded WZ data. The embedded map list remains a fallback for maps that are
 // not currently loaded or whose live portal list cannot be read.
@@ -3372,10 +3379,9 @@ static List<PortalData^>^ getPortalsForPortalLoop(int mapID)
 				int portalDestination = static_cast<int>(ReadMultiPointerSigned(
 					PortalListBase, 3, 0x4, portalZRef, 0x1C));
 
-				// An unreadable first slot can look like index 0 with all-zero
-				// fields. Do not expose that as a phantom portal.
-				if (portalX == 0 && portalY == 0 && portalType == 0 &&
-					portalDestination == 0)
+				// Ignore spawn/script points and same-map teleports. This action
+				// only cycles through portals with a valid destination map.
+				if (!isPortalLoopCandidate(mapID, portalDestination))
 					continue;
 
 				PortalData^ portal = gcnew PortalData();
@@ -3398,7 +3404,8 @@ static List<PortalData^>^ getPortalsForPortalLoop(int mapID)
 
 	for each (PortalData ^ portal in map->portals)
 	{
-		if (portal != nullptr)
+		if (portal != nullptr &&
+			isPortalLoopCandidate(mapID, portal->toMapID))
 			portals->Add(portal);
 	}
 	return portals;
