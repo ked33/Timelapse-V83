@@ -18,20 +18,14 @@ namespace Timelapse {
 			gcnew Dictionary<String^, System::Windows::Forms::Control^>();
 		MainForm() {
 			InitializeComponent();
-			portalLoopMapA = 0;
-			portalLoopMapB = 0;
-			portalLoopFromMap = 0;
-			portalLoopToMap = 0;
-			portalLoopPortalX = 0;
-			portalLoopPortalY = 0;
-			portalLoopState = 0;
-			portalLoopAttempts = 0;
-			portalLoopDelay = 500;
-			portalLoopNextActionTicks = 0;
-			portalLoopTransitionDeadlineTicks = 0;
+			portalLoopHasLastPortal = false;
+			portalLoopLastMapID = 0;
+			portalLoopLastPortalX = 0;
+			portalLoopLastPortalY = 0;
+			portalLoopLastPortalDestinationMapID = 0;
 			TheInstance = this;
 		}
-		void TogglePortalLoop();
+		void TriggerPortalLoop();
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -231,17 +225,11 @@ namespace Timelapse {
 	private: System::Windows::Forms::Button^ bRecvClear;
 	private: System::Windows::Forms::Button^ bRecvPacket;
 	public: System::Windows::Forms::Label^ lbMapRusherStatus;
-	private: int portalLoopMapA;
-	private: int portalLoopMapB;
-	private: int portalLoopFromMap;
-	private: int portalLoopToMap;
-	private: int portalLoopPortalX;
-	private: int portalLoopPortalY;
-	private: int portalLoopState;
-	private: int portalLoopAttempts;
-	private: int portalLoopDelay;
-	private: System::Int64 portalLoopNextActionTicks;
-	private: System::Int64 portalLoopTransitionDeadlineTicks;
+	private: bool portalLoopHasLastPortal;
+	private: int portalLoopLastMapID;
+	private: int portalLoopLastPortalX;
+	private: int portalLoopLastPortalY;
+	private: int portalLoopLastPortalDestinationMapID;
 	private: System::Windows::Forms::TextBox^ tbMapRusherDestination;
 	private: System::Windows::Forms::Label^ label79;
 	private: System::Windows::Forms::Button^ bMapRush;
@@ -249,7 +237,6 @@ namespace Timelapse {
 	private: System::Windows::Forms::TextBox^ tbMapRusherSearch;
 	private: System::Windows::Forms::Label^ label78;
 	public: System::Windows::Forms::Timer^ AutoCCCSTimer;
-	private: System::Windows::Forms::Timer^ tPortalLoop;
 	private: System::Windows::Forms::TabPage^ tabPage17;
 	public: System::Windows::Forms::ComboBox^ comboAutoLoginCharacter;
 	public: System::Windows::Forms::ComboBox^ comboAutoLoginChannel;
@@ -931,7 +918,6 @@ namespace Timelapse {
 			   this->cbFullAccuracy = (gcnew System::Windows::Forms::CheckBox());
 			   this->GUITimer = (gcnew System::Windows::Forms::Timer(this->components));
 			   this->AutoCCCSTimer = (gcnew System::Windows::Forms::Timer(this->components));
-			   this->tPortalLoop = (gcnew System::Windows::Forms::Timer(this->components));
 			   this->tAutoAttack = (gcnew System::Windows::Forms::Timer(this->components));
 			   this->tAutoLoot = (gcnew System::Windows::Forms::Timer(this->components));
 			   this->tPacketLog = (gcnew System::Windows::Forms::Timer(this->components));
@@ -6949,11 +6935,6 @@ namespace Timelapse {
 			   this->AutoCCCSTimer->Enabled = true;
 			   this->AutoCCCSTimer->Interval = 250;
 			   this->AutoCCCSTimer->Tick += gcnew System::EventHandler(this, &MainForm::AutoCCCSTimer_Tick);
-			   //
-			   // tPortalLoop
-			   //
-			   this->tPortalLoop->Interval = 50;
-			   this->tPortalLoop->Tick += gcnew System::EventHandler(this, &MainForm::tPortalLoop_Tick);
 			   // 
 			   // tAutoAttack
 			   // 
@@ -7256,8 +7237,6 @@ namespace Timelapse {
 	private: System::Void tbMapRusherSearch_TextChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void bMapRush_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void bPortalLoop_Click(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void tPortalLoop_Tick(System::Object^ sender, System::EventArgs^ e);
-	private: System::Void StopPortalLoop(System::String^ statusText);
 	private: System::Void lbMapRusherStatus_TextChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void cbNoWalkingFriction_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void cbVacForceRight_CheckedChanged(System::Object^ sender, System::EventArgs^ e);

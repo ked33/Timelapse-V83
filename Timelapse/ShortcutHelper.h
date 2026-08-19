@@ -10,7 +10,7 @@ public:
 	static void InvokeOnUI(Action^ action);
 	static void ToggleControl(String^ controlName);
 	static void ToggleControl(String^ controlName, Action^ additionalAction);
-	static void TogglePortalLoop();
+	static void TriggerPortalLoop();
 	static void ManualToggleCheckBox(CheckBox^ cb);
 };
 	

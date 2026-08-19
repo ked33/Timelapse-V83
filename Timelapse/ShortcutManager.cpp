@@ -285,13 +285,6 @@ bool ShortcutManager::TryParseBinding(
 		if ((parsedKeys & Keys::Shift) == Keys::Shift)
 			modifiers = modifiers | ShortcutModifiers::Shift;
 
-		if (actionId == ShortcutActionId::PortalLoop &&
-			keyCode == Keys::Up)
-		{
-			errorMessage = L"双图光柱循环会自动发送 ↑ 键，请改用其他快捷键。";
-			return false;
-		}
-
 		bool hasCtrl = (modifiers & ShortcutModifiers::Ctrl) == ShortcutModifiers::Ctrl;
 		bool hasAlt = (modifiers & ShortcutModifiers::Alt) == ShortcutModifiers::Alt;
 		if ((hasAlt && keyCode == Keys::Tab) ||

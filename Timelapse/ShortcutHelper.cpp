@@ -53,10 +53,10 @@ void ShortcutHelper::ToggleControl(String^ controlName, Action^ additionalAction
 	additionalAction();
 }
 
-void ShortcutHelper::TogglePortalLoop() {
+void ShortcutHelper::TriggerPortalLoop() {
 	Timelapse::MainForm^ form = Timelapse::MainForm::TheInstance;
 	if (form == nullptr || form->IsDisposed || !form->IsHandleCreated)
 		return;
 
-	InvokeOnUI(gcnew Action(form, &Timelapse::MainForm::TogglePortalLoop));
+	InvokeOnUI(gcnew Action(form, &Timelapse::MainForm::TriggerPortalLoop));
 }
