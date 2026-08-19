@@ -8,7 +8,8 @@ public enum class ShortcutActionId
 	ClickTeleport,
 	MouseFly,
 	MouseTeleport,
-	SwimInAir
+	SwimInAir,
+	PortalLoop
 };
 
 [FlagsAttribute]

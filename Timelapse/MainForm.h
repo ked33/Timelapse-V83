@@ -18,6 +18,17 @@ namespace Timelapse {
 			gcnew Dictionary<String^, System::Windows::Forms::Control^>();
 		MainForm() {
 			InitializeComponent();
+			portalLoopMapA = 0;
+			portalLoopMapB = 0;
+			portalLoopFromMap = 0;
+			portalLoopToMap = 0;
+			portalLoopPortalX = 0;
+			portalLoopPortalY = 0;
+			portalLoopState = 0;
+			portalLoopAttempts = 0;
+			portalLoopDelay = 500;
+			portalLoopNextActionTicks = 0;
+			portalLoopTransitionDeadlineTicks = 0;
 			TheInstance = this;
 		}
 	protected:
@@ -219,12 +230,25 @@ namespace Timelapse {
 	private: System::Windows::Forms::Button^ bRecvClear;
 	private: System::Windows::Forms::Button^ bRecvPacket;
 	public: System::Windows::Forms::Label^ lbMapRusherStatus;
+	private: int portalLoopMapA;
+	private: int portalLoopMapB;
+	private: int portalLoopFromMap;
+	private: int portalLoopToMap;
+	private: int portalLoopPortalX;
+	private: int portalLoopPortalY;
+	private: int portalLoopState;
+	private: int portalLoopAttempts;
+	private: int portalLoopDelay;
+	private: System::Int64 portalLoopNextActionTicks;
+	private: System::Int64 portalLoopTransitionDeadlineTicks;
 	private: System::Windows::Forms::TextBox^ tbMapRusherDestination;
 	private: System::Windows::Forms::Label^ label79;
 	private: System::Windows::Forms::Button^ bMapRush;
+	private: System::Windows::Forms::Button^ bPortalLoop;
 	private: System::Windows::Forms::TextBox^ tbMapRusherSearch;
 	private: System::Windows::Forms::Label^ label78;
 	public: System::Windows::Forms::Timer^ AutoCCCSTimer;
+	private: System::Windows::Forms::Timer^ tPortalLoop;
 	private: System::Windows::Forms::TabPage^ tabPage17;
 	public: System::Windows::Forms::ComboBox^ comboAutoLoginCharacter;
 	public: System::Windows::Forms::ComboBox^ comboAutoLoginChannel;
@@ -894,6 +918,7 @@ namespace Timelapse {
 			   this->tbMapRusherDestination = (gcnew System::Windows::Forms::TextBox());
 			   this->label79 = (gcnew System::Windows::Forms::Label());
 			   this->bMapRush = (gcnew System::Windows::Forms::Button());
+			   this->bPortalLoop = (gcnew System::Windows::Forms::Button());
 			   this->panel30 = (gcnew System::Windows::Forms::Panel());
 			   this->lvMapRusherSearch = (gcnew System::Windows::Forms::ListView());
 			   this->columnHeader7 = (gcnew System::Windows::Forms::ColumnHeader());
@@ -905,6 +930,7 @@ namespace Timelapse {
 			   this->cbFullAccuracy = (gcnew System::Windows::Forms::CheckBox());
 			   this->GUITimer = (gcnew System::Windows::Forms::Timer(this->components));
 			   this->AutoCCCSTimer = (gcnew System::Windows::Forms::Timer(this->components));
+			   this->tPortalLoop = (gcnew System::Windows::Forms::Timer(this->components));
 			   this->tAutoAttack = (gcnew System::Windows::Forms::Timer(this->components));
 			   this->tAutoLoot = (gcnew System::Windows::Forms::Timer(this->components));
 			   this->tPacketLog = (gcnew System::Windows::Forms::Timer(this->components));
@@ -6684,6 +6710,7 @@ namespace Timelapse {
 			   this->tabPage9->Controls->Add(this->lbMapRusherStatus);
 			   this->tabPage9->Controls->Add(this->tbMapRusherDestination);
 			   this->tabPage9->Controls->Add(this->label79);
+			   this->tabPage9->Controls->Add(this->bPortalLoop);
 			   this->tabPage9->Controls->Add(this->bMapRush);
 			   this->tabPage9->Controls->Add(this->panel30);
 			   this->tabPage9->Location = System::Drawing::Point(4, 30);
@@ -6697,12 +6724,12 @@ namespace Timelapse {
 			   // 
 			   this->label66->AutoSize = true;
 			   this->label66->BackColor = System::Drawing::Color::Transparent;
-			   this->label66->Location = System::Drawing::Point(297, 478);
+			   this->label66->Location = System::Drawing::Point(487, 440);
 			   this->label66->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label66->Name = L"label66";
-			   this->label66->Size = System::Drawing::Size(91, 21);
+			   this->label66->Size = System::Drawing::Size(50, 21);
 			   this->label66->TabIndex = 45;
-			   this->label66->Text = L"延迟 [ms]:";
+			   this->label66->Text = L"延迟:";
 			   // 
 			   // tbMapRusherDelay
 			   // 
@@ -6710,10 +6737,10 @@ namespace Timelapse {
 				   static_cast<System::Int32>(static_cast<System::Byte>(35)));
 			   this->tbMapRusherDelay->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			   this->tbMapRusherDelay->ForeColor = System::Drawing::Color::White;
-			   this->tbMapRusherDelay->Location = System::Drawing::Point(390, 474);
+			   this->tbMapRusherDelay->Location = System::Drawing::Point(537, 435);
 			   this->tbMapRusherDelay->Margin = System::Windows::Forms::Padding(4);
 			   this->tbMapRusherDelay->Name = L"tbMapRusherDelay";
-			   this->tbMapRusherDelay->Size = System::Drawing::Size(52, 27);
+			   this->tbMapRusherDelay->Size = System::Drawing::Size(41, 27);
 			   this->tbMapRusherDelay->TabIndex = 44;
 			   this->tbMapRusherDelay->Text = L"500";
 			   this->tbMapRusherDelay->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -6750,10 +6777,10 @@ namespace Timelapse {
 				   static_cast<System::Int32>(static_cast<System::Byte>(35)), static_cast<System::Int32>(static_cast<System::Byte>(35)));
 			   this->tbMapRusherDestination->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			   this->tbMapRusherDestination->ForeColor = System::Drawing::Color::White;
-			   this->tbMapRusherDestination->Location = System::Drawing::Point(452, 435);
+			   this->tbMapRusherDestination->Location = System::Drawing::Point(405, 435);
 			   this->tbMapRusherDestination->Margin = System::Windows::Forms::Padding(4);
 			   this->tbMapRusherDestination->Name = L"tbMapRusherDestination";
-			   this->tbMapRusherDestination->Size = System::Drawing::Size(126, 27);
+			   this->tbMapRusherDestination->Size = System::Drawing::Size(80, 27);
 			   this->tbMapRusherDestination->TabIndex = 35;
 			   this->tbMapRusherDestination->Text = L"0";
 			   this->tbMapRusherDestination->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -6765,9 +6792,23 @@ namespace Timelapse {
 			   this->label79->Location = System::Drawing::Point(300, 440);
 			   this->label79->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			   this->label79->Name = L"label79";
-			   this->label79->Size = System::Drawing::Size(124, 21);
+			   this->label79->Size = System::Drawing::Size(105, 21);
 			   this->label79->TabIndex = 36;
-			   this->label79->Text = L"目的地 地图ID:";
+			   this->label79->Text = L"目标地图 ID:";
+			   //
+			   // bPortalLoop
+			   //
+			   this->bPortalLoop->FlatAppearance->BorderColor = System::Drawing::Color::Gray;
+			   this->bPortalLoop->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			   this->bPortalLoop->Font = (gcnew System::Drawing::Font(L"Tahoma", 8.25F));
+			   this->bPortalLoop->Location = System::Drawing::Point(297, 471);
+			   this->bPortalLoop->Margin = System::Windows::Forms::Padding(4);
+			   this->bPortalLoop->Name = L"bPortalLoop";
+			   this->bPortalLoop->Size = System::Drawing::Size(145, 33);
+			   this->bPortalLoop->TabIndex = 46;
+			   this->bPortalLoop->Text = L"双图光柱循环";
+			   this->bPortalLoop->UseVisualStyleBackColor = true;
+			   this->bPortalLoop->Click += gcnew System::EventHandler(this, &MainForm::bPortalLoop_Click);
 			   // 
 			   // bMapRush
 			   // 
@@ -6907,6 +6948,11 @@ namespace Timelapse {
 			   this->AutoCCCSTimer->Enabled = true;
 			   this->AutoCCCSTimer->Interval = 250;
 			   this->AutoCCCSTimer->Tick += gcnew System::EventHandler(this, &MainForm::AutoCCCSTimer_Tick);
+			   //
+			   // tPortalLoop
+			   //
+			   this->tPortalLoop->Interval = 50;
+			   this->tPortalLoop->Tick += gcnew System::EventHandler(this, &MainForm::tPortalLoop_Tick);
 			   // 
 			   // tAutoAttack
 			   // 
@@ -7208,6 +7254,9 @@ namespace Timelapse {
 	private: System::Void lvMapRusherSearch_MouseDoubleClick(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
 	private: System::Void tbMapRusherSearch_TextChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void bMapRush_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void bPortalLoop_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void tPortalLoop_Tick(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void StopPortalLoop(System::String^ statusText);
 	private: System::Void lbMapRusherStatus_TextChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void cbNoWalkingFriction_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void cbVacForceRight_CheckedChanged(System::Object^ sender, System::EventArgs^ e);

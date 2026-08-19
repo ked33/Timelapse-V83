@@ -56,7 +56,8 @@ array<ShortcutActionId>^ ShortcutManager::GetConfigurableActions()
 		ShortcutActionId::ClickTeleport,
 		ShortcutActionId::MouseFly,
 		ShortcutActionId::MouseTeleport,
-		ShortcutActionId::SwimInAir
+		ShortcutActionId::SwimInAir,
+		ShortcutActionId::PortalLoop
 	};
 }
 
@@ -72,6 +73,8 @@ String^ ShortcutManager::GetActionDisplayName(ShortcutActionId actionId)
 		return L"鼠标传送";
 	case ShortcutActionId::SwimInAir:
 		return L"在空中游泳";
+	case ShortcutActionId::PortalLoop:
+		return L"双图光柱循环";
 	default:
 		return actionId.ToString();
 	}
@@ -281,6 +284,13 @@ bool ShortcutManager::TryParseBinding(
 			modifiers = modifiers | ShortcutModifiers::Alt;
 		if ((parsedKeys & Keys::Shift) == Keys::Shift)
 			modifiers = modifiers | ShortcutModifiers::Shift;
+
+		if (actionId == ShortcutActionId::PortalLoop &&
+			keyCode == Keys::Up)
+		{
+			errorMessage = L"双图光柱循环会自动发送 ↑ 键，请改用其他快捷键。";
+			return false;
+		}
 
 		bool hasCtrl = (modifiers & ShortcutModifiers::Ctrl) == ShortcutModifiers::Ctrl;
 		bool hasAlt = (modifiers & ShortcutModifiers::Alt) == ShortcutModifiers::Alt;

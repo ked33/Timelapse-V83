@@ -89,10 +89,13 @@ namespace Timelapse
 			shortcutTable->Dock = DockStyle::Fill;
 			shortcutTable->Margin = System::Windows::Forms::Padding(0);
 			shortcutTable->Padding = System::Windows::Forms::Padding(18, 12, 18, 4);
-			shortcutTable->RowCount = 5;
+			array<ShortcutActionId>^ configurableActions = ShortcutManager::GetConfigurableActions();
+			shortcutTable->RowCount = configurableActions->Length + 1;
 			shortcutTable->RowStyles->Add(gcnew RowStyle(SizeType::Absolute, 30.0F));
-			for (int row = 1; row <= 4; ++row)
-				shortcutTable->RowStyles->Add(gcnew RowStyle(SizeType::Percent, 25.0F));
+			for (int row = 0; row < configurableActions->Length; ++row)
+				shortcutTable->RowStyles->Add(gcnew RowStyle(
+					SizeType::Percent,
+					100.0F / configurableActions->Length));
 
 			Label^ functionHeader = gcnew Label();
 			functionHeader->Anchor = AnchorStyles::Left;
@@ -108,10 +111,8 @@ namespace Timelapse
 
 			shortcutTable->Controls->Add(functionHeader, 0, 0);
 			shortcutTable->Controls->Add(shortcutHeader, 1, 0);
-			AddShortcutRow(1, ShortcutActionId::ClickTeleport);
-			AddShortcutRow(2, ShortcutActionId::MouseFly);
-			AddShortcutRow(3, ShortcutActionId::MouseTeleport);
-			AddShortcutRow(4, ShortcutActionId::SwimInAir);
+			for (int row = 0; row < configurableActions->Length; ++row)
+				AddShortcutRow(row + 1, configurableActions[row]);
 
 			buttonPanel->AutoSize = false;
 			buttonPanel->Dock = DockStyle::Bottom;
@@ -135,7 +136,7 @@ namespace Timelapse
 			AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			BackColor = Color::FromArgb(25, 25, 25);
 			CancelButton = cancelButton;
-			ClientSize = Drawing::Size(500, 300);
+			ClientSize = Drawing::Size(500, 340);
 			Controls->Add(shortcutTable);
 			Controls->Add(buttonPanel);
 			Font = gcnew Drawing::Font(L"Microsoft YaHei UI", 9.0F, FontStyle::Regular, GraphicsUnit::Point, 134);

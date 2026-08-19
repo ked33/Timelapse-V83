@@ -19,6 +19,10 @@ void SwimInAirAction() {
 	ShortcutHelper::ToggleControl("SwimInAir");
 }
 
+void PortalLoopAction() {
+	ShortcutHelper::ClickControl("PortalLoop");
+}
+
 
 
 
@@ -28,6 +32,7 @@ void RegisterShortcuts() {
 	sm->RegisterAction(ShortcutActionId::MouseTeleport, gcnew ShortcutAction(MouseTeleportAction));
 	sm->RegisterAction(ShortcutActionId::MouseFly, gcnew ShortcutAction(MouseFlyAction));
 	sm->RegisterAction(ShortcutActionId::SwimInAir, gcnew ShortcutAction(SwimInAirAction));
+	sm->RegisterAction(ShortcutActionId::PortalLoop, gcnew ShortcutAction(PortalLoopAction));
 
 }
 
