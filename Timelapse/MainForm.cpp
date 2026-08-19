@@ -3334,6 +3334,14 @@ static long long getPortalDistanceSquared(int charX, int charY, int portalX, int
 	return deltaX * deltaX + deltaY * deltaY;
 }
 
+// A portal's WZ/live-memory Y coordinate is the portal object's anchor, while
+// the character teleport coordinates use the character's feet. The existing
+// map-rush implementation uses the same 20-pixel conversion.
+static int getPortalTeleportY(PortalData^ portal)
+{
+	return portal->yPos - 20;
+}
+
 // Prefer the live portal list because private-server data can differ from the
 // embedded WZ data. The embedded map list remains a fallback for maps that are
 // not currently loaded or whose live portal list cannot be read.
@@ -3400,7 +3408,7 @@ static bool isPortalNearPosition(int charX, int charY, PortalData^ portal)
 {
 	return portal != nullptr &&
 		Math::Abs(charX - portal->xPos) <= 35 &&
-		Math::Abs(charY - portal->yPos) <= 50;
+		Math::Abs(charY - getPortalTeleportY(portal)) <= 50;
 }
 
 static bool isSamePortalPosition(PortalData^ left, int portalX, int portalY)
@@ -3441,7 +3449,7 @@ static PortalData^ findNearestPortalForTrigger(
 			continue;
 
 		long long distance = getPortalDistanceSquared(
-			charX, charY, portal->xPos, portal->yPos);
+			charX, charY, portal->xPos, getPortalTeleportY(portal));
 		if (distance < nearestDistance)
 		{
 			nearestPortal = portal;
@@ -3947,7 +3955,8 @@ void MainForm::TriggerPortalLoop()
 
 	// This is intentionally a one-shot position teleport. Do not send ↑ and
 	// do not start a timer; entering a portal remains a manual game action.
-	Teleport(portal->xPos, portal->yPos);
+	int targetY = getPortalTeleportY(portal);
+	Teleport(portal->xPos, targetY);
 
 	portalLoopHasLastPortal = true;
 	portalLoopLastMapID = currentMapID;
@@ -3956,10 +3965,10 @@ void MainForm::TriggerPortalLoop()
 	portalLoopLastPortalDestinationMapID = portal->toMapID;
 
 	lbMapRusherStatus->Text = String::Format(
-		L"状态: 已传送到地图 {0} 的光柱中心 ({1}, {2})，共 {3} 个光柱；下次触发选择下一个位置",
+		L"状态: 已传送到地图 {0} 的光柱落点 ({1}, {2})，共 {3} 个光柱；下次触发选择下一个位置",
 		currentMapID,
 		portal->xPos,
-		portal->yPos,
+		targetY,
 		portals->Count);
 }
 
