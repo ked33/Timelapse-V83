@@ -8,6 +8,7 @@ using namespace System::Collections::Generic;
 using namespace System::Windows::Forms;
 
 public delegate void ToggleAndLogDelegate(CheckBox^ cb);
+public delegate void ToggleControlDelegate(String^ controlName);
 
 void ToggleAndLog(CheckBox^ cb) {
 	ShortcutHelper::ManualToggleCheckBox(cb);
@@ -17,6 +18,27 @@ void ToggleAndLog(CheckBox^ cb) {
 
 void ShortcutHelper::ManualToggleCheckBox(CheckBox^ cb) {
 	cb->Checked = !cb->Checked;
+}
+
+static void ToggleControlOnUI(String^ controlName) {
+	if (String::IsNullOrWhiteSpace(controlName))
+		return;
+
+	auto controls = Timelapse::MainForm::ControlMap;
+	if (controls == nullptr)
+		return;
+
+	Control^ control;
+	if (!controls->TryGetValue(controlName, control))
+		return;
+
+	CheckBox^ cb = dynamic_cast<CheckBox^>(control);
+	// A control on an unselected TabPage may not have a native handle yet.
+	// It is still safe to update it from the form UI thread.
+	if (cb == nullptr || cb->IsDisposed || cb->Disposing)
+		return;
+
+	ToggleAndLog(cb);
 }
 
 void ShortcutHelper::InvokeOnUI(Action^ action) {
@@ -31,19 +53,24 @@ void ShortcutHelper::InvokeOnUI(Action^ action) {
 }
 
 void ShortcutHelper::ToggleControl(String^ controlName) {
-	auto controls = Timelapse::MainForm::ControlMap;
-	Control^ control;
-	if (!controls->TryGetValue(controlName, control))
+	Timelapse::MainForm^ form = Timelapse::MainForm::TheInstance;
+	if (form == nullptr || form->IsDisposed || form->Disposing || !form->IsHandleCreated)
 		return;
 
-	CheckBox^ cb = dynamic_cast<CheckBox^>(control);
-	if (cb == nullptr || cb->IsDisposed || !cb->IsHandleCreated)
-		return;
-
-	if (cb->InvokeRequired)
-		cb->BeginInvoke(gcnew ToggleAndLogDelegate(ToggleAndLog), cb);
-	else
-		ToggleAndLog(cb);
+	try {
+		if (form->InvokeRequired)
+			form->BeginInvoke(
+				gcnew ToggleControlDelegate(&ToggleControlOnUI),
+				gcnew array<Object^> { controlName });
+		else
+			ToggleControlOnUI(controlName);
+	}
+	catch (ObjectDisposedException^) {
+		// The form can begin closing between the lifecycle check and BeginInvoke.
+	}
+	catch (InvalidOperationException^) {
+		// The form can begin closing between the lifecycle check and BeginInvoke.
+	}
 }
 
 void ShortcutHelper::ToggleControl(String^ controlName, Action^ additionalAction) {
