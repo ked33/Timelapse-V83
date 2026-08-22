@@ -585,6 +585,12 @@ void MainForm::GUITimer_Tick(Object^ sender, EventArgs^ e)
 		lbNPCCount->Text = PointerFuncs::getNPCCount();
 	}
 }
+
+void MainForm::bGUIRefresh_Click(Object^ sender, EventArgs^ e)
+{
+	this->GUITimer->Enabled = !this->GUITimer->Enabled;
+	this->bGUIRefresh->Text = this->GUITimer->Enabled ? "禁用刷新" : "启用刷新";
+}
 #pragma endregion
 
 #pragma region Main Tab

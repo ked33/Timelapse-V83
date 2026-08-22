@@ -63,9 +63,7 @@ void setFilterTab(int index) {
 
 void addItemToFilter() {
 	Dictionary<String^, Control^>^ controls = Timelapse::MainForm::ControlMap;
-	Button^ bItemFilter = (Button^)controls["ItemFilterEnable"];
-
-	if (bItemFilter->Text->Contains("Disable")) return;
+	if (Assembly::isItemFilterEnabled) return;
 
 	TabControl^ tabControl1 = (TabControl^)controls["MainTabs"];
 	ListBox^ lbItemFilter = (ListBox^)controls["ItemFilterListBox"];
@@ -86,7 +84,6 @@ void addItemToFilter() {
 		bItemFilterAdd->PerformClick();
 	}
 
-	bItemFilter->PerformClick();
 	tabControl1->Invoke(gcnew UpdateTabControlDelegate(setFilterTab), gcnew Int32(0));
 
 }

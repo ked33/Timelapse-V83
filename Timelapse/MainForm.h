@@ -97,6 +97,7 @@ namespace Timelapse {
 	private: System::Windows::Forms::Label^ lbJob;
 	private: System::Windows::Forms::Label^ lbLevel;
 	private: System::Windows::Forms::Label^ lbCharName;
+	private: System::Windows::Forms::Button^ bGUIRefresh;
 	private: System::Windows::Forms::Timer^ GUITimer;
 	public: System::Windows::Forms::Label^ lbMapName;
 	private:
@@ -568,6 +569,7 @@ namespace Timelapse {
 			   this->label5 = (gcnew System::Windows::Forms::Label());
 			   this->label4 = (gcnew System::Windows::Forms::Label());
 			   this->label3 = (gcnew System::Windows::Forms::Label());
+			   this->bGUIRefresh = (gcnew System::Windows::Forms::Button());
 			   this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			   this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
 			   this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
@@ -1286,6 +1288,7 @@ namespace Timelapse {
 			   this->pnlMiddle->Controls->Add(this->label6);
 			   this->pnlMiddle->Controls->Add(this->label5);
 			   this->pnlMiddle->Controls->Add(this->label4);
+			   this->pnlMiddle->Controls->Add(this->bGUIRefresh);
 			   this->pnlMiddle->Controls->Add(this->label3);
 			   this->pnlMiddle->Controls->Add(this->label1);
 			   this->pnlMiddle->Controls->Add(this->MenuStrip);
@@ -2046,6 +2049,21 @@ namespace Timelapse {
 			   this->label3->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseDown);
 			   this->label3->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseMove);
 			   this->label3->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MainForm::pnlFull_MouseUp);
+			   //
+			   // bGUIRefresh
+			   //
+			   this->bGUIRefresh->FlatAppearance->BorderColor = System::Drawing::Color::Gray;
+			   this->bGUIRefresh->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			   this->bGUIRefresh->Font = (gcnew System::Drawing::Font(L"Tahoma", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				   static_cast<System::Byte>(0)));
+			   this->bGUIRefresh->Location = System::Drawing::Point(760, 53);
+			   this->bGUIRefresh->Margin = System::Windows::Forms::Padding(4);
+			   this->bGUIRefresh->Name = L"bGUIRefresh";
+			   this->bGUIRefresh->Size = System::Drawing::Size(74, 30);
+			   this->bGUIRefresh->TabIndex = 60;
+			   this->bGUIRefresh->Text = L"启用刷新";
+			   this->bGUIRefresh->UseVisualStyleBackColor = true;
+			   this->bGUIRefresh->Click += gcnew System::EventHandler(this, &MainForm::bGUIRefresh_Click);
 			   // 
 			   // tabControl1
 			   // 
@@ -2362,8 +2380,8 @@ namespace Timelapse {
 			   // cbAutoLogin
 			   // 
 			   this->cbAutoLogin->AutoSize = true;
-			   this->cbAutoLogin->Checked = true;
-			   this->cbAutoLogin->CheckState = System::Windows::Forms::CheckState::Checked;
+			   this->cbAutoLogin->Checked = false;
+			   this->cbAutoLogin->CheckState = System::Windows::Forms::CheckState::Unchecked;
 			   this->cbAutoLogin->FlatAppearance->BorderColor = System::Drawing::Color::Maroon;
 			   this->cbAutoLogin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			   this->cbAutoLogin->ForeColor = System::Drawing::Color::White;
@@ -6926,7 +6944,7 @@ namespace Timelapse {
 			   // 
 			   // GUITimer
 			   // 
-			   this->GUITimer->Enabled = true;
+			   this->GUITimer->Enabled = false;
 			   this->GUITimer->Interval = 200;
 			   this->GUITimer->Tick += gcnew System::EventHandler(this, &MainForm::GUITimer_Tick);
 			   // 
@@ -7075,6 +7093,7 @@ namespace Timelapse {
 	private: System::Void pnlFull_MouseUp(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
 	private: System::Void pnlFull_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e);
 	private: System::Void GUITimer_Tick(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void bGUIRefresh_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void closeMapleStoryToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void loadSettingsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void saveSettingsToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e);
